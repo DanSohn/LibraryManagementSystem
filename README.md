@@ -41,3 +41,11 @@ RUN INSTRUCTIONS:
 Compile with javac *.java
 
 Run with java Driver
+
+NO ECLIPSE:
+Make sure the Database.txt is in the same directory that you're complining and runnin from
+
+ECLIPSE:
+Make a new Java project
+Copy .java files into the src directory
+Copy Database.txt into the project folder (the same one that has bin and src in it)
