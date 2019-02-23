@@ -43,7 +43,7 @@ Compile with javac *.java
 Run with java Driver
 
 NO ECLIPSE:
-Make sure the Database.txt is in the same directory that you're complining and runnin from
+Make sure the Database.txt is in the same directory that you're complining and running from.
 
 ECLIPSE:
 Make a new Java project
