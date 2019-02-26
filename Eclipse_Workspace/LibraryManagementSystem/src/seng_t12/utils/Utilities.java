@@ -1,4 +1,4 @@
-package utils;
+package seng_t12.utils;
 
 public class Utilities {
 	

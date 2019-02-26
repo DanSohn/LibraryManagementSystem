@@ -1,4 +1,4 @@
-package menus;
+package seng_t12.menus;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
