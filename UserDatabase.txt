@@ -1,0 +1,5 @@
+30030179*student*Jacob*Cuke*jacob.cuke@ucalgary.ca*passw0rd*NULL*NULL*5*false
+30087345*faculty*John*Smith*john.smith@staff.ca*1234*10044313052020,44370222112019*33245001012021*0*false
+30089213*student*James*Hetfield*james.hetfield@metallica.com*downpicking*20025630092019*NULL*10*true
+30124538*student*Kirk*Hammett*kirk.hammett@metallica.com*wahpedal*NULL*33982325022019,10094701032019*100*true
+31249002*faculty*Marty*Friedman*steve.roberts@ucalgary.ca*myP@ss*21213408082020,55432123062019,33421103122020*NULL*20*false
