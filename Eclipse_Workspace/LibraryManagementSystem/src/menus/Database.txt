@@ -1,0 +1,4 @@
+30030179*student*Jacob*Cuke*jacob.cuke@ucalgary.ca*password*5*false
+12345678*faculty*John*Smith*john.smith@staff.ca*1234*0*false
+77777777*student*James*Hetfield*james.hetfield@metallica.com*downpicking*10*true
+99999999*student*Kirk*Hammett*kirk.hammett@metallica.com*wahpedal*100*true
