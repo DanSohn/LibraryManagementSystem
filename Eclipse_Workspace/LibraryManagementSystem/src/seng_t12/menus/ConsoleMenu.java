@@ -2,7 +2,7 @@ package seng_t12.menus;
 
 import java.util.Scanner;
 
-import seng_t12.utils.Utilities;
+import utils.Utilities;
 
 public abstract class ConsoleMenu {
 	

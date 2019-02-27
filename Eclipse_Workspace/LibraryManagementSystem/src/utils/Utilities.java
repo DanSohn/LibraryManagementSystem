@@ -1,13 +1,28 @@
-package seng_t12.utils;
+package utils;
+
+import java.text.SimpleDateFormat;
 
 public class Utilities {
+	
+	/*
+	 * 
+	 * CONSTANTS & VARIABLES
+	 * 
+	 */
+	
+	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-mm-dd");
+	
+	/*
+	 * 
+	 * METHODS
+	 * 
+	 */
 	
 	/**
 	 * Timer method used as an alternative to Thread.sleep() Gives a more accurately
 	 * timed delay across systems.
 	 * 
-	 * @param stopTime
-	 *            Stop after this long (Milliseconds)
+	 * @param stopTime Stop after this long (Milliseconds)
 	 */
 	public static void waitMilliseconds(long stopTime) {
 		
@@ -63,12 +78,10 @@ public class Utilities {
 	/**
 	 * Multiply a string by a specified amount.<br>
 	 * 
-	 * i.e: "f"*3 = "fff"
+	 * e.g.: "f"*3 = "fff"
 	 * 
-	 * @param string
-	 *            The string to multiply.
-	 * @param multiple
-	 *            The number of times to multiply the string.
+	 * @param string   The string to multiply.
+	 * @param multiple The number of times to multiply the string.
 	 * @return newString The multiplied string.
 	 */
 	public static String multiplyString(String string, int multiple) {
@@ -85,6 +98,6 @@ public class Utilities {
 		String newString = stringBuilder.toString();
 		return (newString);
 		
-	}// End of multiplyString
-
+	}
+	
 }
