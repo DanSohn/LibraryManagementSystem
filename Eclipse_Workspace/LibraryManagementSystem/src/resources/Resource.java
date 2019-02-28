@@ -1,5 +1,7 @@
 package resources;
 
+import enums.ResourceType;
+
 public class Resource {
 	
 	/*

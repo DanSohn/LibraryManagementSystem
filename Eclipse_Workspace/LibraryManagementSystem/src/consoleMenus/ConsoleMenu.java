@@ -1,4 +1,4 @@
-package seng_t12.menus;
+package consoleMenus;
 
 import java.util.Scanner;
 

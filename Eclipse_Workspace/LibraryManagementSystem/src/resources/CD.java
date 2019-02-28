@@ -3,6 +3,7 @@ package resources;
 import java.text.ParseException;
 import java.util.Date;
 
+import enums.ResourceType;
 import utils.Utilities;
 
 public class CD extends Resource {
