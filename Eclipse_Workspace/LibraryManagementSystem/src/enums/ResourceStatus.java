@@ -3,7 +3,7 @@ package enums;
 public enum ResourceStatus {
 	
 	AVAILABLE,
-	RESERVED,
+	UNAVAILABLE,
 	REFERENCE;
 	
 }
