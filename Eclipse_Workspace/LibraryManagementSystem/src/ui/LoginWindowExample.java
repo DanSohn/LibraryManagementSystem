@@ -15,7 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import enums.UserType;
 import javax.swing.JButton;
 
-public class LoginWindow {
+public class LoginWindowExample {
 	
 	private JFrame frame;
 	private JPasswordField Input_Password;
@@ -28,7 +28,7 @@ public class LoginWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginWindow window = new LoginWindow();
+					LoginWindowExample window = new LoginWindowExample();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class LoginWindow {
 	/**
 	 * Create the application.
 	 */
-	public LoginWindow() {
+	public LoginWindowExample() {
 		initialize();
 	}
 	
