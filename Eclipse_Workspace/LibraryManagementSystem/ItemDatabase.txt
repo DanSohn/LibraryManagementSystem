@@ -1,0 +1,2 @@
+13*BOOK*Amazing Book*E.E.Cummings*Shelf on floor*AVAILABLE*NULL*NULL
+132*BOOK*Amazing Book*E.E.Cummings*Shelf on floor*AVAILABLE*NULL*NULL

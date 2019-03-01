@@ -64,11 +64,10 @@ public class DatabaseUtils {
 	 * @param extraFields The extra fields for the specific resource.
 	 * @return A string representing the resource in the item database.
 	 */
-	public static String genNewResourceDBStr(int id, String title, ResourceType type, ResourceStatus status,
-			int holderID, String... extraFields) {
+	public static String genNewResourceDBStr(int id, ResourceType type, String title, String... extraFields) {
 		
-		return String.join("*", Integer.toString(id), title, type.name()) + "*" + String.join("*", extraFields) + "*"
-				+ String.join("*", status.name(), Integer.toString(holderID), "NULL");
+		return String.join("*", Integer.toString(id), type.name(), title) + "*" + String.join("*", extraFields) + "*"
+				+ String.join("*", ResourceStatus.AVAILABLE.name(), "NULL", "NULL");
 		
 	}
 	
@@ -92,7 +91,7 @@ public class DatabaseUtils {
 		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
 		
 		for (String line : fileLines) {
-			String[]	bits			= line.split("*");
+			String[]	bits			= line.split("\\*");
 			int			existingID		= Integer.parseInt(bits[0]);
 			String		existingEmail	= bits[4];
 			
@@ -116,13 +115,12 @@ public class DatabaseUtils {
 	 * @param holderID    The id of the user holding the resource.
 	 * @param extraFields The extra fields for the specific resource.
 	 */
-	public static void addNewResource(int id, String title, ResourceType type, ResourceStatus status, int holderID,
-			String... extraFields) {
+	public static void addNewResource(int id, String title, ResourceType type, String... extraFields) {
 		
 		ArrayList<String> fileLines = Utilities.readTextFile("ItemDatabase.txt");
 		
 		for (String line : fileLines) {
-			String[]		bits		= line.split("*");
+			String[]		bits		= line.split("\\*");
 			ResourceType	entryType	= ResourceType.valueOf(bits[1]);
 			int				existingID	= Integer.parseInt(bits[entryType.indexOfField(ResourceField.ID)]);
 			
@@ -131,7 +129,7 @@ public class DatabaseUtils {
 			}
 		}
 		
-		fileLines.add(genNewResourceDBStr(id, title, type, status, holderID, extraFields));
+		fileLines.add(genNewResourceDBStr(id, type, title, extraFields));
 		Utilities.writeTextFile("ItemDatabase.txt", fileLines);
 		
 	}
