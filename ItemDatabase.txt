@@ -1,9 +1,9 @@
-100443*book*Software Engineering for Dummies*Sohaib Bajwa*Technology*available*NULL*NULL
-443702*book*Harry Potter and the Philosopher's Stone*J.K. Rowling*Fantasy*unavailable*30030179*30087345
-332450*book*A Song of Ice and Fire: A Game of Thrones*George R.R. Martin*Fantasy*unavailable*30124538*30030179,31249002
-200256*book*Othello*William Shakespeare*Fiction*restricted*NULL*NULL
-339823*dvd*Casino Royale*Metro-Goldwyn-Mayer*Action*available*NULL*NULL
-100947*dvd*Indiana Jones and the Raiders of the Lost Ark*Lucasfilm Ltd.*Action*unavailable*NULL*30089213
-212134*dvd*The Office US: Season 2*NBC*Comedy*unavailable*30030179*30087345,30124538,31249002
-554321*online*Three-valued bounded model checking with cause-guided abstraction refinement*Nils Timm,Stefan Gruner*https://doi.org/10.1016/j.scico.2019.02.002
-334211*online*A didactic object-oriented, prototype-based visual programming environment*Baltasar García Perez-Schofield,Francisco Ortin*https://doi.org/10.1016/j.scico.2019.02.004
+100443*BOOK*Software Engineering for Dummies*Sohaib Bajwa*Technology*AVAILABLE*NULL*NULL
+443702*BOOK*Harry Potter and the Philosopher's Stone*J.K. Rowling*Fantasy*UNAVAILABLE*30030179*30087345
+332450*BOOK*A Song of Ice and Fire: A Game of Thrones*George R.R. Martin*Fantasy*UNAVAILABLE*30124538*30030179,31249002
+200256*BOOK*Othello*William Shakespeare*Fiction*REFERENCE*NULL*NULL
+339823*DVD*Casino Royale*Metro-Goldwyn-Mayer*Action*AVAILABLE*NULL*NULL
+100947*DVD*Indiana Jones and the Raiders of the Lost Ark*Lucasfilm Ltd.*Action*UNAVAILABLE*NULL*30089213
+212134*DVD*The Office US: Season 2*NBC*Comedy*UNAVAILABLE*30030179*30087345,30124538,31249002
+554321*ONLINE*Three-valued bounded model checking with cause-guided abstraction refinement*Nils Timm,Stefan Gruner*https://doi.org/10.1016/j.scico.2019.02.002
+334211*ONLINE*A didactic object-oriented, prototype-based visual programming environment*Baltasar García Perez-Schofield,Francisco Ortin*https://doi.org/10.1016/j.scico.2019.02.004
