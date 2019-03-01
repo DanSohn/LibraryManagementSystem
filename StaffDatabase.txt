@@ -1,2 +1,2 @@
-steve.the.librarian@mountroyal.ca*ilikebooks
-stacy.the.librarian@mountroyal.ca*readingiscoolguys
+steve.the.librarian@mountroyal.ca*ilikebooks*clerk
+stacy.the.librarian@mountroyal.ca*readingiscoolguys*admin
