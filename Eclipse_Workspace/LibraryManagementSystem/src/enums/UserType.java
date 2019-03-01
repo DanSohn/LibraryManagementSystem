@@ -8,7 +8,7 @@ public enum UserType {
 	 * 
 	 */
 	
-	LIBRARIAN(0),
+	ADMIN(0),
 	CLERK(0),
 	FACULTY(8),
 	STUDENT(5);
