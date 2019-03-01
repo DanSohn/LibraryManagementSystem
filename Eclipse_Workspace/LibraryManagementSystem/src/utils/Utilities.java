@@ -17,7 +17,8 @@ public class Utilities {
 	 * 
 	 */
 	
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-mm-dd");
+	public static final SimpleDateFormat	DATE_FORMAT	= new SimpleDateFormat("yyyy-mm-dd");
+	public static final String				PARENT_DIR	= new File(new File("").getAbsolutePath()).getParent();
 	
 	/*
 	 * 
@@ -106,19 +107,18 @@ public class Utilities {
 		return (newString);
 		
 	}
-
+	
 	/**
 	 * Given a path to a file, this method ensures that the directories leading to
 	 * the file exist, and creates them if they do not exist.
 	 * 
-	 * @param fileName
-	 *            The path to the file you intend to write to.
+	 * @param fileName The path to the file you intend to write to.
 	 */
 	public static void ensureDirsForFileExist(String fileName) {
 		
 		// Containers
-		String filePath = "";
-		String[] pathBits = fileName.split("/");
+		String		filePath	= "";
+		String[]	pathBits	= fileName.split("/");
 		
 		// Build the path up to and including the last directory
 		for (int i = 0; i < pathBits.length - 1; i++) {
@@ -133,8 +133,7 @@ public class Utilities {
 	/**
 	 * Reads lines from a text file into a String array.
 	 * 
-	 * @param fileName
-	 *            The file to read from.
+	 * @param fileName The file to read from.
 	 * @return A String array of all the lines in the file.
 	 */
 	public static ArrayList<String> readTextFile(String fileName) {
@@ -171,10 +170,8 @@ public class Utilities {
 	/**
 	 * Writes lines from a String array to a specified file.
 	 * 
-	 * @param fileName
-	 *            The file to write to.
-	 * @param lines
-	 *            The lines to write to the file.
+	 * @param fileName The file to write to.
+	 * @param lines    The lines to write to the file.
 	 */
 	@SuppressWarnings("resource")
 	public static void writeTextFile(String fileName, ArrayList<String> lines) {

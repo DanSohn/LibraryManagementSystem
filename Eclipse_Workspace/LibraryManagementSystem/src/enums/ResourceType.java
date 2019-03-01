@@ -58,6 +58,8 @@ public enum ResourceType {
 		this.IS_PHYSICAL	= isPhysical;
 		this.EXTRA_FILEDS	= extraFields;
 		
+		
+		
 	}
 	
 	/*
@@ -88,11 +90,13 @@ public enum ResourceType {
 			}
 			i++;
 		}
-		for (ResourceField rf : this.ENDING_FIELDS) {
-			if (field == rf) {
-				return i;
+		if (this.IS_PHYSICAL) {
+			for (ResourceField rf : this.ENDING_FIELDS) {
+				if (field == rf) {
+					return i;
+				}
+				i++;
 			}
-			i++;
 		}
 		
 		return -1;
