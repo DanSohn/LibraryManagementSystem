@@ -32,7 +32,7 @@ public class ClerkWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void ClerkS() {
+	public void ClerkS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -129,7 +129,7 @@ public class ClerkWindow {
 		frame.getContentPane().add(lblPassword);
 		
 		JComboBox CB_type = new JComboBox();
-		CB_type.setModel(new DefaultComboBoxModel(UserType.values()));
+		CB_type.setModel(new DefaultComboBoxModel(UserType.getNonStaffTypes()));
 		CB_type.setBounds(101, 109, 107, 24);
 		frame.getContentPane().add(CB_type);
 		
@@ -137,8 +137,8 @@ public class ClerkWindow {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatabaseUtils.addNewUser(Integer.parseInt(TF_id.getText()), (UserType) CB_type.getSelectedItem(),
-						TF_firstName.getText(), TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+				DatabaseUtils.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
+						TF_lastName.getText(), TF_email.getText(), TF_password.getText());
 			}
 		});
 		btnAdd.setBounds(219, 138, 97, 25);

@@ -18,7 +18,7 @@ public class FacultyWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void FacultyS() {
+	public void FacultyS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import enums.UserType;
+
 public class Login {
 
 	public static final int NUM_USER_FIELDS = 10;
@@ -17,7 +19,7 @@ public class Login {
 	 * @param userType Permission level of user: admin, clerk, faculty, student
 	 * @return -1 if login failed, 0 if successful
 	 */
-	public static boolean userLogin(String email, String password, String userType) {
+	public static boolean userLogin(String email, String password, UserType userType) {
 		
 		String database;
 		int numFields;
@@ -25,7 +27,7 @@ public class Login {
 		int passIndex;
 		int typeIndex;
 		
-		if (userType.equals("CLERK") || userType.equals("ADMIN")) {
+		if (userType.IS_STAFF) {
 			database = "StaffDatabase.txt";
 			numFields = 3;
 			emailIndex = 0;
@@ -50,7 +52,7 @@ public class Login {
 					// Checks password is correct
 					if (fields[passIndex].equals(password)) {
 						// Checks permission level the user is trying to access is correct
-						if (fields[typeIndex].equals(userType)) {
+						if (fields[typeIndex].equals(userType.name())) {
 							return true;
 						}
 					}

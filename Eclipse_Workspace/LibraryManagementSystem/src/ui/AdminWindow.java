@@ -34,7 +34,7 @@ public class AdminWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void AdminS() {
+	public void AdminS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -148,7 +148,7 @@ public class AdminWindow {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatabaseUtils.addNewResource(Integer.parseInt(TF_id.getText()), TF_title.getText(),
+				DatabaseUtils.addNewResource(TF_id.getText(), TF_title.getText(),
 						(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText());
 			}
 		});

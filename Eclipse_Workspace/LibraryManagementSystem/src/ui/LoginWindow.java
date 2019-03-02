@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import enums.UserType;
 
 public class LoginWindow {
 	
@@ -90,44 +92,42 @@ public class LoginWindow {
 		lblinvalidemailPassword.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword);
 		
-		String[]			bookTitles	= new String[] {
-				"Student",
-				"Faculty",
-				"Library staff",
-				"Clerk"
-		};
-		JComboBox<String>	comboBox	= new JComboBox(bookTitles);
+		JComboBox<String> comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(UserType.values()));
 		comboBox.setBounds(94, 64, 116, 22);
 		frame.getContentPane().add(comboBox);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if ((comboBox.getSelectedItem() == "Faculty")
-						&& (Login.userLogin(textField.getText(), passwordField.getText(), "FACULTY"))) {
-					frame.dispose();
-					FacultyWindow newWin = new FacultyWindow(textField.getText());
-					newWin.FacultyS();
-				}
-				if ((comboBox.getSelectedItem() == "Library staff")
-						&& (Login.userLogin(textField.getText(), passwordField.getText(), "ADMIN"))) {
-					frame.dispose();
-					AdminWindow newWin = new AdminWindow(textField.getText());
-					newWin.AdminS();
-				}
-				if ((comboBox.getSelectedItem() == "Student")
-						&& (Login.userLogin(textField.getText(), passwordField.getText(), "STUDENT"))) {
-					frame.dispose();
-					StudentWindow newWin = new StudentWindow(textField.getText());
-					newWin.StudentS();
-				}
-				if ((comboBox.getSelectedItem() == "Clerk")
-						&& (Login.userLogin(textField.getText(), passwordField.getText(), "CLERK"))) {
-					frame.dispose();
-					ClerkWindow newWin = new ClerkWindow(textField.getText());
-					newWin.ClerkS();
-				} else
+				
+				UserType type = (UserType) comboBox.getSelectedItem();
+				
+				if (Login.userLogin(textField.getText(), passwordField.getText(), type)) {
+					
+					switch (type) {
+						case ADMIN:
+							frame.dispose();
+							new AdminWindow(textField.getText()).AdminS();
+							break;
+						case CLERK:
+							frame.dispose();
+							new ClerkWindow(textField.getText()).ClerkS();
+							break;
+						case FACULTY:
+							frame.dispose();
+							new FacultyWindow(textField.getText()).FacultyS();
+							break;
+						case STUDENT:
+							frame.dispose();
+							new StudentWindow(textField.getText()).StudentS();
+							break;
+					}
+					
+				} else {
 					lblinvalidemailPassword.setVisible(true);
+				}
+				
 			}
 		});
 		
