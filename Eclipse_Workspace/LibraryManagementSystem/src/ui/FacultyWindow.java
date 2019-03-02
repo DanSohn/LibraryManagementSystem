@@ -10,19 +10,19 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LibraryStaff {
+public class FacultyWindow {
 
 	private JFrame frame;
 	private static String email = null;
-	
+
 	/**
 	 * Launch the application.
 	 */
-	public static void LibraryS() {
+	public static void FacultyS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LibraryStaff window = new LibraryStaff(email);
+					FacultyWindow window = new FacultyWindow(email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class LibraryStaff {
 	/**
 	 * Create the application.
 	 */
-	public LibraryStaff(String email) {
+	public FacultyWindow(String email) {
 		this.email = email;
 		initialize();
 	}
@@ -52,7 +52,7 @@ public class LibraryStaff {
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				window newWin = new window();
+				LoginWindow newWin = new LoginWindow();
 				newWin.frame.setVisible(true);
 			}
 		});
@@ -60,13 +60,13 @@ public class LibraryStaff {
 		btnLogOut.setBounds(323, 215, 97, 25);
 		frame.getContentPane().add(btnLogOut);
 		
-		JLabel lblLibraryStaff = new JLabel("Library Staff");
+		JLabel lblLibraryStaff = new JLabel("Faculty");
 		lblLibraryStaff.setFont(new Font("Tahoma", Font.BOLD, 33));
 		lblLibraryStaff.setBounds(26, 0, 223, 73);
 		frame.getContentPane().add(lblLibraryStaff);
 	}
 
-	public void LibraryStaff() {
+	public void Faculty() {
 		// TODO Auto-generated method stub
 		
 	}

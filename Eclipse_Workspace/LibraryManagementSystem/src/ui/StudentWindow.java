@@ -14,7 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
-public class Student {
+public class StudentWindow {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -27,7 +27,7 @@ public class Student {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Student window = new Student(email);
+					StudentWindow window = new StudentWindow(email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class Student {
 	/**
 	 * Create the application.
 	 */
-	public Student(String email) {
+	public StudentWindow(String email) {
 		this.email = email;
 		initialize();
 	}
@@ -57,7 +57,7 @@ public class Student {
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				window newWin = new window();
+				LoginWindow newWin = new LoginWindow();
 				newWin.frame.setVisible(true);
 			}
 		});

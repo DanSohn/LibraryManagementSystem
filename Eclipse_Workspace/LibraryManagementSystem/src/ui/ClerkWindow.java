@@ -11,17 +11,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class Clerk {
+import database.DatabaseUtils;
+import enums.UserType;
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_4;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_5;
-	private static String email = null;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
+public class ClerkWindow {
+	
+	private JFrame			frame;
+	private JTextField		TF_id;
+	private JTextField		TF_firstName;
+	private JTextField		TF_lastName;
+	private JTextField		TF_email;
+	private JTextField		TF_password;
+	private static String	email	= null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -29,7 +36,7 @@ public class Clerk {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Clerk window = new Clerk(email);
+					ClerkWindow window = new ClerkWindow(email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,15 +44,15 @@ public class Clerk {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
-	public Clerk(String email) {
+	public ClerkWindow(String email) {
 		this.email = email;
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -59,7 +66,7 @@ public class Clerk {
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				window newWin = new window();
+				LoginWindow newWin = new LoginWindow();
 				newWin.frame.setVisible(true);
 			}
 		});
@@ -72,47 +79,34 @@ public class Clerk {
 		lblLibraryStaff.setBounds(26, 0, 223, 73);
 		frame.getContentPane().add(lblLibraryStaff);
 		
-		JButton btnAdd = new JButton("add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnAdd.setBounds(219, 153, 97, 25);
-		frame.getContentPane().add(btnAdd);
-		
-		textField = new JTextField();
-		textField.setBounds(91, 110, 116, 22);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblId = new JLabel("id");
 		lblId.setBounds(71, 81, 56, 16);
 		frame.getContentPane().add(lblId);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(91, 80, 116, 22);
-		frame.getContentPane().add(textField_4);
+		TF_id = new JTextField();
+		TF_id.setColumns(10);
+		TF_id.setBounds(91, 80, 116, 22);
+		frame.getContentPane().add(TF_id);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(91, 140, 116, 22);
-		frame.getContentPane().add(textField_1);
+		TF_firstName = new JTextField();
+		TF_firstName.setColumns(10);
+		TF_firstName.setBounds(91, 140, 116, 22);
+		frame.getContentPane().add(TF_firstName);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(91, 170, 116, 22);
-		frame.getContentPane().add(textField_2);
+		TF_lastName = new JTextField();
+		TF_lastName.setColumns(10);
+		TF_lastName.setBounds(91, 170, 116, 22);
+		frame.getContentPane().add(TF_lastName);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(91, 200, 116, 22);
-		frame.getContentPane().add(textField_3);
+		TF_email = new JTextField();
+		TF_email.setColumns(10);
+		TF_email.setBounds(91, 200, 116, 22);
+		frame.getContentPane().add(TF_email);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(91, 230, 116, 22);
-		frame.getContentPane().add(textField_5);
+		TF_password = new JTextField();
+		TF_password.setColumns(10);
+		TF_password.setBounds(91, 230, 116, 22);
+		frame.getContentPane().add(TF_password);
 		
 		JLabel lblUserType = new JLabel("user type");
 		lblUserType.setBounds(28, 113, 84, 16);
@@ -133,10 +127,21 @@ public class Clerk {
 		JLabel lblPassword = new JLabel("password");
 		lblPassword.setBounds(26, 233, 84, 16);
 		frame.getContentPane().add(lblPassword);
-	}
-
-	public void Clerk() {
-		// TODO Auto-generated method stub
 		
+		JComboBox CB_type = new JComboBox();
+		CB_type.setModel(new DefaultComboBoxModel(UserType.values()));
+		CB_type.setBounds(101, 109, 107, 24);
+		frame.getContentPane().add(CB_type);
+		
+		JButton btnAdd = new JButton("add");
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DatabaseUtils.addNewUser(Integer.parseInt(TF_id.getText()), (UserType) CB_type.getSelectedItem(),
+						TF_firstName.getText(), TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+			}
+		});
+		btnAdd.setBounds(219, 138, 97, 25);
+		frame.getContentPane().add(btnAdd);
 	}
 }

@@ -7,13 +7,9 @@ import javax.swing.JPasswordField;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-//import com.jgoodies.forms.layout.FormLayout;
-//import com.jgoodies.forms.layout.ColumnSpec;
-//import com.jgoodies.forms.layout.RowSpec;
 
 import users.Login;
 
-//import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -22,12 +18,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class window {
-
-	JFrame frame;
-	private JTextField textField;
-	private JPasswordField passwordField;
-
+public class LoginWindow {
+	
+	JFrame					frame;
+	private JTextField		textField;
+	private JPasswordField	passwordField;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +31,7 @@ public class window {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					window window = new window();
+					LoginWindow window = new LoginWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,23 +39,21 @@ public class window {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
-	public window() {
+	public LoginWindow() {
 		initialize();
 	}
 	
- 
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setForeground(Color.BLACK);
-		frame.getContentPane().setBackground(Color.WHITE); //decode("#9B9B9B")
+		frame.getContentPane().setBackground(Color.WHITE); // decode("#9B9B9B")
 		frame.setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,8 +76,8 @@ public class window {
 		lblUserName.setBounds(48, 102, 31, 16);
 		frame.getContentPane().add(lblUserName);
 		
-		//Group the radio buttons.
-	    ButtonGroup group = new ButtonGroup();
+		// Group the radio buttons.
+		ButtonGroup group = new ButtonGroup();
 		
 		JLabel lblLogIn = new JLabel("Log in");
 		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 33));
@@ -96,36 +90,43 @@ public class window {
 		lblinvalidemailPassword.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword);
 		
-		
-		String[] bookTitles = new String[] {"Student", "Faculty", "Library staff", "Clerk"};
-		JComboBox<String> comboBox = new JComboBox(bookTitles);
+		String[]			bookTitles	= new String[] {
+				"Student",
+				"Faculty",
+				"Library staff",
+				"Clerk"
+		};
+		JComboBox<String>	comboBox	= new JComboBox(bookTitles);
 		comboBox.setBounds(94, 64, 116, 22);
 		frame.getContentPane().add(comboBox);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if ((comboBox.getSelectedItem() == "Faculty")&& (Login.userLogin(textField.getText(), passwordField.getText(), "FACULTY"))){
+				if ((comboBox.getSelectedItem() == "Faculty")
+						&& (Login.userLogin(textField.getText(), passwordField.getText(), "FACULTY"))) {
 					frame.dispose();
-					Faculty newWin = new Faculty(textField.getText());
+					FacultyWindow newWin = new FacultyWindow(textField.getText());
 					newWin.FacultyS();
 				}
-				if ((comboBox.getSelectedItem() == "Library staff") && (Login.userLogin(textField.getText(), passwordField.getText(), "ADMIN"))){
+				if ((comboBox.getSelectedItem() == "Library staff")
+						&& (Login.userLogin(textField.getText(), passwordField.getText(), "ADMIN"))) {
 					frame.dispose();
-					LibraryStaff newWin=new LibraryStaff(textField.getText());
-					newWin.LibraryS();
+					AdminWindow newWin = new AdminWindow(textField.getText());
+					newWin.AdminS();
 				}
-				if ((comboBox.getSelectedItem() == "Student") && (Login.userLogin(textField.getText(), passwordField.getText(), "STUDENT"))){
+				if ((comboBox.getSelectedItem() == "Student")
+						&& (Login.userLogin(textField.getText(), passwordField.getText(), "STUDENT"))) {
 					frame.dispose();
-					Student newWin=new Student(textField.getText());
+					StudentWindow newWin = new StudentWindow(textField.getText());
 					newWin.StudentS();
 				}
-				if ((comboBox.getSelectedItem() == "Clerk") && (Login.userLogin(textField.getText(), passwordField.getText(), "CLERK"))){
+				if ((comboBox.getSelectedItem() == "Clerk")
+						&& (Login.userLogin(textField.getText(), passwordField.getText(), "CLERK"))) {
 					frame.dispose();
-					Clerk newWin=new Clerk(textField.getText());
+					ClerkWindow newWin = new ClerkWindow(textField.getText());
 					newWin.ClerkS();
-				}
-				else
+				} else
 					lblinvalidemailPassword.setVisible(true);
 			}
 		});
@@ -138,6 +139,5 @@ public class window {
 		lblUserType.setBounds(24, 67, 63, 16);
 		frame.getContentPane().add(lblUserType);
 		
-
 	}
 }
