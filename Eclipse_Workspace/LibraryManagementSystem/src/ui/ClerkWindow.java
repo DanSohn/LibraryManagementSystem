@@ -71,7 +71,7 @@ public class ClerkWindow {
 			}
 		});
 		btnLogOut.setBackground(new Color(255, 102, 102));
-		btnLogOut.setBounds(338, 229, 97, 25);
+		btnLogOut.setBounds(344, 228, 97, 25);
 		frame.getContentPane().add(btnLogOut);
 		
 		JLabel lblLibraryStaff = new JLabel("Clerk");
@@ -80,57 +80,57 @@ public class ClerkWindow {
 		frame.getContentPane().add(lblLibraryStaff);
 		
 		JLabel lblId = new JLabel("id");
-		lblId.setBounds(71, 81, 56, 16);
+		lblId.setBounds(26, 87, 56, 16);
 		frame.getContentPane().add(lblId);
 		
 		TF_id = new JTextField();
 		TF_id.setColumns(10);
-		TF_id.setBounds(91, 80, 116, 22);
+		TF_id.setBounds(120, 85, 116, 22);
 		frame.getContentPane().add(TF_id);
 		
 		TF_firstName = new JTextField();
 		TF_firstName.setColumns(10);
-		TF_firstName.setBounds(91, 140, 116, 22);
+		TF_firstName.setBounds(120, 136, 116, 22);
 		frame.getContentPane().add(TF_firstName);
 		
 		TF_lastName = new JTextField();
 		TF_lastName.setColumns(10);
-		TF_lastName.setBounds(91, 170, 116, 22);
+		TF_lastName.setBounds(120, 166, 116, 22);
 		frame.getContentPane().add(TF_lastName);
 		
 		TF_email = new JTextField();
 		TF_email.setColumns(10);
-		TF_email.setBounds(91, 200, 116, 22);
+		TF_email.setBounds(120, 196, 116, 22);
 		frame.getContentPane().add(TF_email);
 		
 		TF_password = new JTextField();
 		TF_password.setColumns(10);
-		TF_password.setBounds(91, 230, 116, 22);
+		TF_password.setBounds(120, 230, 116, 22);
 		frame.getContentPane().add(TF_password);
 		
 		JLabel lblUserType = new JLabel("user type");
-		lblUserType.setBounds(28, 113, 84, 16);
+		lblUserType.setBounds(26, 112, 84, 16);
 		frame.getContentPane().add(lblUserType);
 		
 		JLabel lblFirstName = new JLabel("first name");
-		lblFirstName.setBounds(26, 140, 84, 16);
+		lblFirstName.setBounds(26, 138, 84, 16);
 		frame.getContentPane().add(lblFirstName);
 		
 		JLabel lblLastName = new JLabel("last name");
-		lblLastName.setBounds(26, 173, 84, 16);
+		lblLastName.setBounds(26, 168, 84, 16);
 		frame.getContentPane().add(lblLastName);
 		
 		JLabel lblEmail = new JLabel("email");
-		lblEmail.setBounds(50, 205, 84, 16);
+		lblEmail.setBounds(26, 198, 84, 16);
 		frame.getContentPane().add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("password");
-		lblPassword.setBounds(26, 233, 84, 16);
+		lblPassword.setBounds(26, 232, 84, 16);
 		frame.getContentPane().add(lblPassword);
 		
 		JComboBox CB_type = new JComboBox();
 		CB_type.setModel(new DefaultComboBoxModel(UserType.getNonStaffTypes()));
-		CB_type.setBounds(101, 109, 107, 24);
+		CB_type.setBounds(120, 109, 107, 24);
 		frame.getContentPane().add(CB_type);
 		
 		JButton btnAdd = new JButton("add");
@@ -141,7 +141,7 @@ public class ClerkWindow {
 						TF_lastName.getText(), TF_email.getText(), TF_password.getText());
 			}
 		});
-		btnAdd.setBounds(219, 138, 97, 25);
+		btnAdd.setBounds(248, 134, 97, 25);
 		frame.getContentPane().add(btnAdd);
 	}
 }

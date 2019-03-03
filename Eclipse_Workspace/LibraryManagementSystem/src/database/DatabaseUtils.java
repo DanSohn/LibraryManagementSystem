@@ -65,8 +65,8 @@ public class DatabaseUtils {
 	 */
 	public static String genNewResourceDBStr(String id, ResourceType type, String title, String... extraFields) {
 		
-		return String.join("*", id, type.name(), title) + "*" + String.join("*", extraFields) + "*"
-				+ String.join("*", ResourceStatus.AVAILABLE.name(), "NULL", "NULL");
+		return String.join("*", id, type.name(), title) + "*" + String.join("*", extraFields)
+				+ (type.IS_PHYSICAL ? "*" + String.join("*", ResourceStatus.AVAILABLE.name(), "NULL", "NULL") : "");
 		
 	}
 	

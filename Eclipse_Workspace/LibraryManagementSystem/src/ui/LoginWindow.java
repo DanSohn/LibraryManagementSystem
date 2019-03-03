@@ -62,20 +62,20 @@ public class LoginWindow {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(24, 137, 63, 16);
+		lblPassword.setBounds(24, 137, 97, 16);
 		frame.getContentPane().add(lblPassword);
 		
 		textField = new JTextField();
-		textField.setBounds(94, 99, 116, 22);
+		textField.setBounds(120, 100, 116, 22);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(94, 134, 116, 22);
+		passwordField.setBounds(120, 135, 116, 22);
 		frame.getContentPane().add(passwordField);
 		
 		JLabel lblUserName = new JLabel("Email");
-		lblUserName.setBounds(48, 102, 31, 16);
+		lblUserName.setBounds(24, 102, 97, 16);
 		frame.getContentPane().add(lblUserName);
 		
 		// Group the radio buttons.
@@ -88,13 +88,13 @@ public class LoginWindow {
 		
 		JLabel lblinvalidemailPassword = new JLabel("<html>**Invalid email<br>or password**</html>");
 		lblinvalidemailPassword.setForeground(Color.RED);
-		lblinvalidemailPassword.setBounds(222, 99, 152, 38);
+		lblinvalidemailPassword.setBounds(258, 98, 152, 38);
 		lblinvalidemailPassword.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword);
 		
 		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(UserType.values()));
-		comboBox.setBounds(94, 64, 116, 22);
+		comboBox.setBounds(120, 64, 116, 22);
 		frame.getContentPane().add(comboBox);
 		
 		JButton btnSubmit = new JButton("Submit");
@@ -132,11 +132,11 @@ public class LoginWindow {
 		});
 		
 		btnSubmit.setBackground(new Color(204, 255, 204));
-		btnSubmit.setBounds(94, 169, 97, 25);
+		btnSubmit.setBounds(120, 169, 97, 25);
 		frame.getContentPane().add(btnSubmit);
 		
 		JLabel lblUserType = new JLabel("User Type");
-		lblUserType.setBounds(24, 67, 63, 16);
+		lblUserType.setBounds(24, 67, 97, 16);
 		frame.getContentPane().add(lblUserType);
 		
 	}
