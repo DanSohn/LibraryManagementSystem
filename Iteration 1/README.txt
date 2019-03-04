@@ -1,5 +1,16 @@
 T12LMS - I1
 
+Team: 12
+Project: Library Management System
+Members:
+	Matthew Allwright	- 30037812
+	Karim Beyk			- 30027342
+	Jacob Cuke			- 30030179
+	Jacob Krmpotic
+	Zander von Neudegg	- 30051361
+	Daniel Sohn			- 30017825
+	
+
 This document will act as a user-readable manual for the use of the First Iteration of Team 12's Library Management Software.
 
 
