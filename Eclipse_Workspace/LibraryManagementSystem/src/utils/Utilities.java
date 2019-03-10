@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Utilities {
 	
@@ -17,7 +20,7 @@ public class Utilities {
 	 * 
 	 */
 	
-	public static final SimpleDateFormat	DATE_FORMAT	= new SimpleDateFormat("yyyy-mm-dd");
+	public static final SimpleDateFormat	DATE_FORMAT	= new SimpleDateFormat("ddMMyyyy");
 	public static final String				PARENT_DIR	= new File(new File("").getAbsolutePath()).getParent();
 	
 	/*
@@ -197,6 +200,71 @@ public class Utilities {
 			
 		}
 		
+	}
+	
+	/**
+	 * Returns the current date
+	 * @return String in the form ddMMyyyy
+	 */
+	public static String getCurrentDate() {
+		String date = DATE_FORMAT.format(new Date());
+		return date;
+	}
+	
+	/**
+	 * Returns the date 2 weeks from today
+	 * @return String in the form ddMMyyyy
+	 */
+	public static String get2WeeksDate() {
+		Date date;
+		try {
+			// Converts today's date to milliseconds since Jan. 1st 1970
+			date = DATE_FORMAT.parse(getCurrentDate());
+			// Add 14 days (in milliseconds) to that value
+			long newDate = date.getTime() + TimeUnit.DAYS.toMillis(14);
+			// Convert back from milliseconds to a date
+			date.setTime(newDate);
+			
+			return DATE_FORMAT.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * Compares 2 dates to determine length of time passed
+	 * 
+	 * @param date1_s date to compare
+	 * @param date2_s date to be compared to
+	 * @return 0 if date1 is before or the same day as date2
+	 * > 0 if date1 is later than date2. The magnitude of the return value
+	 * represents how long date1 is after date2. A return value of 1 means that
+	 * date1 is within 1 month past date2
+	 */
+	public static int compareDates(String date1_s, String date2_s) {
+		try {
+			Date date1 = DATE_FORMAT.parse(date1_s);
+			Date date2 = DATE_FORMAT.parse(date2_s);
+			
+			// Returns 0 if equal, < 0 if date1 is earlier and > 0 if date 1 is later
+			if (date1.compareTo(date2) <= 0) {
+				return 0;
+			}
+			
+			// Convert the dates into milliseconds and subtract them
+			long difference = date1.getTime() - date2.getTime();
+			// Divide by the number of milliseconds in a day to determine how many days have passed
+			long days = difference/TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS);
+			
+			// 1 month is treated as being 30 days
+			// NB: return value of 1 means that date1 is within 1 month past date2
+			// In other words only 1 fine of $5 needs to be applied
+			return (int) (days/30) + 1;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 }
