@@ -58,8 +58,6 @@ public class DatabaseUtils {
 	 * @param id          The resource's id.
 	 * @param title       The resource's title.
 	 * @param type        The resource's type.
-	 * @param status      The resource's status.
-	 * @param holderID    The id of the user holding the resource.
 	 * @param extraFields The extra fields for the specific resource.
 	 * @return A string representing the resource in the item database.
 	 */
@@ -110,8 +108,6 @@ public class DatabaseUtils {
 	 * @param id          The resource's id.
 	 * @param title       The resource's title.
 	 * @param type        The resource's type.
-	 * @param status      The resource's status.
-	 * @param holderID    The id of the user holding the resource.
 	 * @param extraFields The extra fields for the specific resource.
 	 */
 	public static void addNewResource(String id, String title, ResourceType type, String... extraFields) {
