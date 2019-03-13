@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import database.DatabaseUtils;
+import database.UserDatabase;
 import enums.UserType;
 
 import java.awt.event.MouseAdapter;
@@ -137,7 +137,7 @@ public class ClerkWindow {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatabaseUtils.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
+				UserDatabase.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
 						TF_lastName.getText(), TF_email.getText(), TF_password.getText());
 			}
 		});
