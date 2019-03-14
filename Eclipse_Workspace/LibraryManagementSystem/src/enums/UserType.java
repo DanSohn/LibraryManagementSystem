@@ -1,6 +1,7 @@
 package enums;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum UserType {
 	
@@ -23,7 +24,25 @@ public enum UserType {
 	
 	public final boolean	IS_STAFF;
 	public final int		MAX_SIGNED_OUT_RESOURCES;
-	
+
+	private final UserField[] STAFF_FIELDS		= {
+			UserField.EMAIL,
+			UserField.PASSWORD,
+			UserField.TYPE
+	};
+	private final UserField[] NONSTAFF_FIELDS	= {
+			UserField.ID,
+			UserField.TYPE,
+			UserField.FIRST_NAME,
+			UserField.LAST_NAME,
+			UserField.EMAIL,
+			UserField.PASSWORD,
+			UserField.SIGNED_OUT_ARRAY,
+			UserField.RESERVE_ARRAY,
+			UserField.FINE_AMOUNT,
+			UserField.IS_BLACKLISTED
+	};
+
 	/*
 	 * 
 	 * CONSTRUCTORS
@@ -76,6 +95,22 @@ public enum UserType {
 		
 		return al.toArray(new UserType[al.size()]);
 		
+	}
+
+	/**
+	 * Finds the index of a specified field in a resource string.
+	 *
+	 * @param field The field to search for.
+	 * @return The index of the desired field. -1 if the field is not found.
+	 */
+	public int indexOfField(UserField field) {
+
+		if (this.IS_STAFF) {
+			return Arrays.binarySearch(STAFF_FIELDS, field);
+		} else {
+			return Arrays.binarySearch(NONSTAFF_FIELDS, field);
+		}
+
 	}
 	
 }

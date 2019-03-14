@@ -57,9 +57,7 @@ public enum ResourceType {
 		
 		this.IS_PHYSICAL	= isPhysical;
 		this.EXTRA_FILEDS	= extraFields;
-		
-		
-		
+
 	}
 	
 	/*

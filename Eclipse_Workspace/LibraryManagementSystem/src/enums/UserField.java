@@ -1,0 +1,18 @@
+package enums;
+
+public enum UserField {
+
+	EMAIL,
+	PASSWORD,
+	TYPE,
+
+	ID,
+	FIRST_NAME,
+	LAST_NAME,
+
+	SIGNED_OUT_ARRAY,
+	RESERVE_ARRAY,
+	FINE_AMOUNT,
+	IS_BLACKLISTED;
+
+}
