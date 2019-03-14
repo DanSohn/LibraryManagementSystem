@@ -40,6 +40,7 @@ public class UserDatabase {
      * @param lastName  The user's last name.
      * @param email     The user's email.
      * @param password  The user's password.
+     * @return A boolean stating whether or not the operation completed successfully.
      */
     public static boolean addNewUser(String id, UserType type, String firstName, String lastName, String email,
                                   String password) {

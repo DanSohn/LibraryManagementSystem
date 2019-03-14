@@ -33,6 +33,7 @@ public class StaffDatabase {
      * @param type      The user's type.
      * @param email     The user's email.
      * @param password  The user's password.
+     * @return A boolean stating whether or not the operation completed successfully.
      */
     public static boolean addNewStaff(String email, String password, UserType type) {
 

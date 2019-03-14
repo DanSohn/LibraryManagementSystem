@@ -26,8 +26,11 @@ public enum ResourceType {
 	 * CONSTANTS & VARIABLES
 	 * 
 	 */
+
+	public static final int MAX_NUM_FIELDS = getMaxNumFields();
 	
-	public final boolean IS_PHYSICAL;
+	public final boolean	IS_PHYSICAL;
+	public final int		NUM_FILEDS;
 	
 	private final ResourceField[]	STARTING_FIELDS	= {
 			ResourceField.ID,
@@ -57,6 +60,9 @@ public enum ResourceType {
 		
 		this.IS_PHYSICAL	= isPhysical;
 		this.EXTRA_FILEDS	= extraFields;
+		this.NUM_FILEDS		= this.IS_PHYSICAL ?
+				this.STARTING_FIELDS.length + this.EXTRA_FILEDS.length + this.ENDING_FIELDS.length :
+				this.STARTING_FIELDS.length + this.EXTRA_FILEDS.length;
 
 	}
 	
@@ -73,9 +79,9 @@ public enum ResourceType {
 	 * @return The index of the desired field. -1 if the field is not found.
 	 */
 	public int indexOfField(ResourceField field) {
-		
+
 		int i = 0;
-		
+
 		for (ResourceField rf : this.STARTING_FIELDS) {
 			if (field == rf) {
 				return i;
@@ -96,9 +102,17 @@ public enum ResourceType {
 				i++;
 			}
 		}
-		
+
 		return -1;
-		
+
+	}
+
+	private static int getMaxNumFields() {
+		int max = -1;
+		for (ResourceType type : ResourceType.values()) {
+			max = type.NUM_FILEDS > max ? type.NUM_FILEDS : max;
+		}
+		return max;
 	}
 	
 }

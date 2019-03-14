@@ -38,6 +38,7 @@ public class ResourceDatabase {
      * @param title       The resource's title.
      * @param type        The resource's type.
      * @param extraFields The extra fields for the specific resource.
+     * @return A boolean stating whether or not the operation completed successfully.
      */
     public static boolean addNewResource(String id, String title, ResourceType type, String... extraFields) {
 
@@ -57,6 +58,26 @@ public class ResourceDatabase {
         Utilities.writeTextFile("ItemDatabase.txt", fileLines);
 
         return true;
+
+    }
+
+    /**
+     * Gets a 2D array of all the stored resources, splitting each parameter into a column.
+     * @return 2D array of stored resources.
+     */
+    public static String[][] getStoredResources() {
+
+        ArrayList<String>   fileLines = Utilities.readTextFile("ItemDatabase.txt");
+        String[][]          resources = new String[fileLines.size()][ResourceType.MAX_NUM_FIELDS];
+
+        for (int i = 0; i < fileLines.size(); i++) {
+            String[] bits = fileLines.get(i).split("\\*");
+            for (int j = 0; j < bits.length; j++) {
+                resources[i][j] = bits[j];
+            }
+        }
+
+        return resources;
 
     }
 
