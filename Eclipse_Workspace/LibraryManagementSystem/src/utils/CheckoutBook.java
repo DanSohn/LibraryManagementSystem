@@ -1,3 +1,5 @@
+package utils;
+
 import java.io.IOException;
 // 
 // in items database:
@@ -21,13 +23,6 @@ import java.io.IOException;
 // return success boolean ( -1 = did not rent; 1 = rented);
 public class CheckoutBook {
 
-    public static void main(String[] args) {
-        try {
-            System.out.println((Checkout("UserDatabase.txt", "ItemDatabase.txt", "30030179", "100443")));
-        } catch (IOException e) {
-        }
-    }
-    
 	public static int Checkout(String user_db_filename, String item_db_filename, String user_id,
 			String book_id) throws IOException {
 
@@ -59,11 +54,11 @@ public class CheckoutBook {
             
             
             // check if unavailable
-            if (item_fields[5] == "UNAVAILABLE") {
+            if (item_fields[5].equals("UNAVAILABLE")) {
                     System.out.println("book unavailable");
                     return -1;
             // check if book is reference
-            } else if (item_fields[5] == "REFERENCE") {
+            } else if (item_fields[5].equals("REFERENCE")) {
                     System.out.println("book unavailable");
                     return -1;
             }

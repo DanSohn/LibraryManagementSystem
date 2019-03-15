@@ -194,19 +194,6 @@ public class LoginWindow {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		txtEmail.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblUserName.setVisible(false);
-			}
-		});
-		passwordField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblPassword.setVisible(false);
-			}
-		});
 	}
-
 }
 

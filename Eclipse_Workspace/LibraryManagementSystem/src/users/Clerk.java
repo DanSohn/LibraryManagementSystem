@@ -22,9 +22,13 @@ public class Clerk {
 	 * @param resourceID ID of the resource to be returned
 	 * @param userID ID of the user returning it
 	 */
-	public void returnResource(String resourceID, String userID) {
+	public int returnResource(String resourceID, String userID) {
 		
 		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
 		
 		// Make sure the user actually has the book checked out
 		// If so, get due date
@@ -50,7 +54,7 @@ public class Clerk {
 		// User does not currently have the item checked out
 		if (!found) {
 			System.out.println("Error: User does not currently have that item checked out");
-			return;
+			return -1;
 		}
 		
 		// Calculate the number of $5 fines to be added
@@ -65,11 +69,16 @@ public class Clerk {
 		removeResourceId(fileLines, userID, resourceID);
 		
 		// Update the item's status
-		updateItemStatus(fileLines, resourceID);
+		int status = updateItemStatus(fileLines, resourceID);
+		// If item database file was not found
+		if (status == -1) {
+			return -1;
+		}
 		
 		// Finally, write and update the User Database
 		Utilities.writeTextFile("UserDatabase.txt", fileLines);
 		
+		return 1;
 	}
 
 	/**
@@ -108,13 +117,20 @@ public class Clerk {
 	 * @return
 	 */
 	public int payFine(String userID, int amount) {
-		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
 		int change = 0, newFine;
+		boolean found = false;
+		
+		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
 		
 		for (String line : fileLines) {
 			String[] bits = line.split("\\*");
 			// Find the user
 			if (bits[0].equals(userID)) {
+				found = true;
 				int fine = Integer.parseInt(bits[8]);
 				if (amount > fine) {
 					change = amount - fine;
@@ -137,6 +153,12 @@ public class Clerk {
 				break;
 			}
 		}
+		
+		// If user doesn't exist return -1
+		if (!found) {
+			return -1;
+		}
+		
 		// Finally, write and update the User Database
 		Utilities.writeTextFile("UserDatabase.txt", fileLines);
 		return change;
@@ -185,8 +207,12 @@ public class Clerk {
 	 * @param userLines The contents of the user file to be edited
 	 * @param resourceID ID of the item whose status is to be updated
 	 */
-	private void updateItemStatus(ArrayList<String> userLines, String resourceID) {
+	private int updateItemStatus(ArrayList<String> userLines, String resourceID) {
 		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
+		// File not found
+		if (itemLines == null ) {
+			return -1;
+		}
 		
 		for (String line : itemLines) {
 			String[] bits = line.split("\\*");
@@ -211,6 +237,8 @@ public class Clerk {
 		}
 		// Write and update Item Database
 		Utilities.writeTextFile("ItemDatabase.txt", itemLines);
+		
+		return 1;
 	}
 
 	/**

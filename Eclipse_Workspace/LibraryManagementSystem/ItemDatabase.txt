@@ -3,16 +3,16 @@
 122098*BOOK*A Storm of Swords*George R.R. Martin*Fantasy*UNAVAILABLE*30097623*30097625
 303276*BOOK*A Feast for Crows*George R.R. Martin*Fantasy*UNAVAILABLE*30097624*30089213
 303277*BOOK*A Dance with Dragons*George R.R. Martin*Fantasy*UNAVAILABLE*30030179*30089213
-443702*BOOK*Harry Potter and the Philosopher's Stone*J.K. Rowling*Fantasy*UNAVAILABLE*30097625*NULL
+443702*BOOK*Harry Potter and the Philosopher's Stone*J.K. Rowling*Fantasy*AVAILABLE*NULL*NULL
 409274*BOOK*Harry Potter and the Chamber of Secrets*J.K. Rowling*Fantasy*UNAVAILABLE*NULL*30097621
 409275*BOOK*Harry Potter and the Prisoner of Azkaban*J.K. Rowling*Fantasy*UNAVAILABLE*NULL*30089213
 409276*BOOK*Harry Potter and the Goblet of Fire*J.K. Rowling*Fantasy*UNAVAILABLE*30030179*NULL
-409277*BOOK*Harry Potter and the Order of the Phoenix*J.K. Rowling*Fantasy*AVAILABLE*NULL*NULL
-409278*BOOK*Harry Potter and the Half-Blood Prince*J.K. Rowling*Fantasy*AVAILABLE*NULL*NULL
+409277*BOOK*Harry Potter and the Order of the Phoenix*J.K. Rowling*Fantasy*UNAVAILABLE*30097622*NULL
+409278*BOOK*Harry Potter and the Half-Blood Prince*J.K. Rowling*Fantasy*UNAVAILABLE*30097621*NULL
 409279*BOOK*Harry Potter and the Deathly Hallows*J.K. Rowling*Fantasy*AVAILABLE*NULL*NULL
 100673*BOOK*How to Computer Science*James Gosling*Computer Science*UNAVAILABLE*NULL*30097623,30097624,30030179
 100443*BOOK*Software Engineering for Dummies*Sohaib Bajwa*Technology*AVAILABLE*NULL*NULL
-200256*BOOK*Othello*William Shakespeare*Fiction*REFERENCE*NULL*NULL
+200256*BOOK*Othello*William Shakespeare*Fiction*UNAVAILABLE*30030179*NULL
 608934*BOOK*Intro to Java Programming*Y. Daniel Liang*Computer Science*REFERENCE*NULL*NULL
 540087*BOOK*Web Design with HTML, CSS and Javascript*Jon Duckett*Computer Science*REFERENCE*NULL*NULL
 310982*BOOK*Principles of Microeconomics*McKenzie Mankiw*Economics*REFERENCE*NULL*NULL
