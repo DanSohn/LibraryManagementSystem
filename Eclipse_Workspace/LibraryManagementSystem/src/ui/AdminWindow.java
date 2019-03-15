@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import database.DatabaseUtils;
+import database.ResourceDatabase;
 import enums.UserType;
 
 import java.awt.event.MouseAdapter;
@@ -175,7 +175,7 @@ public class AdminWindow {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DatabaseUtils.addNewResource(TF_id.getText(), TF_title.getText(),
+				ResourceDatabase.addNewResource(TF_id.getText(), TF_title.getText(),
 						(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText());
 			}
 		});
