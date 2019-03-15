@@ -88,7 +88,7 @@ public class ResourceDatabase {
      * @return              The value of the field.
      * @throws Exception    If the resource is not in the database.
      */
-    public static String getParameterOfResource(String resourceID, ResourceType resourceType, ResourceField fieldToGet) throws Exception {
+    public static String getParameterOfResource(String resourceID, ResourceType resourceType, ResourceField fieldToGet) { 
 
         ArrayList<String>   fileLines = Utilities.readTextFile("ItemDatabase.txt");
 
@@ -102,7 +102,7 @@ public class ResourceDatabase {
             }
         }
 
-        throw new Exception("Resource " + resourceID + " of type " + resourceType + " not in database!");
+        return null;
 
     }
 

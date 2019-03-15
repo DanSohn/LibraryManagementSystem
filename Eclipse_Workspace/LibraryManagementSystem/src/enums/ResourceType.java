@@ -34,8 +34,8 @@ public enum ResourceType {
 	
 	public final ResourceField[]	STARTING_FIELDS	= {
 			ResourceField.ID,
-			ResourceField.TITLE,
-			ResourceField.TYPE
+			ResourceField.TYPE,
+			ResourceField.TITLE
 	};
 	private final ResourceField[]	EXTRA_FILEDS;
 	private final ResourceField[]	ENDING_FIELDS	= {

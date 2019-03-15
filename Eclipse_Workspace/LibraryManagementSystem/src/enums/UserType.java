@@ -104,12 +104,17 @@ public enum UserType {
 	 * @return The index of the desired field. -1 if the field is not found.
 	 */
 	public int indexOfField(UserField field) {
+		
+		int i = 0;
 
-		if (this.IS_STAFF) {
-			return Arrays.binarySearch(STAFF_FIELDS, field);
-		} else {
-			return Arrays.binarySearch(NONSTAFF_FIELDS, field);
+		for (UserField foundField : this.IS_STAFF ? STAFF_FIELDS : NONSTAFF_FIELDS) {
+			if (field == foundField) {
+				return i;
+			}
+			i++;
 		}
+		
+		return -1;
 
 	}
 	
