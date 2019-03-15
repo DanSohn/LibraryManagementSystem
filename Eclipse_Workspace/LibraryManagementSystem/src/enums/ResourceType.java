@@ -32,7 +32,7 @@ public enum ResourceType {
 	public final boolean	IS_PHYSICAL;
 	public final int		NUM_FILEDS;
 	
-	private final ResourceField[]	STARTING_FIELDS	= {
+	public final ResourceField[]	STARTING_FIELDS	= {
 			ResourceField.ID,
 			ResourceField.TITLE,
 			ResourceField.TYPE

@@ -46,8 +46,7 @@ public class ResourceDatabase {
 
         for (String line : fileLines) {
             String[]		bits		= line.split("\\*");
-            ResourceType	entryType	= ResourceType.valueOf(bits[1]);
-            String			existingID	= bits[entryType.indexOfField(ResourceField.ID)];
+            String			existingID	= bits[type.indexOfField(ResourceField.ID)];
 
             if (id.equals(existingID)) {
                 return false;
@@ -78,6 +77,32 @@ public class ResourceDatabase {
         }
 
         return resources;
+
+    }
+
+    /**
+     * Gets the specified parameter of the the specified resource from the resource database.
+     * @param resourceID    The ID of the item to look at.
+     * @param resourceType  The type of the resource to look at.
+     * @param fieldToGet    The field to get from the resource.
+     * @return              The value of the field.
+     * @throws Exception    If the resource is not in the database.
+     */
+    public static String getParameterOfResource(String resourceID, ResourceType resourceType, ResourceField fieldToGet) throws Exception {
+
+        ArrayList<String>   fileLines = Utilities.readTextFile("ItemDatabase.txt");
+
+        for (String line : fileLines) {
+            String[]        bits    = line.split("\\*");
+            String          ID      = bits[resourceType.indexOfField(ResourceField.ID)];
+            ResourceType    type    = ResourceType.valueOf(bits[resourceType.indexOfField(ResourceField.TYPE)]);
+
+            if (resourceID.equals(ID) && resourceType == type) {
+                return bits[resourceType.indexOfField(fieldToGet)];
+            }
+        }
+
+        throw new Exception("Resource " + resourceID + " of type " + resourceType + " not in database!");
 
     }
 
