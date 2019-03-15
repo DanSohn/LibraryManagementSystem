@@ -9,7 +9,6 @@ public enum ResourceField {
 	AUTHOR,
 	PRODUCER,
 	LOCATION,
-	URL,
 	
 	STATUS,
 	HOLDER,

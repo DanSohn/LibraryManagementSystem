@@ -18,7 +18,8 @@ public enum ResourceType {
 	}),
 	
 	ONLINE(false, new ResourceField[] {
-			ResourceField.URL
+			ResourceField.AUTHOR,
+			ResourceField.LOCATION
 	});
 	
 	/*

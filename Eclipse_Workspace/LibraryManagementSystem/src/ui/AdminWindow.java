@@ -182,6 +182,8 @@ public class AdminWindow {
 		btnAdd.setBounds(997, 542, 97, 25);
 		frame.getContentPane().add(btnAdd);
 		
+		
+		
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
@@ -189,6 +191,19 @@ public class AdminWindow {
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
 			picLabel.setBounds(0, 0, 1920, 250);
+			
+			JButton btnSearch_1 = new JButton("Search");
+			btnSearch_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					new FindItem().FindS();
+				}
+			});
+			
+			
+			
+			btnSearch_1.setBounds(540, 692, 97, 25);
+			frame.getContentPane().add(btnSearch_1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

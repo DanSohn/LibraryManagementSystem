@@ -66,7 +66,7 @@ public class StudentWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 568, 300);
+		frame.setBounds(100, 100, 850, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -130,6 +130,16 @@ public class StudentWindow {
 		});
 		btnRenew.setBounds(370, 65, 97, 25);
 		frame.getContentPane().add(btnRenew);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new BookSearch().BookS();
+			}
+		});
+		btnSearch.setBounds(63, 338, 97, 25);
+		frame.getContentPane().add(btnSearch);
 		
 		String string = listBooks();
 		String[] parts = string.split("_");

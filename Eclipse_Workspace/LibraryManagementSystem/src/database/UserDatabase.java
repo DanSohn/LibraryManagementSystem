@@ -77,6 +77,8 @@ public class UserDatabase {
 	 */
 	public static boolean checkRegdUser(String searchTerm) {
 		
+		System.out.println(searchTerm);
+		
 		Scanner scn = new Scanner(System.in);
 		
 		// Specifies where the file you want to read from can be found
@@ -147,22 +149,20 @@ public class UserDatabase {
 	 * database.
 	 * 
 	 * @param userID     The ID of the item to look at.
-	 * @param userType   The type of the resource to look at.
 	 * @param fieldToGet The field to get from the resource.
 	 * @return The value of the field.
 	 * @throws Exception If the resource is not in the database.
 	 */
-	public static String getParameterOfUser(String userID, UserType userType, UserField fieldToGet) {
+	public static String getParameterOfUser(String userID, UserField fieldToGet) {
 		
 		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
 		
 		for (String line : fileLines) {
 			String[]	bits	= line.split("\\*");
-			String		ID		= bits[userType.indexOfField(UserField.ID)];
-			UserType	type	= UserType.valueOf(bits[userType.indexOfField(UserField.TYPE)]);
+			String		ID		= bits[0];
 			
-			if (userID.equals(ID) && userType == type) {
-				return bits[userType.indexOfField(fieldToGet)];
+			if (userID.equals(ID)) {
+				return bits[UserType.STUDENT.indexOfField(fieldToGet)];
 			}
 		}
 		
