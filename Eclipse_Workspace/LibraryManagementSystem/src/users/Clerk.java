@@ -1,3 +1,11 @@
+
+/**
+ * Clerk class for performing Clerk functionalities
+ * 
+ * @author Jacob Cuke
+ * 
+ */
+
 package users;
 
 import java.util.ArrayList;
@@ -90,6 +98,48 @@ public class Clerk {
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * Reduces the user's fine total by the specified amount
+	 * 
+	 * @param userID ID of the user who's fine is to be updated
+	 * @param amount Amount paid in fine dues
+	 * @return
+	 */
+	public int payFine(String userID, int amount) {
+		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		int change = 0, newFine;
+		
+		for (String line : fileLines) {
+			String[] bits = line.split("\\*");
+			// Find the user
+			if (bits[0].equals(userID)) {
+				int fine = Integer.parseInt(bits[8]);
+				if (amount > fine) {
+					change = amount - fine;
+					newFine = 0;
+				}
+				else {
+					// Subtract the amount paid off from the user's fine total
+					newFine = Integer.parseInt(bits[8]) - amount;
+				}
+				// If the fine has reached zero, unblacklist the user
+				// Has no effect if they were never blacklisted in the first place
+				if (newFine == 0) {
+					bits[9] = "false";
+				}
+				// Update the file contents with the changed entries
+				bits[8] = Integer.toString(newFine);
+				String newLine = String.join("*", bits);
+				int index = fileLines.indexOf(line);
+				fileLines.set(index, newLine);
+				break;
+			}
+		}
+		// Finally, write and update the User Database
+		Utilities.writeTextFile("UserDatabase.txt", fileLines);
+		return change;
 	}
 
 	/**
