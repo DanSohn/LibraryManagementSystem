@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Eclipse_Workspace/LibraryManagementSystem/src"/>
+	<classpathentry kind="src" path="Iteration 1/Eclipse_Workspace/LibraryManagementSystem/src"/>
+	<classpathentry kind="lib" path="Iteration 1/T12LMS - I1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

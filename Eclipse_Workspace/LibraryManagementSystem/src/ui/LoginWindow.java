@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
-
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
@@ -12,18 +12,29 @@ import users.Login;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import enums.UserType;
+import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginWindow {
 	
 	JFrame					frame;
-	private JTextField		textField;
+	private JTextField		txtEmail;
 	private JPasswordField	passwordField;
 	
 	/**
@@ -35,6 +46,8 @@ public class LoginWindow {
 				try {
 					LoginWindow window = new LoginWindow();
 					window.frame.setVisible(true);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,73 +67,102 @@ public class LoginWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setForeground(Color.BLACK);
-		frame.getContentPane().setBackground(Color.WHITE); // decode("#9B9B9B")
-		frame.setBackground(Color.BLACK);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setForeground(Style.dBlue);
+		frame.setBackground(Style.dBlue);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setBounds(0, 0,screen.width,screen.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
+		
+		frame.getContentPane().add(new JLabel(new ImageIcon("test.png")));
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(24, 137, 97, 16);
+		lblPassword.setForeground(Style.dBlue);
+		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblPassword.setBounds(690, 550, 197, 38);
 		frame.getContentPane().add(lblPassword);
 		
-		textField = new JTextField();
-		textField.setBounds(120, 100, 116, 22);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		txtEmail = new JTextField();
+
+		txtEmail.setBorder(new LineBorder(Style.dBlue));
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtEmail.setForeground(Style.mBlue);
+		txtEmail.setBackground(Style.lBlue);
+		txtEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		txtEmail.setBounds(900, 500, 200, 38);
+		frame.getContentPane().add(txtEmail);
+		txtEmail.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(120, 135, 116, 22);
+		passwordField.setBorder(new LineBorder(Style.dBlue));
+		passwordField.setForeground(Color.BLACK);
+		passwordField.setBackground(Style.lBlue);
+		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
+		passwordField.setBounds(900, 550, 200, 38);
 		frame.getContentPane().add(passwordField);
 		
 		JLabel lblUserName = new JLabel("Email");
-		lblUserName.setBounds(24, 102, 97, 16);
+		lblUserName.setForeground(Style.dBlue);
+		lblUserName.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUserName.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblUserName.setBounds(719, 498, 168, 38);
 		frame.getContentPane().add(lblUserName);
 		
 		// Group the radio buttons.
 		ButtonGroup group = new ButtonGroup();
 		
 		JLabel lblLogIn = new JLabel("Log in");
-		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblLogIn.setBounds(26, 0, 179, 73);
+		lblLogIn.setForeground(Style.dBlue);
+		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblLogIn.setBounds(900, 370, 200, 73);
 		frame.getContentPane().add(lblLogIn);
 		
-		JLabel lblinvalidemailPassword = new JLabel("<html>**Invalid email<br>or password**</html>");
-		lblinvalidemailPassword.setForeground(Color.RED);
-		lblinvalidemailPassword.setBounds(258, 98, 152, 38);
+		JLabel lblinvalidemailPassword = new JLabel("<html>Invalid email or password</html>");
+		lblinvalidemailPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblinvalidemailPassword.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblinvalidemailPassword.setForeground(new Color(255, 69, 0));
+		lblinvalidemailPassword.setBounds(800, 642, 391, 38);
 		lblinvalidemailPassword.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword);
 		
 		JComboBox<String> comboBox = new JComboBox();
+		comboBox.setBorder(new LineBorder(Style.dBlue));
+		comboBox.setBackground(Style.lBlue);
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox.setModel(new DefaultComboBoxModel(UserType.values()));
-		comboBox.setBounds(120, 64, 116, 22);
+		comboBox.setBounds(900, 450, 200, 38);
 		frame.getContentPane().add(comboBox);
 		
+		
+		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 22));
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				UserType type = (UserType) comboBox.getSelectedItem();
 				
-				if (Login.userLogin(textField.getText(), passwordField.getText(), type)) {
+				if (Login.userLogin(txtEmail.getText(), passwordField.getText(), type)) {
 					
 					switch (type) {
 						case ADMIN:
 							frame.dispose();
-							new AdminWindow(textField.getText()).AdminS();
+							new AdminWindow(txtEmail.getText()).AdminS();
 							break;
 						case CLERK:
 							frame.dispose();
-							new ClerkWindow(textField.getText()).ClerkS();
+							new ClerkWindow(txtEmail.getText()).ClerkS();
 							break;
 						case FACULTY:
 							frame.dispose();
-							new FacultyWindow(textField.getText()).FacultyS();
+							new FacultyWindow(txtEmail.getText()).FacultyS();
 							break;
 						case STUDENT:
 							frame.dispose();
-							new StudentWindow(textField.getText()).StudentS();
+							new StudentWindow(txtEmail.getText()).StudentS();
 							break;
 					}
 					
@@ -131,13 +173,40 @@ public class LoginWindow {
 			}
 		});
 		
-		btnSubmit.setBackground(new Color(204, 255, 204));
-		btnSubmit.setBounds(120, 169, 97, 25);
+		btnSubmit.setBackground(Style.mBlue);
+		btnSubmit.setBounds(900, 600, 200, 38);
 		frame.getContentPane().add(btnSubmit);
 		
 		JLabel lblUserType = new JLabel("User Type");
-		lblUserType.setBounds(24, 67, 97, 16);
+		lblUserType.setForeground(Style.dBlue);
+		lblUserType.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUserType.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblUserType.setBounds(719, 450, 168, 38);
 		frame.getContentPane().add(lblUserType);
 		
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("test.jpg"));
+			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+			picLabel.setBorder(null);
+			frame.getContentPane().add(picLabel);
+			picLabel.setBounds(-11, 0, 1939, 1020);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		txtEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblUserName.setVisible(false);
+			}
+		});
+		passwordField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblPassword.setVisible(false);
+			}
+		});
 	}
+
 }
+
