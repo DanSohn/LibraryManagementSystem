@@ -1,0 +1,33 @@
+332450*BOOK*A Game of Thrones*George R.R. Martin*Fantasy*UNAVAILABLE*30097621*NULL
+200528*BOOK*A Clash of Kings*George R.R. Martin*Fantasy*UNAVAILABLE*30097622*NULL
+122098*BOOK*A Storm of Swords*George R.R. Martin*Fantasy*UNAVAILABLE*30097623*30097625
+303276*BOOK*A Feast for Crows*George R.R. Martin*Fantasy*UNAVAILABLE*30097624*30089213
+303277*BOOK*A Dance with Dragons*George R.R. Martin*Fantasy*UNAVAILABLE*30030179*30089213
+443702*BOOK*Harry Potter and the Philosopher's Stone*J.K. Rowling*Fantasy*UNAVAILABLE*NULL*30097624
+409274*BOOK*Harry Potter and the Chamber of Secrets*J.K. Rowling*Fantasy*UNAVAILABLE*NULL*30097621
+409275*BOOK*Harry Potter and the Prisoner of Azkaban*J.K. Rowling*Fantasy*UNAVAILABLE*NULL*30089213
+409276*BOOK*Harry Potter and the Goblet of Fire*J.K. Rowling*Fantasy*UNAVAILABLE*30030179*NULL
+409277*BOOK*Harry Potter and the Order of the Phoenix*J.K. Rowling*Fantasy*UNAVAILABLE*30097622*NULL
+409278*BOOK*Harry Potter and the Half-Blood Prince*J.K. Rowling*Fantasy*UNAVAILABLE*30097621*NULL
+409279*BOOK*Harry Potter and the Deathly Hallows*J.K. Rowling*Fantasy*AVAILABLE*NULL*NULL
+100673*BOOK*How to Computer Science*James Gosling*Computer Science*UNAVAILABLE*NULL*30097623,30097624,30030179
+100443*BOOK*Software Engineering for Dummies*Sohaib Bajwa*Technology*AVAILABLE*NULL*NULL
+200256*BOOK*Othello*William Shakespeare*Fiction*UNAVAILABLE*30030179*NULL
+608934*BOOK*Intro to Java Programming*Y. Daniel Liang*Computer Science*REFERENCE*NULL*NULL
+540087*BOOK*Web Design with HTML, CSS and Javascript*Jon Duckett*Computer Science*REFERENCE*NULL*NULL
+310982*BOOK*Principles of Microeconomics*McKenzie Mankiw*Economics*REFERENCE*NULL*NULL
+570061*BOOK*Music Theory*Jonathan E. Peters*Music*AVAILABLE*NULL*NULL
+880037*BOOK*Calculus for Dummies*Mark Ryan*Mathematics*AVAILABLE*NULL*NULL
+927302*BOOK*Contemporary Linguistic Analysis*William O'Grady*Linguistics*REFERENCE*NULL*NULL
+040537*DVD*Star Wars: A New Hope*Gary Kurtz*Sci-Fi*UNAVAILABLE*30089213*NULL
+040538*DVD*Star Wars: The Empire Strikes Back*Gary Kurtz*Sci-Fi*UNAVAILABLE*30089213*NULL
+040539*DVD*Star Wars: Return of the Jedi*Howard Kazanjian*Sci-Fi*UNAVAILABLE*30089213*NULL
+750284*DVD*The Bourne Identity*Doug Liman*Action*AVAILABLE*NULL*NULL
+750285*DVD*The Bourne Supremacy*Frank Marshall*Action*AVAILABLE*NULL*NULL
+750286*DVD*The Bourne Ultimatum*Frank Marshall*Action*AVAILABLE*NULL*NULL
+782732*DVD*Your Name.*Noritaka Kawaguchi*Animated*AVAILABLE*NULL*NULL
+339823*DVD*Casino Royale*Michael G. Wilson*Action*UNAVAILABLE*30089213*NULL
+100947*DVD*Indiana Jones and the Raiders of the Lost Ark*Frank Marshall*Action*UNAVAILABLE*30089213*NULL
+212134*DVD*The Office US: Season 2*Ricky Gervais*AVAILABLE*NULL*NULL
+554321*ONLINE*Three-valued bounded model checking with cause-guided abstraction refinement*Nils Timm,Stefan Gruner*https://doi.org/10.1016/j.scico.2019.02.002
+334211*ONLINE*A didactic object-oriented, prototype-based visual programming environment*Baltasar García Perez-Schofield,Francisco Ortin*https://doi.org/10.1016/j.scico.2019.02.004
