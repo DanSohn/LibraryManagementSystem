@@ -39,9 +39,9 @@ import javax.swing.SwingConstants;
 
 public class FindUser {
 	
-	JFrame			frame;
+	JFrame					frame;
 	private static String	email	= null;
-	private JTextField textField;
+	private JTextField		textField;
 	
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class FindUser {
 	public FindUser() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -73,12 +73,12 @@ public class FindUser {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Style.backBlue);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setBounds(0, 0,screen.width,screen.height);
+		frame.setBounds(0, 0, screen.width, screen.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
-			
+		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		textField.setBounds(226, 446, 175, 32);
@@ -105,32 +105,32 @@ public class FindUser {
 		frame.getContentPane().add(lblUserFound);
 		lblUserFound.setVisible(false);
 		
-		JTextPane textPane_0 = new JTextPane();
-		textPane_0.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_0.setBounds(818, 859, 172, 37);
-		frame.getContentPane().add(textPane_0);
+		JTextPane TP_blacklisted = new JTextPane();
+		TP_blacklisted.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_blacklisted.setBounds(818, 859, 172, 37);
+		frame.getContentPane().add(TP_blacklisted);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_1.setBounds(818, 446, 172, 37);
-		frame.getContentPane().add(textPane_1);
+		JTextPane TP_firstName = new JTextPane();
+		TP_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_firstName.setBounds(818, 446, 172, 37);
+		frame.getContentPane().add(TP_firstName);
 		
-		JTextPane textPane_3 = new JTextPane();
-		textPane_3.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_3.setBounds(1048, 859, 172, 37);
-		frame.getContentPane().add(textPane_3);
+		JTextPane TP_fees = new JTextPane();
+		TP_fees.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_fees.setBounds(1048, 859, 172, 37);
+		frame.getContentPane().add(TP_fees);
 		
-		JTextPane textPane_4 = new JTextPane();
-		textPane_4.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_4.setBounds(1007, 446, 172, 37);
-		frame.getContentPane().add(textPane_4);
+		JTextPane TP_lastName = new JTextPane();
+		TP_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_lastName.setBounds(1007, 446, 172, 37);
+		frame.getContentPane().add(TP_lastName);
 		
-		JTextPane textPane_5 = new JTextPane();
-		textPane_5.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_5.setBounds(818, 592, 792, 189);
-		frame.getContentPane().add(textPane_5);
+		JTextPane TP_checkedOut = new JTextPane();
+		TP_checkedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_checkedOut.setBounds(818, 592, 792, 189);
+		frame.getContentPane().add(TP_checkedOut);
 		
-		JButton btnBack = new JButton("Back"); //to admin
+		JButton btnBack = new JButton("Back"); // to admin
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -198,17 +198,17 @@ public class FindUser {
 		
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(UserDatabase.checkRegdUser(textField.getText())){
+				if (UserDatabase.checkRegdUser(textField.getText())) {
 					lblUserFound.setVisible(true);
-					textPane_0.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FIRST_NAME));
-					textPane_1.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.LAST_NAME));
-					textPane_5.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.SIGNED_OUT_ARRAY));
-					textPane_4.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.IS_BLACKLISTED));
-					textPane_3.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FINE_AMOUNT));
-				}
-				else{
+					TP_blacklisted.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.IS_BLACKLISTED));
+					TP_firstName.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FIRST_NAME));
+					TP_checkedOut.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.SIGNED_OUT_ARRAY));
+					TP_lastName.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.LAST_NAME));
+					TP_fees.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FINE_AMOUNT));
+				} else {
 					lblNoSuchUser.setVisible(true);
-				};
+				}
+				;
 			}
 		});
 		
@@ -218,9 +218,9 @@ public class FindUser {
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 250);	
-		
-		}catch (IOException e) {
+			picLabel.setBounds(0, 0, 1920, 250);
+			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
