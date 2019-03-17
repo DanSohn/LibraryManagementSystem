@@ -3,14 +3,21 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -66,11 +73,16 @@ public class StudentWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 850, 480);
+		frame.getContentPane().setBackground(Style.backBlue);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setBounds(0, 0,screen.width,screen.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
 		
 		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -79,43 +91,35 @@ public class StudentWindow {
 			}
 		});
 		btnLogOut.setBackground(new Color(255, 102, 102));
-		btnLogOut.setBounds(323, 215, 97, 25);
+		btnLogOut.setBounds(1721, 286, 128, 25);
 		frame.getContentPane().add(btnLogOut);
-		
-		JLabel lblLibraryStaff = new JLabel("Student");
-		lblLibraryStaff.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblLibraryStaff.setBounds(26, 0, 223, 73);
-		frame.getContentPane().add(lblLibraryStaff);
 		
 	    DefaultListModel model = new DefaultListModel();
 	    JList list = new JList(model);
-		list.setBounds(26, 100, 497, 102);
+	    list.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		list.setBounds(23, 507, 497, 102);
 		frame.getContentPane().add(list);
 		
 		textField = new JTextField();
-		textField.setBounds(26, 66, 116, 22);
+		textField.setVisible(false);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		textField.setBounds(792, 409, 176, 25);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnRent = new JButton("Rent");
-		btnRent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				model.addElement(textField.getText());
-			}
-		});
-		btnRent.setBounds(152, 65, 97, 25);
-		frame.getContentPane().add(btnRent);
-		
 		JButton btnReturn = new JButton("Return");
+		btnReturn.setVisible(false);
+		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.remove(0);
 			}
 		});
-		btnReturn.setBounds(261, 65, 97, 25);
+		btnReturn.setBounds(980, 411, 97, 25);
 		frame.getContentPane().add(btnReturn);
 		
-		JButton btnRenew = new JButton("renew");
+		JButton btnRenew = new JButton("Renew");
+		btnRenew.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRenew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String selected = (String) list.getSelectedValue();
@@ -128,23 +132,56 @@ public class StudentWindow {
 				}
 			}
 		});
-		btnRenew.setBounds(370, 65, 97, 25);
+		btnRenew.setBounds(23, 622, 105, 35);
+		btnRenew.setForeground(Style.dBlue);
+		btnRenew.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnRenew);
 		
-		JButton btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton("Search Book Location");
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new BookSearch(email).BookS();
 				frame.dispose();
-				new BookSearch().BookS();
 			}
 		});
-		btnSearch.setBounds(63, 338, 97, 25);
+		btnSearch.setBounds(23, 751, 300, 35);
 		frame.getContentPane().add(btnSearch);
+		btnSearch.setForeground(Style.dBlue);
+		btnSearch.setBackground(Style.lBlue);
 		
 		String string = listBooks();
 		String[] parts = string.split("_");
 		for (int i = 0; i < parts.length; i++) {
 			model.addElement(parts[i]);
+		}
+		
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("banner.jpg"));
+			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+			picLabel.setBorder(null);
+			frame.getContentPane().add(picLabel);
+			picLabel.setBounds(0, 0, 1920, 250);
+			
+			JLabel lblStudent = new JLabel("Student");
+			lblStudent.setForeground(new Color(3, 51, 89));
+			lblStudent.setFont(new Font("Tahoma", Font.BOLD, 44));
+			lblStudent.setBounds(20, 263, 223, 73);
+			frame.getContentPane().add(lblStudent);
+			
+			JLabel label = new JLabel("Home");
+			label.setFont(new Font("Tahoma", Font.PLAIN, 34));
+			label.setBounds(20, 327, 461, 60);
+			frame.getContentPane().add(label);
+			
+			JLabel lblCurrentBooks = new JLabel("Current books:");
+			lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+			lblCurrentBooks.setBounds(23, 460, 220, 41);
+			frame.getContentPane().add(lblCurrentBooks);
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

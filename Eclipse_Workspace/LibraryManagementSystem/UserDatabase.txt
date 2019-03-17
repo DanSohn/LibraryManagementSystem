@@ -10,3 +10,5 @@
 31249002*FACULTY*Marty*Friedman*marty.friedman@megadeth.com*myP@ss*NULL*NULL*20*false
 30012985*FACULTY*David*Gilmour*dave@floyd.com*strat*NULL*NULL*0*false
 30057893*FACULTY*John*Petrucci*john@dt.com*beard*NULL*NULL*0*false
+38888888*STUDENT*me*me*Semail*pass*30327622032019*100673*30*false
+88888888*FACULTY*me*me*Femail*pass*30327622032019*100673*30*false

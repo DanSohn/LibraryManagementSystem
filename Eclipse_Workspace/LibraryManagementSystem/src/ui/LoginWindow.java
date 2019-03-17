@@ -114,10 +114,11 @@ public class LoginWindow {
 		// Group the radio buttons.
 		ButtonGroup group = new ButtonGroup();
 		
-		JLabel lblLogIn = new JLabel("Log in");
+		JLabel lblLogIn = new JLabel("Log In");
+		lblLogIn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogIn.setForeground(Style.dBlue);
 		lblLogIn.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblLogIn.setBounds(900, 370, 200, 73);
+		lblLogIn.setBounds(889, 381, 200, 73);
 		frame.getContentPane().add(lblLogIn);
 		
 		JLabel lblinvalidemailPassword = new JLabel("<html>Invalid email or password</html>");
@@ -150,11 +151,11 @@ public class LoginWindow {
 					switch (type) {
 						case ADMIN:
 							frame.dispose();
-							new AdminWindow(txtEmail.getText()).AdminS();
+							new AdminWindow().AdminS();
 							break;
 						case CLERK:
 							frame.dispose();
-							new ClerkWindow(txtEmail.getText()).ClerkS();
+							new ClerkWindow().ClerkS();
 							break;
 						case FACULTY:
 							frame.dispose();
@@ -190,7 +191,7 @@ public class LoginWindow {
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(-11, 0, 1939, 1020);
+			picLabel.setBounds(-12, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
