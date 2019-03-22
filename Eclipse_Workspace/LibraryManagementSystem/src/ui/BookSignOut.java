@@ -146,28 +146,28 @@ public class BookSignOut {
 		btnReturn.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnReturn);
 		
-		JLabel lblClerk = new JLabel("Clerk");
-		lblClerk.setForeground(new Color(3, 51, 89));
-		lblClerk.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblClerk.setBounds(25, 263, 223, 73);
-		frame.getContentPane().add(lblClerk);
+//		JLabel lblClerk = new JLabel("Clerk");
+//		lblClerk.setForeground(new Color(3, 51, 89));
+//		lblClerk.setFont(new Font("Tahoma", Font.BOLD, 44));
+//		lblClerk.setBounds(25, 263, 223, 73);
+//		frame.getContentPane().add(lblClerk);
 		
-		JLabel lblBookSignOut = new JLabel("Manage Books");
-		lblBookSignOut.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		lblBookSignOut.setBounds(26, 328, 461, 60);
-		frame.getContentPane().add(lblBookSignOut);
+//		JLabel lblBookSignOut = new JLabel("Manage Books");
+//		lblBookSignOut.setFont(new Font("Tahoma", Font.PLAIN, 34));
+//		lblBookSignOut.setBounds(26, 328, 461, 60);
+//		frame.getContentPane().add(lblBookSignOut);
 		
-		JButton button = new JButton("Back");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new ClerkWindow().ClerkS();
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		button.setBackground(new Color(255, 140, 0));
-		button.setBounds(1723, 283, 116, 25);
-		frame.getContentPane().add(button);
+//		JButton button = new JButton("Back");
+//		button.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				frame.dispose();
+//				new ClerkWindow().ClerkS();
+//			}
+//		});
+//		button.setFont(new Font("Tahoma", Font.PLAIN, 20));
+//		button.setBackground(new Color(255, 140, 0));
+//		button.setBounds(1723, 283, 116, 25);
+//		frame.getContentPane().add(button);
 		
 		BufferedImage myPicture;
 		try {

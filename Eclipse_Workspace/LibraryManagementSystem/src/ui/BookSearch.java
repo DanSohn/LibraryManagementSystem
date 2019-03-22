@@ -42,6 +42,7 @@ public class BookSearch {
 	
 	JFrame			frame;
 	private static String	email	= null;
+	private static String	from	= null;
 	private JTextField textField;
 	
 	/**
@@ -51,7 +52,7 @@ public class BookSearch {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookSearch window = new BookSearch(email);
+					BookSearch window = new BookSearch(email, from);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,8 +64,9 @@ public class BookSearch {
 	/**
 	 * Create the application.
 	 */
-	public BookSearch(String email) {
+	public BookSearch(String email, String from) {
 		this.email = email;
+		this.from = from;
 		initialize();
 	}
 
@@ -152,7 +154,7 @@ public class BookSearch {
 			lblLocation.setBounds(146, 575, 97, 38);
 			frame.getContentPane().add(lblLocation);
 			
-			JLabel lblStudent = new JLabel("Student");
+			JLabel lblStudent = new JLabel(from);
 			lblStudent.setForeground(new Color(3, 51, 89));
 			lblStudent.setFont(new Font("Tahoma", Font.BOLD, 44));
 			lblStudent.setBounds(20, 252, 223, 73);
@@ -166,7 +168,13 @@ public class BookSearch {
 			JButton button = new JButton("Back");
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					new StudentWindow(email).StudentS();
+					if (from.equals("Student")){
+						StudentWindow.StudentS(email);
+					}
+					else {//from == Faculty
+						FacultyWindow.FacultyS(email);
+					}
+					
 					frame.dispose();
 				}
 			});

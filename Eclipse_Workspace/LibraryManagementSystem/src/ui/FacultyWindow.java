@@ -45,7 +45,7 @@ public class FacultyWindow {
 	/**
 	 * Launch the application.
 	 */
-	public void FacultyS() {
+	public static void FacultyS(String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -100,7 +100,7 @@ public class FacultyWindow {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				new BookSearch(email).BookS();
+				new BookSearch(email, "Faculty").BookS();
 				frame.dispose();
 			}
 		});

@@ -24,13 +24,7 @@ public enum UserType {
 	
 	public final boolean	IS_STAFF;
 	public final int		MAX_SIGNED_OUT_RESOURCES;
-
-	private final UserField[] STAFF_FIELDS		= {
-			UserField.EMAIL,
-			UserField.PASSWORD,
-			UserField.TYPE
-	};
-	private final UserField[] NONSTAFF_FIELDS	= {
+	private final static UserField[] FIELDS	= {
 			UserField.ID,
 			UserField.TYPE,
 			UserField.FIRST_NAME,
@@ -103,11 +97,11 @@ public enum UserType {
 	 * @param field The field to search for.
 	 * @return The index of the desired field. -1 if the field is not found.
 	 */
-	public int indexOfField(UserField field) {
+	public static int indexOfField(UserField field) {
 		
 		int i = 0;
 
-		for (UserField foundField : this.IS_STAFF ? STAFF_FIELDS : NONSTAFF_FIELDS) {
+		for (UserField foundField : FIELDS) {
 			if (field == foundField) {
 				return i;
 			}

@@ -41,7 +41,7 @@ public class AdminWindow {
 	/**
 	 * Launch the application.
 	 */
-	public void AdminS() {
+	public static void AdminS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

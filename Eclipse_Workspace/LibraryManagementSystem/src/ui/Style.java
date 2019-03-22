@@ -7,6 +7,7 @@ public class Style {
 	static Color mBlue = new Color(15, 154, 187);
 	static Color lBlue = new Color(230, 230, 240);
 	static Color backBlue = new Color(122, 178, 201);
+	static Color jBlue = new Color(210, 210, 210);
 	
 	public void run() {
 		

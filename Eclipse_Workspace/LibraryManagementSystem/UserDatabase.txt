@@ -1,14 +1,22 @@
-30030179*STUDENT*Jacob*Cuke*jacob.cuke@ucalgary.ca*t12*30327717032019,40927601042019,20025629032019*100673*5*false
-30097621*STUDENT*Zander*von Neudegg*alexander.vonneudegg@ucalgary.ca*t12*33245019032019,40927829032019*40927419032019*0*false
-30097622*STUDENT*Jacob*Krmpotic*jacob.krmpotic1@ucalgary.ca*t12*20052820032019,40927729032019*NULL*15*false
+30030179*STUDENT*Jacob*Cuke*jacob.cuke@ucalgary.ca*t12*30327717032019,40927601042019*100673*5*false
+30097621*STUDENT*Zander*von Neudegg*alexander.vonneudegg@ucalgary.ca*t12*33245019032019*40927419032019*0*false
+30097622*STUDENT*Jacob*Krmpotic*jacob.krmpotic1@ucalgary.ca*t12*20052820032019*NULL*15*false
 30097623*STUDENT*Daniel*Sohn*junghyun.sohn@ucalgary.ca*t12*12209821032019*10067320032019*20*false
 30097624*STUDENT*Karim*Beyk*karim.beyk@ucalgary.ca*t12*30327622032019*100673*30*false
-30097625*STUDENT*Matthew*Allwright*matthew.allwright@ucalgary.ca*t12*NULL*122098*0*false
+30097625*STUDENT*Matthew*Allwright*matthew.allwright@ucalgary.ca*t12*44370223032019*122098*0*false
 30089213*STUDENT*James*Hetfield*james.hetfield@metallica.com*downpicking*04053701042019,04053802042019,04053902042019,33982303042019,10094703042019*303276,303277,40927528032019*10*false
 30124538*STUDENT*Kirk*Hammett*kirk.hammett@metallica.com*wahpedal*NULL*NULL*100*true
 30087345*FACULTY*John*Smith*john.smith@staff.ca*1234*NULL*NULL*0*false
 31249002*FACULTY*Marty*Friedman*marty.friedman@megadeth.com*myP@ss*NULL*NULL*20*false
 30012985*FACULTY*David*Gilmour*dave@floyd.com*strat*NULL*NULL*0*false
 30057893*FACULTY*John*Petrucci*john@dt.com*beard*NULL*NULL*0*false
-38888888*STUDENT*me*me*Semail*pass*30327622032019*100673*30*false
-88888888*FACULTY*me*me*Femail*pass*30327622032019*100673*30*false
+12345678*CLERK*Steve*Man*steve.the.librarian@mountroyal.ca*ilikebooks*NULL*NULL*0*false
+12345679*ADMIN*Stacy*Woman*stacy.the.librarian@mountroyal.ca*readingiscoolguys*NULL*NULL*0*false
+12345670*CLERK*Clerk*Man*Cemail*pass*NULL*NULL*0*false
+23456789*ADMIN*Admin*Woman*Aemail*pass*NULL*NULL*0*false
+12345670*STUDENT*Clerk*Man*Semail*pass*NULL*NULL*0*false
+23456789*FACULTY*Admin*Woman*Femail*pass*NULL*NULL*0*false
+12345670*CLERK*Clerk*Man*c**NULL*NULL*0*false
+23456789*ADMIN*Admin*Woman*a**NULL*NULL*0*false
+12345670*STUDENT*Clerk*Man*s**NULL*NULL*0*false
+23456789*FACULTY*Admin*Woman*f**NULL*NULL*0*false
