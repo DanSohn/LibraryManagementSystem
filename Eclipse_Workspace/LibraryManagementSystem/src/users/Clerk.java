@@ -21,6 +21,7 @@ public class Clerk {
 	 * 
 	 * @param resourceID ID of the resource to be returned
 	 * @param userID ID of the user returning it
+	 * @return 1 if successful, -1 if an error occurred
 	 */
 	public int returnResource(String resourceID, String userID) {
 		
@@ -110,11 +111,37 @@ public class Clerk {
 	}
 	
 	/**
+	 * Returns the user's fine amount
+	 * @param userID user's ID number
+	 * @return fine amount, -1 if error occured
+	 */
+	public int getFine(String userID) {
+		int fine = -1; // -1 returned if user not found
+		
+		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
+		
+		for (String line : fileLines) {
+			String[] bits = line.split("\\*");
+			// Find the user and return their fine amount
+			if (bits[0].equals(userID)) {
+				fine = Integer.parseInt(bits[8]);
+				break;
+			}
+		}
+		
+		return fine;
+	}
+	
+	/**
 	 * Reduces the user's fine total by the specified amount
 	 * 
 	 * @param userID ID of the user who's fine is to be updated
 	 * @param amount Amount paid in fine dues
-	 * @return
+	 * @return user's change, -1 if there was an error
 	 */
 	public int payFine(String userID, int amount) {
 		int change = 0, newFine;
@@ -220,14 +247,18 @@ public class Clerk {
 			if (bits[0].equals(resourceID)) {
 				// Update the current holder field to NULL
 				bits[6] = "NULL";
-				// If there is no one in the reserve queue, set item to AVAILABLE
-				if (bits[7].equals("NULL")) {
-					bits[5] = "AVAILABLE";
-				} else {
-					// Issue a pick-up-by date for the first user waiting in the queue
-					String[] users = bits[7].split(",");
-					addPickupDate(userLines, users[0], resourceID);
+				// If the item has been restricted, do not make it available
+				if (!bits[5].equals("RESTRICTED")) {
+					// If there is no one in the reserve queue, set item to AVAILABLE
+					if (bits[7].equals("NULL")) {
+						bits[5] = "AVAILABLE";
+					} else {
+						// Issue a pick-up-by date for the first user waiting in the queue
+						String[] users = bits[7].split(",");
+						addPickupDate(userLines, users[0], resourceID);
+					}
 				}
+				
 				// Update the file contents with the changed entries
 				String newLine = String.join("*", bits);
 				int index = itemLines.indexOf(line);
@@ -271,6 +302,15 @@ public class Clerk {
 			}
 		}
 		
+	}
+	
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Clerk clerk = new Clerk();
+		System.out.println(clerk.getFine("31249002"));
 	}
 
 }

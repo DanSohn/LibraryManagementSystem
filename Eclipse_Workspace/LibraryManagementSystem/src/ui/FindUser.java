@@ -79,97 +79,96 @@ public class FindUser {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		
-		textField = new JTextField();
+		JTextPane textField = new JTextPane();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(364, 395, 194, 45);
+		textField.setBounds(862, 302, 194, 35);
 		frame.getContentPane().add(textField);
-		textField.setColumns(10);
 		
 		JButton btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCheck.setForeground(Style.dBlue);
 		btnCheck.setBackground(Style.lBlue);
-		btnCheck.setBounds(570, 402, 117, 32);
+		btnCheck.setBounds(1060, 305, 117, 32);
 		frame.getContentPane().add(btnCheck);
 		
 		JLabel lblNoSuchUser = new JLabel("No such user found");
 		lblNoSuchUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNoSuchUser.setForeground(Color.RED);
-		lblNoSuchUser.setBounds(699, 404, 314, 28);
+		lblNoSuchUser.setBounds(1189, 307, 314, 28);
 		frame.getContentPane().add(lblNoSuchUser);
 		lblNoSuchUser.setVisible(false);
 		
 		JLabel lblUserFound = new JLabel("User found");
 		lblUserFound.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserFound.setBounds(699, 406, 167, 23);
+		lblUserFound.setBounds(1191, 309, 167, 23);
 		frame.getContentPane().add(lblUserFound);
 		lblUserFound.setVisible(false);
 		
 		JTextPane TP_blacklisted = new JTextPane();
 		TP_blacklisted.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_blacklisted.setBounds(555, 898, 238, 37);
+		TP_blacklisted.setBounds(555, 788, 238, 37);
 		frame.getContentPane().add(TP_blacklisted);
 		
 		JTextPane TP_firstName = new JTextPane();
 		TP_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_firstName.setBounds(555, 569, 369, 37);
+		TP_firstName.setBounds(555, 435, 369, 37);
 		frame.getContentPane().add(TP_firstName);
 		
 		JTextPane TP_fees = new JTextPane();
 		TP_fees.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_fees.setBounds(873, 898, 172, 37);
+		TP_fees.setBounds(876, 788, 172, 37);
 		frame.getContentPane().add(TP_fees);
 		
 		JTextPane TP_lastName = new JTextPane();
 		TP_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_lastName.setBounds(977, 569, 369, 37);
+		TP_lastName.setBounds(978, 435, 369, 37);
 		frame.getContentPane().add(TP_lastName);
 		
 		JTextPane TP_checkedOut = new JTextPane();
 		TP_checkedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_checkedOut.setBounds(555, 651, 792, 199);
+		TP_checkedOut.setBounds(555, 530, 792, 199);
 		frame.getContentPane().add(TP_checkedOut);
 		
 		JLabel lblUserId = new JLabel("User ID");
 		lblUserId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserId.setBounds(243, 399, 109, 37);
+		lblUserId.setBounds(741, 302, 109, 37);
 		frame.getContentPane().add(lblUserId);
 		
 		JLabel lblFirstName = new JLabel("First Name:");
 		lblFirstName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblFirstName.setBounds(555, 531, 223, 37);
+		lblFirstName.setBounds(555, 400, 223, 37);
 		frame.getContentPane().add(lblFirstName);
 		
 		JLabel lblLastName = new JLabel("Last Name:");
 		lblLastName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblLastName.setBounds(977, 531, 182, 37);
+		lblLastName.setBounds(978, 400, 182, 37);
 		frame.getContentPane().add(lblLastName);
 		
 		JLabel lblBooksCheckedOut = new JLabel("Books checked out:");
 		lblBooksCheckedOut.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBooksCheckedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBooksCheckedOut.setBounds(555, 615, 238, 37);
+		lblBooksCheckedOut.setBounds(555, 496, 238, 37);
 		frame.getContentPane().add(lblBooksCheckedOut);
 		
 		JLabel lblBlackListStatus = new JLabel("Black list status:");
 		lblBlackListStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBlackListStatus.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBlackListStatus.setBounds(555, 859, 194, 37);
+		lblBlackListStatus.setBounds(555, 756, 194, 37);
 		frame.getContentPane().add(lblBlackListStatus);
 		
 		JLabel lblFeesOwed = new JLabel("Fees owed:");
 		lblFeesOwed.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFeesOwed.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblFeesOwed.setBounds(873, 859, 172, 37);
+		lblFeesOwed.setBounds(876, 756, 172, 37);
 		frame.getContentPane().add(lblFeesOwed);
 		
 		JLabel label_1 = new JLabel("$");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		label_1.setBounds(842, 898, 38, 37);
+		label_1.setBounds(845, 788, 38, 37);
 		frame.getContentPane().add(label_1);
 		
 		btnCheck.addActionListener(new ActionListener() {

@@ -34,8 +34,9 @@ import javax.swing.SwingConstants;
 public class ClerkWindow {
 	
 	private JFrame			frame;
-	private JTextField usetTxt;
+	private JTextField userIDTxt;
 	private JTextField bookTxt;
+	private JTextField txtPaid;
 	
 	/**
 	 * Launch the application.
@@ -73,16 +74,16 @@ public class ClerkWindow {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setVisible(true);
 
-		usetTxt = new JTextField();
-		usetTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		usetTxt.setColumns(10);
-		usetTxt.setBounds(782, 430, 337, 47);
-		frame.getContentPane().add(usetTxt);
+		userIDTxt = new JTextField();
+		userIDTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		userIDTxt.setColumns(10);
+		userIDTxt.setBounds(782, 430, 337, 47);
+		frame.getContentPane().add(userIDTxt);
 		
 		bookTxt = new JTextField();
 		bookTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		bookTxt.setColumns(10);
-		bookTxt.setBounds(782, 530, 337, 47);
+		bookTxt.setBounds(526, 540, 218, 34);
 		frame.getContentPane().add(bookTxt);
 		
 		JLabel lblUserId = new JLabel("User ID:");
@@ -94,20 +95,20 @@ public class ClerkWindow {
 		JLabel lblBookId = new JLabel("Book ID:");
 		lblBookId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBookId.setBounds(782, 500, 97, 34);
+		lblBookId.setBounds(526, 508, 97, 34);
 		frame.getContentPane().add(lblBookId);
 		
 		JLabel lblDone = new JLabel("Successful!");
 		lblDone.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblDone.setForeground(Color.GREEN);
-		lblDone.setBounds(1012, 650, 123, 34);
+		lblDone.setBounds(769, 638, 123, 34);
 		frame.getContentPane().add(lblDone);
 		lblDone.setVisible(false);
 		
 		JLabel lblDone_2 = new JLabel("Successful!");
 		lblDone_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblDone_2.setForeground(Color.GREEN);
-		lblDone_2.setBounds(1012, 599, 107, 38);
+		lblDone_2.setBounds(769, 587, 107, 38);
 		frame.getContentPane().add(lblDone_2);
 		lblDone_2.setVisible(false);
 		
@@ -117,7 +118,7 @@ public class ClerkWindow {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(CheckoutBook.Checkout("UserDatabase.txt", "ItemDatabase.txt", usetTxt.getText(), bookTxt.getText()) > 0) {
+					if(CheckoutBook.Checkout("UserDatabase.txt", "ItemDatabase.txt", userIDTxt.getText(), bookTxt.getText()) > 0) {
 						lblDone.setVisible(true);
 					}
 				} catch (IOException e1) {
@@ -126,7 +127,7 @@ public class ClerkWindow {
 			}
 		});
 		
-		btnNewButton.setBounds(782, 600, 218, 36);
+		btnNewButton.setBounds(526, 587, 218, 36);
 		btnNewButton.setForeground(Style.dBlue);
 		btnNewButton.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnNewButton);
@@ -135,17 +136,92 @@ public class ClerkWindow {
 		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(new Clerk().returnResource(bookTxt.getText(), usetTxt.getText()) > 0) {
+				if(new Clerk().returnResource(bookTxt.getText(), userIDTxt.getText()) > 0) {
 					lblDone_2.setVisible(true);
 				}
 				
 			}
 		});
-		btnReturn.setBounds(782, 647, 218, 36);
+		btnReturn.setBounds(526, 636, 218, 36);
 		btnReturn.setForeground(Style.dBlue);
 		btnReturn.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnReturn);
 
+		JLabel lblChange = new JLabel("change");
+		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblChange.setBounds(1361, 540, 148, 34);
+		frame.getContentPane().add(lblChange);
+		lblChange.setVisible(false);
+
+		txtPaid = new JTextField();
+		txtPaid.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		txtPaid.setColumns(10);
+		txtPaid.setBounds(1153, 540, 196, 34);
+		frame.getContentPane().add(txtPaid);
+		
+		JLabel label_1 = new JLabel("$");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		label_1.setBounds(1131, 540, 56, 32);
+		frame.getContentPane().add(label_1);
+		
+		JLabel lblAmountPaid = new JLabel("Amount Paid:");
+		lblAmountPaid.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAmountPaid.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblAmountPaid.setBounds(1131, 508, 155, 34);
+		frame.getContentPane().add(lblAmountPaid);
+		
+		JLabel lblOwed = new JLabel("owed");
+		lblOwed.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblOwed.setBounds(1361, 437, 56, 32);
+		frame.getContentPane().add(lblOwed);
+		lblOwed.setVisible(false);
+		
+		JButton CheckFine = new JButton("Check Fine");
+		CheckFine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int fine = new Clerk().getFine(userIDTxt.getText());
+				if (fine < 0) {
+					lblOwed.setText("Error");
+					lblOwed.setVisible(true);
+				}
+				else
+				{
+					lblOwed.setText( "$" + Integer.toString(fine) );
+					lblOwed.setVisible(true);
+				}
+				
+			}
+		});
+		CheckFine.setForeground(new Color(3, 51, 89));
+		CheckFine.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		CheckFine.setBackground(new Color(230, 230, 240));
+		CheckFine.setBounds(1131, 435, 218, 36);
+		frame.getContentPane().add(CheckFine);
+		
+		
+		JButton btnPayFine = new JButton("Pay Fine");
+		btnPayFine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int change = new Clerk().payFine(userIDTxt.getText(), Integer.parseInt(txtPaid.getText()));
+				if (change < 0) {
+					lblChange.setText("Error");
+					lblChange.setVisible(true);
+				}
+				else
+				{
+					lblChange.setText( "Change: $" + Integer.toString(change) );
+					lblChange.setVisible(true);
+				}
+				
+			}
+		});
+		btnPayFine.setForeground(new Color(3, 51, 89));
+		btnPayFine.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnPayFine.setBackground(new Color(230, 230, 240));
+		btnPayFine.setBounds(1131, 587, 218, 36);
+		frame.getContentPane().add(btnPayFine);
+		
+		
 		///////////////// main page setup
 		
 		//log out button

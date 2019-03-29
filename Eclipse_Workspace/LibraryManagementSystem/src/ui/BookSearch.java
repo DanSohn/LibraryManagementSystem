@@ -48,7 +48,7 @@ public class BookSearch {
 	/**
 	 * Launch the application.
 	 */
-	public void BookS() {
+	public static void BookS() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

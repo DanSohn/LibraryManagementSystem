@@ -98,7 +98,7 @@ public class RestrictBooks {
 		btnRestrict.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblTxt.setText(restrictBook(idIn.getText()));
-				System.out.print(restrictBook(idIn.getText()));
+				//System.out.print(restrictBook(idIn.getText()));
 			}
 		});
 		btnRestrict.setBounds(509, 382, 97, 25);
@@ -211,17 +211,20 @@ public class RestrictBooks {
 		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");
 		String sentMails = null;
 		String returnString = null;
+		System.out.println("Inside restrictBook with ID " + bookID);
 		for (String line : itemLines) {
 			String[] bits = line.split("\\*");
 			// Find the book
+			//System.out.println("searching line with bookid: " + bits[0]);
 			if (bits[0].equals(bookID)) {
+				//System.out.println("Book found!");
                 bookName = bits[2];
                 authorName = bits[3];
 				// If book is AVAILABLE
 				if (bits[5].equals("AVAILABLE")) {
+					System.out.println("book is avail, now restricting");
 					bits[5] = "RESTRICTED";
 					returnString = bookName + " (" + bookID + ") is now restricted.";
-					break;
 				} else if(bits[5].equals("RESTRICTED")){
                     System.out.println("Already restricted");
                     returnString = bookName + " (" + bookID + ") is already restricted.";
@@ -252,12 +255,15 @@ public class RestrictBooks {
                         bits[7] = "NULL";
                     }
                     returnString = bookName + " (" + bookID + ") is now restricted.";
+                    bits[5] = "RESTRICTED";
 				}
+				String	newLine	= String.join("*", bits);
+				System.out.println("line we replaced is now: \n" + newLine);
+				int		index	= itemLines.indexOf(line);
+				itemLines.set(index, newLine);
+				break;
 			}
-			String	newLine	= String.join("*", bits);
-			int		index	= itemLines.indexOf(line);
-			itemLines.set(index, newLine);
-			break;
+			
 
 		}
 		Utilities.writeTextFile("ItemDatabase.txt", itemLines);
@@ -274,6 +280,7 @@ public class RestrictBooks {
      */
     private void deleteReserveBook(String userID, String bookID){
         ArrayList<String> itemLines = Utilities.readTextFile("UserDatabase.txt");
+        String bookCode = null;
         for(String line: itemLines){
             String[] bits = line.split("\\*");
             if(bits[0].equals(userID)){
@@ -281,9 +288,19 @@ public class RestrictBooks {
                 bits[7] = ""; //reset the queue to nothing
                 int removed = -1;
                 for(int i = 0; i < reserveQueue.length; i++){
-                    if(reserveQueue[i].equals(bookID)){
+                	if(reserveQueue[i].length() > 6){
+                		bookCode = reserveQueue[i].substring(0, 6);
+                	}else{
+                		bookCode = reserveQueue[i];
+                	}
+                	//System.out.println(reserveQueue[i].substring(0, 6));
+                    if(bookCode.equals(bookID)){
                         //book has been found in the reserve queue
-                        reserveQueue[i] = "";
+                    	if(reserveQueue.length == 1){
+                    		reserveQueue[i] = "NULL";
+                    	}else{
+                    		reserveQueue[i] = "";
+                    	}
                         removed = i;
                     }
                     bits[7] += reserveQueue[i];
@@ -324,21 +341,23 @@ public class RestrictBooks {
                     //we found our book
                     //if(bookID.equals(books[i].substring(0,6))){
                     if(books[i].startsWith(bookID)){
+                    	System.out.println("book found");
                         //must compare dates here to make sure that current due date
                         //is over a week, else do nothing
                         currentDate = books[i].substring(6);
+                        System.out.println("Current date: " + currentDate);
                         if(Utilities.compareDates(newDate, currentDate) == 0){
                             //our newDaate due date is before or equal to the current date
                             //
                             //edge case in which the two dates are equal, since method does BEFORE OR EQUAL
+                        	//System.out.println(");
                             if(currentDate.equals(newDate)){
-                                continue;
+                            	System.out.println("The two dates are equal, not doing anything");
+                                break;
                             }else{
                                 books[i] = bookID + newDate;
+                                System.out.println("new book line: " + books[i]);
                             }
-                        }else{
-                            //if the current due date is already less than 1 week, than do nothing
-                            continue;
                         }
                     }
                     bits[6] += books[i];
