@@ -14,26 +14,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import database.ResourceDatabase;
 import database.UserDatabase;
-import enums.UserType;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JComboBox;
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
-import enums.ResourceType;
 import enums.UserField;
 
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import java.beans.PropertyChangeEvent;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 

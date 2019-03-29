@@ -16,9 +16,6 @@ import javax.swing.JTextField;
 
 import database.UserDatabase;
 import enums.UserType;
-import users.Clerk;
-import utils.CheckoutBook;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
