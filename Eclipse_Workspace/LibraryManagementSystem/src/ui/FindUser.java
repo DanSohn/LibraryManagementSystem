@@ -81,7 +81,7 @@ public class FindUser {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(226, 446, 175, 32);
+		textField.setBounds(364, 395, 194, 45);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -89,111 +89,87 @@ public class FindUser {
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCheck.setForeground(Style.dBlue);
 		btnCheck.setBackground(Style.lBlue);
-		btnCheck.setBounds(413, 446, 117, 32);
+		btnCheck.setBounds(570, 402, 117, 32);
 		frame.getContentPane().add(btnCheck);
 		
 		JLabel lblNoSuchUser = new JLabel("No such user found");
 		lblNoSuchUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNoSuchUser.setForeground(Color.RED);
-		lblNoSuchUser.setBounds(542, 451, 314, 28);
+		lblNoSuchUser.setBounds(699, 404, 314, 28);
 		frame.getContentPane().add(lblNoSuchUser);
 		lblNoSuchUser.setVisible(false);
 		
 		JLabel lblUserFound = new JLabel("User found");
 		lblUserFound.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserFound.setBounds(542, 453, 167, 23);
+		lblUserFound.setBounds(699, 406, 167, 23);
 		frame.getContentPane().add(lblUserFound);
 		lblUserFound.setVisible(false);
 		
 		JTextPane TP_blacklisted = new JTextPane();
 		TP_blacklisted.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_blacklisted.setBounds(818, 859, 172, 37);
+		TP_blacklisted.setBounds(555, 898, 238, 37);
 		frame.getContentPane().add(TP_blacklisted);
 		
 		JTextPane TP_firstName = new JTextPane();
 		TP_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_firstName.setBounds(818, 446, 172, 37);
+		TP_firstName.setBounds(555, 569, 369, 37);
 		frame.getContentPane().add(TP_firstName);
 		
 		JTextPane TP_fees = new JTextPane();
 		TP_fees.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_fees.setBounds(1048, 859, 172, 37);
+		TP_fees.setBounds(873, 898, 172, 37);
 		frame.getContentPane().add(TP_fees);
 		
 		JTextPane TP_lastName = new JTextPane();
 		TP_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_lastName.setBounds(1007, 446, 172, 37);
+		TP_lastName.setBounds(977, 569, 369, 37);
 		frame.getContentPane().add(TP_lastName);
 		
 		JTextPane TP_checkedOut = new JTextPane();
 		TP_checkedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_checkedOut.setBounds(818, 592, 792, 189);
+		TP_checkedOut.setBounds(555, 651, 792, 199);
 		frame.getContentPane().add(TP_checkedOut);
-		
-		JButton btnBack = new JButton("Back"); // to admin
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new AdminWindow().AdminS();
-			}
-		});
-		
-		btnBack.setBackground(new Color(255, 140, 0));
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnBack.setBounds(1735, 284, 97, 32);
-		frame.getContentPane().add(btnBack);
-		
-		JLabel label = new JLabel("Admin");
-		label.setForeground(new Color(3, 51, 89));
-		label.setFont(new Font("Tahoma", Font.BOLD, 44));
-		label.setBounds(10, 258, 223, 73);
-		frame.getContentPane().add(label);
-		
-		JLabel lblNewLabel = new JLabel("User Search");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		lblNewLabel.setBounds(12, 336, 461, 60);
-		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblUserId = new JLabel("User ID");
 		lblUserId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserId.setBounds(105, 446, 109, 37);
+		lblUserId.setBounds(243, 399, 109, 37);
 		frame.getContentPane().add(lblUserId);
 		
 		JLabel lblFirstName = new JLabel("First Name:");
 		lblFirstName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblFirstName.setBounds(818, 408, 109, 37);
+		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblFirstName.setBounds(555, 531, 223, 37);
 		frame.getContentPane().add(lblFirstName);
 		
 		JLabel lblLastName = new JLabel("Last Name:");
 		lblLastName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblLastName.setBounds(1007, 408, 109, 37);
+		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblLastName.setBounds(977, 531, 182, 37);
 		frame.getContentPane().add(lblLastName);
 		
 		JLabel lblBooksCheckedOut = new JLabel("Books checked out:");
 		lblBooksCheckedOut.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBooksCheckedOut.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBooksCheckedOut.setBounds(818, 559, 217, 37);
+		lblBooksCheckedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblBooksCheckedOut.setBounds(555, 615, 238, 37);
 		frame.getContentPane().add(lblBooksCheckedOut);
 		
 		JLabel lblBlackListStatus = new JLabel("Black list status:");
 		lblBlackListStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBlackListStatus.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBlackListStatus.setBounds(818, 822, 172, 37);
+		lblBlackListStatus.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblBlackListStatus.setBounds(555, 859, 194, 37);
 		frame.getContentPane().add(lblBlackListStatus);
 		
 		JLabel lblFeesOwed = new JLabel("Fees owed:");
 		lblFeesOwed.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFeesOwed.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblFeesOwed.setBounds(1048, 822, 109, 37);
+		lblFeesOwed.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblFeesOwed.setBounds(873, 859, 172, 37);
 		frame.getContentPane().add(lblFeesOwed);
 		
 		JLabel label_1 = new JLabel("$");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		label_1.setBounds(1019, 859, 38, 37);
+		label_1.setBounds(842, 898, 38, 37);
 		frame.getContentPane().add(label_1);
 		
 		btnCheck.addActionListener(new ActionListener() {
@@ -212,16 +188,125 @@ public class FindUser {
 			}
 		});
 		
+		///////////////// main page setup
+		//log out button
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginWindow newWin = new LoginWindow();
+				newWin.frame.setVisible(true);
+			}
+		});
+		btnLogOut.setBackground(new Color(255, 140, 0));
+		btnLogOut.setBounds(1774, 952, 116, 33);
+		frame.getContentPane().add(btnLogOut);
+		//
+		
+		//title name
+		JLabel lblTitle = new JLabel("Admin");
+		lblTitle.setForeground(new Color(3, 51, 89));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblTitle.setBounds(25, 179, 223, 73);
+		frame.getContentPane().add(lblTitle);
+		//
+		
+		//selected
+		//return checkout books button
+		JButton btnAdd = new JButton("Return/Check-out");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new BookSignOut().SignOutS();
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnAdd.setBounds(243, 204, 223, 38);
+		btnAdd.setForeground(Style.lBlue);
+		btnAdd.setBackground(Style.dBlue);
+		frame.getContentPane().add(btnAdd);
+		//
+		
+		//add user button
+		JButton btnAddUser = new JButton("Add User");
+		btnAddUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new AddUser().AddUserS();
+			}
+		});
+		btnAddUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnAddUser.setBounds(478, 204, 223, 38);
+		btnAddUser.setBackground(new Color(230, 230, 240));
+		btnAddUser.setForeground(new Color(3, 51, 89));
+		frame.getContentPane().add(btnAddUser);
+		//
+		
+		//search book location button
+		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		btnSearchBookLoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new BookSearch("email","Admin").BookS();
+				frame.dispose();
+			}
+		});
+		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
+		btnSearchBookLoc.setBounds(713, 204, 223, 38);
+		frame.getContentPane().add(btnSearchBookLoc);
+		//
+		
+		//my books button
+		JButton btnMyBooks = new JButton("My Books");
+		btnMyBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMyBooks.setForeground(new Color(3, 51, 89));
+		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnMyBooks.setBackground(new Color(230, 230, 240));
+		btnMyBooks.setBounds(948, 204, 223, 38);
+		frame.getContentPane().add(btnMyBooks);
+		//
+		
+		//Item add button
+		JButton btnItemAdd = new JButton("Item Add");
+		btnItemAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnItemAdd.setBackground(new Color(230, 230, 240));
+		btnItemAdd.setForeground(new Color(3, 51, 89));
+		btnItemAdd.setBounds(1183, 204, 223, 38);
+		frame.getContentPane().add(btnItemAdd);
+		//
+		
+		//selected
+		//Item add button
+		JButton btnFindUser = new JButton("User Search");
+		btnFindUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnFindUser.setBackground(new Color(230, 230, 240));
+		btnFindUser.setForeground(Style.dBlue);
+		btnFindUser.setBackground(Style.lBlue);
+		frame.getContentPane().add(btnFindUser);
+		//
+		
+		//background and banner photo
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 250);
-			
+			picLabel.setBounds(0, 0, 1920, 166);
+
+			myPicture = ImageIO.read(new File("norm.jpg"));
+			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
+			picLabel2.setBorder(null);
+			frame.getContentPane().add(picLabel2);
+			picLabel2.setBounds(-13, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//
 	}
 }

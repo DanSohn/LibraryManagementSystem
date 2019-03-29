@@ -38,7 +38,6 @@ import javax.swing.JTextField;
 public class StudentWindow {
 	
 	private JFrame			frame;
-	private JTextField		textField;
 	private static String	email		= null;
 	private static String	studentID	= null;
 	private static int		numBooks	= 0;
@@ -81,42 +80,11 @@ public class StudentWindow {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
-			}
-		});
-		btnLogOut.setBackground(new Color(255, 102, 102));
-		btnLogOut.setBounds(1721, 286, 128, 25);
-		frame.getContentPane().add(btnLogOut);
-		
 		DefaultListModel	model	= new DefaultListModel();
 		JList				list	= new JList(model);
 		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		list.setBounds(23, 507, 1054, 102);
+		list.setBounds(424, 526, 1054, 153);
 		frame.getContentPane().add(list);
-		
-		textField = new JTextField();
-		textField.setVisible(false);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(792, 409, 176, 25);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnReturn = new JButton("Return");
-		btnReturn.setVisible(false);
-		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnReturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				model.remove(0);
-			}
-		});
-		btnReturn.setBounds(980, 411, 97, 25);
-		frame.getContentPane().add(btnReturn);
 		
 		JButton btnRenew = new JButton("Renew");
 		btnRenew.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -132,23 +100,10 @@ public class StudentWindow {
 				}
 			}
 		});
-		btnRenew.setBounds(23, 622, 105, 35);
+		btnRenew.setBounds(424, 692, 105, 35);
 		btnRenew.setForeground(Style.dBlue);
 		btnRenew.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnRenew);
-		
-		JButton btnSearch = new JButton("Search Book Location");
-		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new BookSearch(email,"Student").BookS();
-				frame.dispose();
-			}
-		});
-		btnSearch.setBounds(23, 751, 300, 35);
-		frame.getContentPane().add(btnSearch);
-		btnSearch.setForeground(Style.dBlue);
-		btnSearch.setBackground(Style.lBlue);
 		
 		String		string	= listBooks();
 		String[]	parts	= string.split("_");
@@ -156,34 +111,84 @@ public class StudentWindow {
 			model.addElement(parts[i]);
 		}
 		
+		JLabel lblCurrentBooks = new JLabel("Current books:");
+		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblCurrentBooks.setBounds(424, 472, 220, 41);
+		frame.getContentPane().add(lblCurrentBooks);
+		
+		///////////////// main page setup
+		//log out button
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginWindow newWin = new LoginWindow();
+				newWin.frame.setVisible(true);
+			}
+		});
+		btnLogOut.setBackground(new Color(255, 140, 0));
+		btnLogOut.setBounds(1774, 952, 116, 33);
+		frame.getContentPane().add(btnLogOut);
+		//
+		
+		//title name
+		JLabel lblTitle = new JLabel("Student");
+		lblTitle.setForeground(new Color(3, 51, 89));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblTitle.setBounds(25, 179, 223, 73);
+		frame.getContentPane().add(lblTitle);
+		//
+		
+		//search book location button
+		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		btnSearchBookLoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new BookSearch(email,"Student").BookS();
+				frame.dispose();
+			}
+		});
+		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
+		btnSearchBookLoc.setBounds(506, 205, 223, 38);
+		frame.getContentPane().add(btnSearchBookLoc);
+		//
+		
+		//selected
+		//my books button
+		JButton btnMyBooks = new JButton("My Books");
+		btnMyBooks.setForeground(new Color(3, 51, 89));
+		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnMyBooks.setForeground(Style.lBlue);
+		btnMyBooks.setBackground(Style.dBlue);
+		btnMyBooks.setBounds(248, 204, 223, 38);
+		frame.getContentPane().add(btnMyBooks);
+		//
+		
+		//background and banner photo
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 250);
-			
-			JLabel lblStudent = new JLabel("Student");
-			lblStudent.setForeground(new Color(3, 51, 89));
-			lblStudent.setFont(new Font("Tahoma", Font.BOLD, 44));
-			lblStudent.setBounds(20, 263, 223, 73);
-			frame.getContentPane().add(lblStudent);
-			
-			JLabel label = new JLabel("Home");
-			label.setFont(new Font("Tahoma", Font.PLAIN, 34));
-			label.setBounds(20, 327, 461, 60);
-			frame.getContentPane().add(label);
-			
-			JLabel lblCurrentBooks = new JLabel("Current books:");
-			lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-			lblCurrentBooks.setBounds(23, 460, 220, 41);
-			frame.getContentPane().add(lblCurrentBooks);
-			
+			picLabel.setBounds(0, 0, 1920, 166);
+		
+			myPicture = ImageIO.read(new File("norm.jpg"));
+			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
+			picLabel2.setBorder(null);
+			frame.getContentPane().add(picLabel2);
+			picLabel2.setBounds(-12, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//
 	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Back-end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	public static String setID(String userEmail) {
 		String result = null;

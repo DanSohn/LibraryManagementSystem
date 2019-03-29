@@ -80,8 +80,46 @@ public class FacultyWindow {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setVisible(true);
 		
+		DefaultListModel	model	= new DefaultListModel();
+		JList				list	= new JList(model);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		list.setBounds(424, 526, 1054, 153);
+		frame.getContentPane().add(list);
+		
+		JButton btnRenew = new JButton("Renew");
+		btnRenew.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnRenew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selected = (String) list.getSelectedValue();
+				renewBook(selected);
+				model.removeAllElements();
+				String		string	= listBooks();
+				String[]	parts	= string.split("_");
+				for (int i = 0; i < parts.length; i++) {
+					model.addElement(parts[i]);
+				}
+			}
+		});
+		btnRenew.setBounds(424, 692, 105, 35);
+		btnRenew.setForeground(Style.dBlue);
+		btnRenew.setBackground(Style.lBlue);
+		frame.getContentPane().add(btnRenew);
+		
+		String		string	= listBooks();
+		String[]	parts	= string.split("_");
+		for (int i = 0; i < parts.length; i++) {
+			model.addElement(parts[i]);
+		}
+		
+		JLabel lblCurrentBooks = new JLabel("Current books:");
+		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblCurrentBooks.setBounds(424, 472, 220, 41);
+		frame.getContentPane().add(lblCurrentBooks);
+		
+		///////////////// main page setup
+		//log out button
 		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -89,55 +127,84 @@ public class FacultyWindow {
 				newWin.frame.setVisible(true);
 			}
 		});
-		btnLogOut.setBackground(new Color(255, 102, 102));
-		btnLogOut.setBounds(1721, 286, 128, 25);
+		btnLogOut.setBackground(new Color(255, 140, 0));
+		btnLogOut.setBounds(1774, 952, 116, 33);
 		frame.getContentPane().add(btnLogOut);
+		//
 		
-	    DefaultListModel model = new DefaultListModel();
+		//title name
+		JLabel lblTitle = new JLabel("Faculty");
+		lblTitle.setForeground(new Color(3, 51, 89));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblTitle.setBounds(25, 179, 223, 73);
+		frame.getContentPane().add(lblTitle);
+		//
 		
-		JButton btnSearch = new JButton("Search Book Location");
-		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnSearch.addActionListener(new ActionListener() {
+		//search book location button
+		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		btnSearchBookLoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				new BookSearch(email, "Faculty").BookS();
+				new BookSearch(email,"Faculty").BookS();
 				frame.dispose();
 			}
 		});
-		btnSearch.setBounds(23, 751, 300, 35);
-		btnSearch.setForeground(Style.dBlue);
-		btnSearch.setBackground(Style.lBlue);
-		frame.getContentPane().add(btnSearch);
+		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
+		btnSearchBookLoc.setBounds(506, 205, 223, 38);
+		frame.getContentPane().add(btnSearchBookLoc);
+		//
 		
-		String string = listBooks();
-		String[] parts = string.split("_");
-		for (int i = 0; i < parts.length; i++) {
-			model.addElement(parts[i]);
-		}
+		//selected
+		//my books button
+		JButton btnMyBooks = new JButton("My Books");
+		btnMyBooks.setForeground(new Color(3, 51, 89));
+		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnMyBooks.setForeground(Style.lBlue);
+		btnMyBooks.setBackground(Style.dBlue);
+		btnMyBooks.setBounds(248, 204, 223, 38);
+		frame.getContentPane().add(btnMyBooks);
+		//
 		
+		//restrict books
+		JButton btnRestrictBooks = new JButton("Restrict Books");
+		btnRestrictBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new RestrictBooks(email);
+				RestrictBooks.RestrictS("Faculty");
+				frame.dispose();
+			}
+		});
+		btnRestrictBooks.setForeground(new Color(3, 51, 89));
+		btnRestrictBooks.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnRestrictBooks.setBackground(new Color(230, 230, 240));
+		btnRestrictBooks.setBounds(768, 205, 223, 38);
+		frame.getContentPane().add(btnRestrictBooks);
+		//
+		
+		//background and banner photo
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 250);
-			
-			JLabel lblStudent = new JLabel("Faculty");
-			lblStudent.setForeground(new Color(3, 51, 89));
-			lblStudent.setFont(new Font("Tahoma", Font.BOLD, 44));
-			lblStudent.setBounds(20, 263, 223, 73);
-			frame.getContentPane().add(lblStudent);
-			
-			JLabel label = new JLabel("Home");
-			label.setFont(new Font("Tahoma", Font.PLAIN, 34));
-			label.setBounds(20, 327, 461, 60);
-			frame.getContentPane().add(label);
-
+			picLabel.setBounds(0, 0, 1920, 166);
+		
+			myPicture = ImageIO.read(new File("norm.jpg"));
+			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
+			picLabel2.setBorder(null);
+			frame.getContentPane().add(picLabel2);
+			picLabel2.setBounds(-12, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//
 	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Back-end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static String setID(String userEmail){
 		String result = null;

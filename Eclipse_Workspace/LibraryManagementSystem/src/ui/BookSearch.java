@@ -85,7 +85,7 @@ public class BookSearch {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(146, 466, 228, 33);
+		textField.setBounds(641, 466, 228, 33);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -94,97 +94,124 @@ public class BookSearch {
 		btnSearch.setForeground(Style.dBlue);
 		btnSearch.setBackground(Style.lBlue);
 
-		btnSearch.setBounds(386, 466, 122, 33);
+		btnSearch.setBounds(881, 466, 122, 33);
 		frame.getContentPane().add(btnSearch);
 		
-		JLabel lblNoSuchUser = new JLabel("No such user found");
+		JLabel lblNoSuchUser = new JLabel("No such book found");
 		lblNoSuchUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNoSuchUser.setForeground(Color.RED);
-		lblNoSuchUser.setBounds(520, 471, 257, 24);
+		lblNoSuchUser.setBounds(1015, 471, 257, 24);
 		frame.getContentPane().add(lblNoSuchUser);
 		lblNoSuchUser.setVisible(false);
 		
-		JLabel lblUserFound = new JLabel("User found");
+		JLabel lblUserFound = new JLabel("Book found");
 		lblUserFound.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblUserFound.setBounds(513, 466, 122, 28);
+		lblUserFound.setBounds(1015, 469, 122, 28);
 		frame.getContentPane().add(lblUserFound);
 		lblUserFound.setVisible(false);
 		
 		JTextPane textPane_0 = new JTextPane();
 		textPane_0.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_0.setBounds(146, 610, 619, 33);
+		textPane_0.setBounds(641, 641, 619, 48);
 		frame.getContentPane().add(textPane_0);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		comboBox.setModel(new DefaultComboBoxModel(ResourceType.values()));
-		comboBox.setBounds(146, 512, 194, 38);
+		comboBox.setBounds(641, 555, 194, 38);
 		frame.getContentPane().add(comboBox);
 		
 		JLabel lblId_1 = new JLabel("ID #");
-		lblId_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblId_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblId_1.setBounds(87, 476, 56, 16);
+		lblId_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblId_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblId_1.setBounds(641, 442, 148, 23);
 		frame.getContentPane().add(lblId_1);
-		
 		
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textPane_0.setText(ResourceDatabase.getParameterOfResource(textField.getText(), (ResourceType) comboBox.getSelectedItem(), ResourceField.LOCATION));
 			}
 		});
-			
+		
+		JLabel lblType = new JLabel("Type");
+		lblType.setHorizontalAlignment(SwingConstants.LEFT);
+		lblType.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblType.setBounds(641, 515, 56, 38);
+		frame.getContentPane().add(lblType);
+		
+		JLabel lblLocation = new JLabel("Location:");
+		lblLocation.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblLocation.setBounds(641, 606, 97, 38);
+		frame.getContentPane().add(lblLocation);
+		
+		///////////////// main page setup
+		//log out button
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginWindow newWin = new LoginWindow();
+				newWin.frame.setVisible(true);
+			}
+		});
+		btnLogOut.setBackground(new Color(255, 140, 0));
+		btnLogOut.setBounds(1774, 952, 116, 33);
+		frame.getContentPane().add(btnLogOut);
+		//
+		
+		//title name
+		JLabel lblTitle = new JLabel(from);
+		lblTitle.setForeground(new Color(3, 51, 89));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblTitle.setBounds(25, 179, 223, 73);
+		frame.getContentPane().add(lblTitle);
+		//
+		
+		//search book location button
+		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setForeground(Style.lBlue);
+		btnSearchBookLoc.setBackground(Style.dBlue);
+		btnSearchBookLoc.setBounds(506, 205, 223, 38);
+		frame.getContentPane().add(btnSearchBookLoc);
+		//
+		
+		//selected
+		//my books button
+		JButton btnMyBooks = new JButton("My Books");
+		btnMyBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				StudentWindow.StudentS(email);
+			}
+		});
+		btnMyBooks.setForeground(new Color(3, 51, 89));
+		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnMyBooks.setBackground(new Color(230, 230, 240));
+		btnMyBooks.setBounds(248, 204, 223, 38);
+		frame.getContentPane().add(btnMyBooks);
+		//
+		
+		//background and banner photo
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 250);	
-			
-			JLabel lblType = new JLabel("Type");
-			lblType.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblType.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			lblType.setBounds(87, 514, 56, 38);
-			frame.getContentPane().add(lblType);
-			
-			JLabel lblLocation = new JLabel("Location:");
-			lblLocation.setHorizontalAlignment(SwingConstants.LEFT);
-			lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblLocation.setBounds(146, 575, 97, 38);
-			frame.getContentPane().add(lblLocation);
-			
-			JLabel lblStudent = new JLabel(from);
-			lblStudent.setForeground(new Color(3, 51, 89));
-			lblStudent.setFont(new Font("Tahoma", Font.BOLD, 44));
-			lblStudent.setBounds(20, 252, 223, 73);
-			frame.getContentPane().add(lblStudent);
-			
-			JLabel lblBookLocationSearch = new JLabel("Item Location Search");
-			lblBookLocationSearch.setFont(new Font("Tahoma", Font.PLAIN, 34));
-			lblBookLocationSearch.setBounds(20, 318, 461, 60);
-			frame.getContentPane().add(lblBookLocationSearch);
-			
-			JButton button = new JButton("Back");
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (from.equals("Student")){
-						StudentWindow.StudentS(email);
-					}
-					else {//from == Faculty
-						FacultyWindow.FacultyS(email);
-					}
-					
-					frame.dispose();
-				}
-			});
-			button.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			button.setBackground(new Color(255, 140, 0));
-			button.setBounds(1734, 281, 97, 32);
-			frame.getContentPane().add(button);
-			
+			picLabel.setBounds(0, 0, 1920, 166);
+		
+			myPicture = ImageIO.read(new File("norm.jpg"));
+			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
+			picLabel2.setBorder(null);
+			frame.getContentPane().add(picLabel2);
+			picLabel2.setBounds(-12, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//
 	}
 }

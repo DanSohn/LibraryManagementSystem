@@ -48,8 +48,6 @@ public class LoginWindow {
 				try {
 					LoginWindow window = new LoginWindow();
 					window.frame.setVisible(true);
-					
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -125,45 +123,31 @@ public class LoginWindow {
 		
 		
 		//Invalid password texts
+		//front
 		JLabel lblinvalidemailPassword2 = new JLabel("Invalid email or password");
 		lblinvalidemailPassword2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblinvalidemailPassword2.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblinvalidemailPassword2.setForeground(new Color(253, 253, 255));
+		lblinvalidemailPassword2.setForeground(new Color(255, 255, 255));
 		lblinvalidemailPassword2.setBounds(800, 629, 391, 38);
 		lblinvalidemailPassword2.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword2);
-		
+		//back top left
 		JLabel lblinvalidemailPassword = new JLabel("Invalid email or password");
 		lblinvalidemailPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblinvalidemailPassword.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblinvalidemailPassword.setForeground(new Color(255, 0, 0));
-		lblinvalidemailPassword.setBounds(799, 630, 391, 38);
+		lblinvalidemailPassword.setBounds(799, 628, 391, 38);
 		lblinvalidemailPassword.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword);
-		
+		//back bottom right
 		JLabel lblinvalidemailPassword3 = new JLabel("Invalid email or password");
 		lblinvalidemailPassword3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblinvalidemailPassword3.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblinvalidemailPassword3.setForeground(new Color(255, 0, 0));
-		lblinvalidemailPassword3.setBounds(802, 632, 391, 38);
+		lblinvalidemailPassword3.setBounds(802, 631, 391, 38);
 		lblinvalidemailPassword3.setVisible(false);
 		frame.getContentPane().add(lblinvalidemailPassword3);
 		//////
-		
-		
-		
-		
-
-		
-//		JComboBox<String> comboBox = new JComboBox();
-//		comboBox.setBorder(new LineBorder(Style.dBlue));
-//		comboBox.setBackground(Style.lBlue);
-//		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-//		comboBox.setModel(new DefaultComboBoxModel(UserType.values()));
-//		comboBox.setBounds(900, 450, 200, 38);
-//		frame.getContentPane().add(comboBox);
-		
-		
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -206,13 +190,6 @@ public class LoginWindow {
 		btnSubmit.setBounds(900, 569, 200, 38);
 		frame.getContentPane().add(btnSubmit);
 		
-//		JLabel lblUserType = new JLabel("User Type");
-//		lblUserType.setForeground(Style.dBlue);
-//		lblUserType.setHorizontalAlignment(SwingConstants.TRAILING);
-//		lblUserType.setFont(new Font("Tahoma", Font.BOLD, 22));
-//		lblUserType.setBounds(719, 450, 168, 38);
-//		frame.getContentPane().add(lblUserType);
-		
 		JLabel ForgotPass = new JLabel("Forgot Password?");
 		ForgotPass.setForeground(Style.mBlue);
 		ForgotPass.setHorizontalAlignment(SwingConstants.CENTER);
@@ -232,9 +209,6 @@ public class LoginWindow {
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
 			picLabel.setBounds(-12, 0, 1939, 1020);
-			
-
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

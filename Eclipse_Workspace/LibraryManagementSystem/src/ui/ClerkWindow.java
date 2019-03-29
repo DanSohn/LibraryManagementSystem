@@ -72,68 +72,7 @@ public class ClerkWindow {
 		frame.getContentPane().setLayout(null);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setVisible(true);
-		
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
-			}
-		});
-		btnLogOut.setBackground(new Color(255, 140, 0));
-		btnLogOut.setBounds(1774, 952, 116, 33);
-		frame.getContentPane().add(btnLogOut);
-		
-		JButton btnAdd = new JButton("Return/Check-out");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new BookSignOut().SignOutS();
-			}
-		});
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnAdd.setBounds(243, 204, 223, 38);
-		btnAdd.setForeground(Style.lBlue);
-		btnAdd.setBackground(Style.dBlue);
-		frame.getContentPane().add(btnAdd);
-		
-		JButton btnAddUser = new JButton("Add User");
-		btnAddUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new AddUser().AddUserS();
-			}
-		});
-		
-		btnAddUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnAddUser.setBounds(478, 204, 223, 38);
-		btnAddUser.setForeground(Style.dBlue);
-		btnAddUser.setBackground(Style.lBlue);
-		frame.getContentPane().add(btnAddUser);
 
-		JLabel lblClerk = new JLabel("Clerk");
-		lblClerk.setForeground(new Color(3, 51, 89));
-		lblClerk.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblClerk.setBounds(25, 179, 223, 73);
-		frame.getContentPane().add(lblClerk);
-		
-		JButton button = new JButton("Add User");
-		button.setForeground(new Color(3, 51, 89));
-		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button.setBackground(new Color(230, 230, 240));
-		button.setBounds(713, 204, 223, 38);
-		frame.getContentPane().add(button);
-		
-		JButton button_1 = new JButton("Add User");
-		button_1.setForeground(new Color(3, 51, 89));
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button_1.setBackground(new Color(230, 230, 240));
-		button_1.setBounds(948, 204, 223, 38);
-		frame.getContentPane().add(button_1);
-		
-		
 		usetTxt = new JTextField();
 		usetTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		usetTxt.setColumns(10);
@@ -206,8 +145,92 @@ public class ClerkWindow {
 		btnReturn.setForeground(Style.dBlue);
 		btnReturn.setBackground(Style.lBlue);
 		frame.getContentPane().add(btnReturn);
+
+		///////////////// main page setup
 		
+		//log out button
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginWindow newWin = new LoginWindow();
+				newWin.frame.setVisible(true);
+			}
+		});
+		btnLogOut.setBackground(new Color(255, 140, 0));
+		btnLogOut.setBounds(1774, 952, 116, 33);
+		frame.getContentPane().add(btnLogOut);
+		//
 		
+		//title name
+		JLabel lblTitle = new JLabel("Clerk");
+		lblTitle.setForeground(new Color(3, 51, 89));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
+		lblTitle.setBounds(25, 179, 223, 73);
+		frame.getContentPane().add(lblTitle);
+		//
+		
+		//selected
+		//return checkout books button
+		JButton btnAdd = new JButton("Return/Check-out");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new BookSignOut().SignOutS();
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnAdd.setBounds(243, 204, 223, 38);
+		btnAdd.setForeground(Style.lBlue);
+		btnAdd.setBackground(Style.dBlue);
+		frame.getContentPane().add(btnAdd);
+		//
+		
+		//add user button
+		JButton btnAddUser = new JButton("Add User");
+		btnAddUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new AddUser().AddUserS();
+			}
+		});
+		btnAddUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnAddUser.setBounds(478, 204, 223, 38);
+		btnAddUser.setForeground(Style.dBlue);
+		btnAddUser.setBackground(Style.lBlue);
+		frame.getContentPane().add(btnAddUser);
+		//
+		
+		//search book location button
+		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		btnSearchBookLoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new BookSearch("addthis","Clerk").BookS();		////////////////////////////////// no email for clerk yet?!!!!!!
+				frame.dispose();
+			}
+		});
+		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
+		btnSearchBookLoc.setBounds(713, 204, 223, 38);
+		frame.getContentPane().add(btnSearchBookLoc);
+		//
+		
+		//my books button
+		JButton btnMyBooks = new JButton("My Books");
+		btnMyBooks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMyBooks.setForeground(new Color(3, 51, 89));
+		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnMyBooks.setBackground(new Color(230, 230, 240));
+		btnMyBooks.setBounds(948, 204, 223, 38);
+		frame.getContentPane().add(btnMyBooks);
+		//
+		
+		//background and banner photo
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("banner.jpg"));
@@ -221,10 +244,9 @@ public class ClerkWindow {
 			picLabel2.setBorder(null);
 			frame.getContentPane().add(picLabel2);
 			picLabel2.setBounds(-12, 0, 1939, 1020);
-			
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//
 	}
 }

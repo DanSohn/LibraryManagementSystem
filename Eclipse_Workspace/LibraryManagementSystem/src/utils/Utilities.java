@@ -267,4 +267,25 @@ public class Utilities {
 		return 0;
 	}
 	
+	/**
+	 * Returns the date 2 weeks from today
+	 * @return String in the form ddMMyyyy
+	 */
+	public static String getWeekDate() {
+		Date date;
+		try {
+			// Converts today's date to milliseconds since Jan. 1st 1970
+			date = DATE_FORMAT.parse(getCurrentDate());
+			// Add 14 days (in milliseconds) to that value
+			long newDate = date.getTime() + TimeUnit.DAYS.toMillis(7);
+			// Convert back from milliseconds to a date
+			date.setTime(newDate);
+
+			return DATE_FORMAT.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
