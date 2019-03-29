@@ -9,8 +9,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import users.Login;
-import utils.Utilities;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.*;
@@ -19,19 +17,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import enums.UserField;
 import enums.UserType;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-import javax.swing.border.BevelBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class LoginWindow {
 	

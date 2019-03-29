@@ -1,7 +1,5 @@
 package database;
 
-import enums.ResourceField;
-import enums.ResourceType;
 import enums.UserField;
 import enums.UserType;
 import utils.Utilities;
