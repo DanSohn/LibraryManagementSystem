@@ -1,0 +1,27 @@
+/**
+ * fileToStringArray() takes a text file and returns it in the form of an array
+ * 
+ * @param filename    the filename of the text file to read
+ * @return            returns that text file as an array
+ */
+
+/**
+ *
+ * save() string array and writes each element of the array to a new line in a
+ * file of the given filename.
+ *
+ * @param db_filename the name of the file (read database) to write to
+ * @param arr         the string array to use as source text
+ * @return            void
+ */
+
+/**
+ *
+ * findLine searches for text in a String array, returns the index of
+ * the line in the array where the string was found. Starts at a given index.
+ *
+ * @param arr        the array to search through
+ * @param start      the index in the array at which to start at
+ * @param query      the string to find
+ */
+

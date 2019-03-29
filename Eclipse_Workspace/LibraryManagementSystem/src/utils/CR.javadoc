@@ -1,0 +1,39 @@
+/**
+ *
+ * Reserve(); given the following parameters; adds the desired book to the users
+ * reserved list and the user to the book's list of reserving users (in their
+ * respective databases; writing thereafter).
+ * In all cases except those where;
+ *    the user cannot be found by their ID;
+ *    the book cannot be found by its ID;
+ *    the user has already reserved that book;
+ *    the book is already available and does not need to be reserved;
+ *    the book is restricted and can not be checked out or reserved;
+ *    the item database cannot be found or;
+ *    the user database cannot be found.
+ *    
+ * @param user_file     The user database
+ * @param item_file     The book/item database
+ * @param user_id       The unique user ID used to find the user in the database
+ * @param item_id       The unique ID of the item to reserve
+ */
+
+/**
+ *
+ * Checkout(); will check a book out given its ID; for a user, given their ID.
+ * If that user is at the front of the reserve queue; they will be removed
+ * from the reserve queue;
+ * This happens unless;
+ *     the book cannot be found by its ID;
+ *     the user cannot be found by its ID;
+ *     the book is unavailable;
+ *     the book is restricted or;
+ *     the book is reserved by someone else.
+ *
+ * @param user_db_filename The filename of the user database
+ * @param item_db_filename The filename of the item database
+ * @param user_id          The ID of the user checkout out the book
+ * @param book_id          The ID of the book to checkout
+ * @return                 Returns a 1 if the user checked out the book; else -1
+ */
+
