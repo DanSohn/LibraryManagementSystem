@@ -8,15 +8,19 @@ public enum ResourceType {
 	 * 
 	 */
 	
+	//	Description of the BOOK enum
 	BOOK(true, new ResourceField[] {
 			ResourceField.AUTHOR,
 			ResourceField.LOCATION
 	}),
+	
+	//	Description of the DVD enum
 	DVD(true, new ResourceField[] {
 			ResourceField.PRODUCER,
 			ResourceField.LOCATION
 	}),
 	
+	//	Description of the ONLINE enum
 	ONLINE(false, new ResourceField[] {
 			ResourceField.AUTHOR,
 			ResourceField.LOCATION
@@ -54,8 +58,8 @@ public enum ResourceType {
 	/**
 	 * Creates a resource type.
 	 * 
-	 * @param isPhysical  Whether the resource type is physical or not.
-	 * @param extraFields Any extra fields that the resource type has.
+	 * @param isPhysical  		Whether the resource type is physical or not.
+	 * @param extraFields 		Any extra fields that the resource type has.
 	 */
 	private ResourceType(boolean isPhysical, ResourceField[] extraFields) {
 		
@@ -64,7 +68,6 @@ public enum ResourceType {
 		this.NUM_FILEDS		= this.IS_PHYSICAL ?
 				this.STARTING_FIELDS.length + this.EXTRA_FILEDS.length + this.ENDING_FIELDS.length :
 				this.STARTING_FIELDS.length + this.EXTRA_FILEDS.length;
-
 	}
 	
 	/*
@@ -76,8 +79,8 @@ public enum ResourceType {
 	/**
 	 * Finds the index of a specified field in a resource string.
 	 * 
-	 * @param field The field to search for.
-	 * @return The index of the desired field. -1 if the field is not found.
+	 * @param field 	The field to search for.
+	 * @return 			The index of the desired field. -1 if the field is not found.
 	 */
 	public int indexOfField(ResourceField field) {
 
@@ -105,9 +108,12 @@ public enum ResourceType {
 		}
 
 		return -1;
-
 	}
-
+	
+	/**
+	 * 
+	 * @return max		The maximum number of fields
+	 */
 	private static int getMaxNumFields() {
 		int max = -1;
 		for (ResourceType type : ResourceType.values()) {

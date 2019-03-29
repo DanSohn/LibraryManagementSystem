@@ -53,9 +53,9 @@ public enum UserType {
 	private UserType(boolean isStaff, int maxSignedOutResources) {
 		
 		this.IS_STAFF					= isStaff;
-		this.MAX_SIGNED_OUT_RESOURCES	= maxSignedOutResources;
-		
+		this.MAX_SIGNED_OUT_RESOURCES	= maxSignedOutResources;		
 	}
+	
 	
 	/*
 	 * 
@@ -109,7 +109,6 @@ public enum UserType {
 		}
 		
 		return -1;
-
 	}
 	
 }

@@ -12,41 +12,34 @@ import java.util.Scanner;
 
 public class UserDatabase {
 	
-	/*
-	 *
-	 * METHODS
-	 *
-	 */
-	
 	/**
 	 * Generates a new user database string.
 	 *
-	 * @param id        The user's id.
-	 * @param type      The user's type.
-	 * @param firstName The user's first name.
-	 * @param lastName  The user's last name.
-	 * @param email     The user's email.
-	 * @param password  The user's password.
-	 * @return A string representing the user in the user database.
+	 * @param id        	The user's id.
+	 * @param type      	The user's type.
+	 * @param firstName 	The user's first name.
+	 * @param lastName  	The user's last name.
+	 * @param email     	The user's email.
+	 * @param password  	The user's password.
+	 * @return 				A string representing the user in the user database.
 	 */
 	private static String genNewUserDBStr(String id, UserType type, String firstName, String lastName, String email,
 			String password) {
 		
-		return String.join("*", id, type.name(), firstName, lastName, email, password, "NULL", "NULL", "0", "false");
-		
+		return String.join("*", id, type.name(), firstName, lastName, email, password, "NULL", "NULL", "0", "false");	
 	}
 	
 	/**
 	 * Adds a new user to the user database.
 	 *
-	 * @param id        The user's id.
-	 * @param type      The user's type.
-	 * @param firstName The user's first name.
-	 * @param lastName  The user's last name.
-	 * @param email     The user's email.
-	 * @param password  The user's password.
-	 * @return A boolean stating whether or not the operation completed
-	 *         successfully.
+	 * @param id        	The user's id.
+	 * @param type      	The user's type.
+	 * @param firstName 	The user's first name.
+	 * @param lastName  	The user's last name.
+	 * @param email     	The user's email.
+	 * @param password  	The user's password.
+	 * @return 				A boolean stating whether or not the operation completed
+	 *         				successfully.
 	 */
 	public static boolean addNewUser(String id, UserType type, String firstName, String lastName, String email,
 			String password) {
@@ -67,7 +60,6 @@ public class UserDatabase {
 		Utilities.writeTextFile("UserDatabase.txt", fileLines);
 		
 		return true;
-		
 	}
 	
 	/**
@@ -76,8 +68,6 @@ public class UserDatabase {
 	 * @return
 	 */
 	public static boolean checkRegdUser(String searchTerm) {
-		
-		System.out.println(searchTerm);
 		
 		Scanner scn = new Scanner(System.in);
 		
@@ -93,7 +83,7 @@ public class UserDatabase {
 		String	fname		= "";
 		String	lname		= "";
 		String	email		= "";
-		// Password is not stores for security
+		// Password is not stored for security
 		String	borrowed	= "";
 		String	reserved	= "";
 		String	fine		= "";
@@ -141,7 +131,6 @@ public class UserDatabase {
 		
 		scn.close();
 		return false;
-		
 	}
 	
 	/**
@@ -167,7 +156,6 @@ public class UserDatabase {
 		}
 		
 		return null;
-		
 	}
 	
 }

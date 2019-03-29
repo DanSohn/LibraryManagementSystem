@@ -1,5 +1,8 @@
 package enums;
 
+//	Defines the enums to be used in the 
+//	library management software for describing 
+//	the properties of a user
 public enum UserField {
 
 	EMAIL,
