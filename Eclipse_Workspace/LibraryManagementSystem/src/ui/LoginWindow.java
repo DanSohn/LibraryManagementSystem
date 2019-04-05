@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import users.Login;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -23,8 +25,13 @@ import enums.UserType;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class LoginWindow {
+public class LoginWindow{
 	
 	JFrame					frame;
 	private JTextField		txtEmail;
@@ -58,8 +65,6 @@ public class LoginWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setForeground(Style.dBlue);
-		frame.setBackground(Style.dBlue);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setBounds(0, 0,screen.width,screen.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,8 +117,38 @@ public class LoginWindow {
 		lblLogIn.setBounds(887, 393, 200, 73);
 		frame.getContentPane().add(lblLogIn);
 		
+		JLabel ForgotPass = new JLabel("Forgot Password?");
+		ForgotPass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(txtEmail.getText().length() > 2) {
+					MessageBox.MessageS("Recovery Email Sent");
+				}
+				else {
+					MessageBox.MessageS("Who Are You Tho? Enter Email In Field.");
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				ForgotPass.setForeground(Style.lBlue);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				ForgotPass.setForeground(Style.mBlue);
+			}
+		});
+		ForgotPass.setForeground(Style.mBlue);
+		ForgotPass.setHorizontalAlignment(SwingConstants.CENTER);
+		ForgotPass.setFont(new Font("Tahoma", Font.BOLD, 22));
+		ForgotPass.setBounds(1535, 950, 528, 38);
+		frame.getContentPane().add(ForgotPass);
 		
-		//Invalid password texts
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(Style.mBlue));
+		panel.setBounds(1700, 980, 197, 2);
+		frame.getContentPane().add(panel);
+		
+		//Invalid password texts                                   //////////////////////////////// not working
 		//front
 		JLabel lblinvalidemailPassword2 = new JLabel("Invalid email or password");
 		lblinvalidemailPassword2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -144,64 +179,51 @@ public class LoginWindow {
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 22));
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				UserType type = Login.userLogin(txtEmail.getText(), passwordField.getText());
-				
-				if (type != null) {
-					
-					switch (type) {
-						case ADMIN:
-							frame.dispose();
-							AdminWindow.AdminS();
-							break;
-						case CLERK:
-							frame.dispose();
-							ClerkWindow.ClerkS();
-							break;
-						case FACULTY:
-							frame.dispose();
-							FacultyWindow.FacultyS(txtEmail.getText());
-							break;
-						case STUDENT:
-							frame.dispose();
-							StudentWindow.StudentS(txtEmail.getText());
-							break;
-					}
-					
-				} else {
-					lblinvalidemailPassword.setVisible(true);
-					lblinvalidemailPassword2.setVisible(true);
-					lblinvalidemailPassword3.setVisible(true);
-				}
-				
+				pass();
+				lblinvalidemailPassword.setVisible(true);
+				lblinvalidemailPassword2.setVisible(true);
+				lblinvalidemailPassword3.setVisible(true);
 			}
 		});
-		
 		btnSubmit.setBackground(Style.mBlue);
 		btnSubmit.setBounds(900, 569, 200, 38);
 		frame.getContentPane().add(btnSubmit);
-		
-		JLabel ForgotPass = new JLabel("Forgot Password?");
-		ForgotPass.setForeground(Style.mBlue);
-		ForgotPass.setHorizontalAlignment(SwingConstants.CENTER);
-		ForgotPass.setFont(new Font("Tahoma", Font.BOLD, 22));
-		ForgotPass.setBounds(1535, 950, 528, 38);
-		frame.getContentPane().add(ForgotPass);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(Style.mBlue));
-		panel.setBounds(1700, 980, 197, 2);
-		frame.getContentPane().add(panel);
+		frame.getRootPane().setDefaultButton(btnSubmit); //sets enter key to submit
 		
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("test.jpg"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+
 			picLabel.setBorder(null);
 			frame.getContentPane().add(picLabel);
 			picLabel.setBounds(-12, 0, 1939, 1020);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	public void pass(){
+		UserType type = Login.userLogin(txtEmail.getText(), passwordField.getText());
+		if (type != null) {
+			
+			switch (type) {
+				case ADMIN:
+					frame.dispose();
+					AdminWindow.AdminS("Admin", txtEmail.getText());
+					break;
+				case CLERK:
+					frame.dispose();
+					ClerkWindow.ClerkS("Clerk", txtEmail.getText());
+					break;
+				case FACULTY:
+					frame.dispose();
+					FacultyWindow.FacultyS("Faculty", txtEmail.getText());
+					break;
+				case STUDENT:
+					frame.dispose();
+					StudentWindow.StudentS("Student", txtEmail.getText());
+					break;
+			}
 		}
 	}
 }

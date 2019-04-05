@@ -32,8 +32,9 @@ import utils.CR;
 import utils.Utilities;
 
 import javax.swing.JList;
+import javax.swing.JTextField;
 
-public class StudentWindow {
+public class StudentWindow extends Style {
 	
 	private JFrame			frame;
 	private static String	email		= null;
@@ -43,12 +44,13 @@ public class StudentWindow {
 	
 	/**
 	 * Launch the application.
+	 * @param string 
 	 */
-	public static void StudentS(String email) {
+	public static void StudentS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentWindow window = new StudentWindow(email);
+					StudentWindow window = new StudentWindow(name, email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,51 +62,34 @@ public class StudentWindow {
 	/**
 	 * Create the application.
 	 */
-	public StudentWindow(String email) {
+	public StudentWindow(String name, String email) {
 		this.email		= email;
 		this.studentID	= setID(email);
+		frame = new JFrame();
 		initialize();
+		buttons(name, email, frame, "MyBook");
+		setup(name, frame);
 	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Style.backBlue);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setBounds(0, 0, screen.width, screen.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setVisible(true);
-		
-		//reserve books
-		
-		JLabel lblNope = new JLabel("Failed");
-		lblNope.setBounds(590, 715, 87, 16);
-		frame.getContentPane().add(lblNope);
-		lblNope.setVisible(false);
-		
-		JLabel lblYup = new JLabel("Completed");
-		lblYup.setBounds(590, 715, 97, 16);
-		frame.getContentPane().add(lblYup);
-		lblYup.setVisible(false);
 		
 		JLabel lblReserveBooks = new JLabel("Reserve Book:");
 		lblReserveBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblReserveBooks.setBounds(424, 646, 181, 25);
+		lblReserveBooks.setBounds(420, 589, 181, 25);
 		frame.getContentPane().add(lblReserveBooks);
 		
 		txtReserve = new JTextField();
 		txtReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		txtReserve.setBounds(424, 702, 154, 35);
+		txtReserve.setBounds(542, 621, 154, 35);
 		frame.getContentPane().add(txtReserve);
 		txtReserve.setColumns(10);
 		
 		JLabel lblBookId = new JLabel("Book ID #:");
 		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBookId.setBounds(424, 670, 154, 35);
+		lblBookId.setBounds(424, 621, 154, 35);
 		frame.getContentPane().add(lblBookId);
 		
 		JButton btnReserve = new JButton("Reserve");
@@ -113,25 +98,27 @@ public class StudentWindow {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if(CR.Reserve("UserDatabase.txt", "ItemDatabase.txt", email, txtReserve.getText()) < 1 ) {
-						lblNope.setVisible(true);
-					};
-					lblYup.setVisible(true);
+						MessageBox.MessageS("Cant do that");
+					}
+					else {
+						MessageBox.MessageS("book reserved successfuly");
+					}
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnReserve.setBounds(424, 750, 154, 41);
-		btnReserve.setForeground(Style.dBlue);
-		btnReserve.setBackground(Style.lBlue);
+		btnReserve.setBounds(708, 618, 154, 41);
+		btnReserve.setForeground(dBlue);
+		btnReserve.setBackground(lBlue);
 		frame.getContentPane().add(btnReserve);
-		////////reserve
 		
+		//
 		DefaultListModel	model	= new DefaultListModel();
 		JList				list	= new JList(model);
 		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		list.setBounds(424, 387, 1054, 153);
+		list.setBounds(424, 340, 1054, 153);
 		frame.getContentPane().add(list);
 		
 		JButton btnRenew = new JButton("Renew");
@@ -149,9 +136,9 @@ public class StudentWindow {
 			}
 		});
 
-		btnRenew.setBounds(424, 553, 154, 41);
-		btnRenew.setForeground(Style.dBlue);
-		btnRenew.setBackground(Style.lBlue);
+		btnRenew.setBounds(424, 506, 154, 41);
+		btnRenew.setForeground(dBlue);
+		btnRenew.setBackground(lBlue);
 		frame.getContentPane().add(btnRenew);
 		
 		String		string	= listBooks();
@@ -162,77 +149,8 @@ public class StudentWindow {
 		
 		JLabel lblCurrentBooks = new JLabel("Current books:");
 		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblCurrentBooks.setBounds(424, 348, 220, 41);
+		lblCurrentBooks.setBounds(420, 301, 220, 41);
 		frame.getContentPane().add(lblCurrentBooks);
-		
-		///////////////// main page setup
-		//log out button
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
-			}
-		});
-		btnLogOut.setBackground(new Color(255, 140, 0));
-		btnLogOut.setBounds(1774, 952, 116, 33);
-		frame.getContentPane().add(btnLogOut);
-		//
-		
-		//title name
-		JLabel lblTitle = new JLabel("Student");
-		lblTitle.setForeground(new Color(3, 51, 89));
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblTitle.setBounds(25, 179, 223, 73);
-		frame.getContentPane().add(lblTitle);
-		//
-		
-		//search book location button
-		JButton btnSearchBookLoc = new JButton("Search Book Location");
-		btnSearchBookLoc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BookSearch.BookS();
-				frame.dispose();
-			}
-		});
-		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
-		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
-		btnSearchBookLoc.setBounds(506, 205, 223, 38);
-		frame.getContentPane().add(btnSearchBookLoc);
-		//
-		
-		//selected
-		//my books button
-		JButton btnMyBooks = new JButton("My Books");
-		btnMyBooks.setForeground(new Color(3, 51, 89));
-		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnMyBooks.setForeground(Style.lBlue);
-		btnMyBooks.setBackground(Style.dBlue);
-		btnMyBooks.setBounds(248, 204, 223, 38);
-		frame.getContentPane().add(btnMyBooks);
-		//
-		
-		//background and banner photo
-		BufferedImage myPicture;
-		try {
-			myPicture = ImageIO.read(new File("banner.jpg"));
-			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-			picLabel.setBorder(null);
-			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 166);
-			
-			myPicture = ImageIO.read(new File("norm.jpg"));
-			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
-			picLabel2.setBorder(null);
-			frame.getContentPane().add(picLabel2);
-			picLabel2.setBounds(-12, 0, 1939, 1020);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

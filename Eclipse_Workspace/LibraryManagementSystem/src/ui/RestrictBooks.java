@@ -25,10 +25,9 @@ import utils.Utilities;
 
 import javax.swing.JTextField;
 
-public class RestrictBooks {
+public class RestrictBooks extends Style{
 
 	private JFrame frame;
-	private static String email = null;
 	private static String studentID = null;
 	private static int numBooks = 0;
 	private JTextField idIn;
@@ -36,11 +35,11 @@ public class RestrictBooks {
 	/**
 	 * Launch the application.
 	 */
-	public static void RestrictS(String email) {
+	public static void RestrictS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RestrictBooks window = new RestrictBooks(email);
+					RestrictBooks window = new RestrictBooks(name, email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,126 +51,46 @@ public class RestrictBooks {
 	/**
 	 * Create the application.
 	 */
-	public RestrictBooks(String email) {
-		this.email = email;
+	public RestrictBooks(String name, String email) {
 		this.studentID = setID(email);
+		frame = new JFrame();
 		initialize();
+		buttons(name, email, frame, "Restrict");
+		setup(name, frame);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Style.backBlue);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setBounds(0, 0,screen.width,screen.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		frame.setVisible(true);
 		
-		JLabel lblId = new JLabel("ID#");
-		lblId.setBounds(306, 386, 56, 16);
+		JLabel lblId = new JLabel("Book ID#:");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblId.setBounds(237, 300, 110, 19);
 		frame.getContentPane().add(lblId);
 		
-		JLabel lblTxt = new JLabel("text here");
-		lblTxt.setBounds(739, 468, 56, 16);
-		frame.getContentPane().add(lblTxt);
-		
 		idIn = new JTextField();
-		idIn.setBounds(374, 383, 116, 22);
+		idIn.setBounds(356, 294, 169, 31);
 		frame.getContentPane().add(idIn);
 		idIn.setColumns(10);
 		
-		JButton btnRestrict = new JButton("restrict");
+		JButton btnRestrict = new JButton("Restrict");
+		btnRestrict.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRestrict.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblTxt.setText(restrictBook(idIn.getText()));
-				//System.out.print(restrictBook(idIn.getText()));
+				if(idIn.getText().length() < 5) {
+					MessageBox.MessageS("Enter ID");
+				}
+				else {
+					MessageBox.MessageS(restrictBook(idIn.getText()));
+				}
 			}
 		});
-		btnRestrict.setBounds(509, 382, 97, 25);
+		btnRestrict.setBounds(539, 294, 142, 31);
+		btnRestrict.setForeground(dBlue);
+		btnRestrict.setBackground(lBlue);
 		frame.getContentPane().add(btnRestrict);
 		
-		///////////////// main page setup
-		//log out button
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
-			}
-		});
-		btnLogOut.setBackground(new Color(255, 140, 0));
-		btnLogOut.setBounds(1774, 952, 116, 33);
-		frame.getContentPane().add(btnLogOut);
-		//
-		
-		//title name
-		JLabel lblTitle = new JLabel("Faculty");
-		lblTitle.setForeground(new Color(3, 51, 89));
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblTitle.setBounds(25, 179, 223, 73);
-		frame.getContentPane().add(lblTitle);
-		//
-		
-		//search book location button
-		JButton btnSearchBookLoc = new JButton("Search Book Location");
-		btnSearchBookLoc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new BookSearch(email,"Faculty").BookS();
-				frame.dispose();
-			}
-		});
-		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
-		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
-		btnSearchBookLoc.setBounds(506, 205, 223, 38);
-		frame.getContentPane().add(btnSearchBookLoc);
-		//
-		
-		//selected
-		//my books button
-		JButton btnMyBooks = new JButton("My Books");
-		btnMyBooks.setForeground(new Color(3, 51, 89));
-		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnMyBooks.setForeground(new Color(3, 51, 89));
-		btnMyBooks.setBackground(new Color(230, 230, 240));
-		btnMyBooks.setBounds(248, 204, 223, 38);
-		frame.getContentPane().add(btnMyBooks);
-		//
-		
-		//restrict books
-		JButton btnRestrictBooks = new JButton("Restrict Books");
-		btnRestrictBooks.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnRestrictBooks.setBounds(768, 205, 223, 38);
-		btnRestrictBooks.setForeground(Style.lBlue);
-		btnRestrictBooks.setBackground(Style.dBlue);
-		frame.getContentPane().add(btnRestrictBooks);
-		//
-		
-		//background and banner photo
-		BufferedImage myPicture;
-		try {
-			myPicture = ImageIO.read(new File("banner.jpg"));
-			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-			picLabel.setBorder(null);
-			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 166);
-		
-			myPicture = ImageIO.read(new File("norm.jpg"));
-			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
-			picLabel2.setBorder(null);
-			frame.getContentPane().add(picLabel2);
-			picLabel2.setBounds(-12, 0, 1939, 1020);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//
-
 	}
 	public static String setID(String userEmail){
 		String result = null;
@@ -198,7 +117,7 @@ public class RestrictBooks {
 	public String restrictBook(String bookID){
 		String bookName = null;
         String authorName = null;
-		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");
+		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
 		String sentMails = null;
 		String returnString = null;
 		System.out.println("Inside restrictBook with ID " + bookID);

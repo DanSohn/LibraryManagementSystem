@@ -27,20 +27,21 @@ import java.io.IOException;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-public class FindUser {
+public class FindUser extends Style{
 	
 	JFrame					frame;
-	private static String	email	= null;
 	private JTextField		textField;
 	
 	/**
 	 * Launch the application.
+	 * @param email 
+	 * @param name 
 	 */
-	public void FindS() {
+	public static void FindS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FindUser window = new FindUser();
+					FindUser window = new FindUser(name, email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,22 +53,17 @@ public class FindUser {
 	/**
 	 * Create the application.
 	 */
-	public FindUser() {
+	public FindUser(String name, String email) {
+		frame = new JFrame();
 		initialize();
+		buttons(name, email, frame, "FindUser");
+		setup(name, frame);
 	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Style.backBlue);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setBounds(0, 0, screen.width, screen.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setVisible(true);
 		
 		JTextPane textField = new JTextPane();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -76,8 +72,8 @@ public class FindUser {
 		
 		JButton btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCheck.setForeground(Style.dBlue);
-		btnCheck.setBackground(Style.lBlue);
+		btnCheck.setForeground(dBlue);
+		btnCheck.setBackground(lBlue);
 		btnCheck.setBounds(1060, 305, 117, 32);
 		frame.getContentPane().add(btnCheck);
 		
@@ -122,7 +118,7 @@ public class FindUser {
 		JLabel lblUserId = new JLabel("User ID");
 		lblUserId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserId.setBounds(741, 302, 109, 37);
+		lblUserId.setBounds(740, 300, 109, 37);
 		frame.getContentPane().add(lblUserId);
 		
 		JLabel lblFirstName = new JLabel("First Name:");
@@ -171,131 +167,10 @@ public class FindUser {
 					TP_lastName.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.LAST_NAME));
 					TP_fees.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FINE_AMOUNT));
 				} else {
-					lblNoSuchUser.setVisible(true);
+					MessageBox.MessageS("Error");
 				}
 				;
 			}
 		});
-		
-		///////////////// main page setup
-		//log out button
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
-			}
-		});
-		btnLogOut.setBackground(new Color(255, 140, 0));
-		btnLogOut.setBounds(1774, 952, 116, 33);
-		frame.getContentPane().add(btnLogOut);
-		//
-		
-		//title name
-		JLabel lblTitle = new JLabel("Admin");
-		lblTitle.setForeground(new Color(3, 51, 89));
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 44));
-		lblTitle.setBounds(25, 179, 223, 73);
-		frame.getContentPane().add(lblTitle);
-		//
-		
-		//selected
-		//return checkout books button
-		JButton btnAdd = new JButton("Return/Check-out");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new BookSignOut().SignOutS();
-			}
-		});
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnAdd.setBounds(243, 204, 223, 38);
-		btnAdd.setForeground(Style.lBlue);
-		btnAdd.setBackground(Style.dBlue);
-		frame.getContentPane().add(btnAdd);
-		//
-		
-		//add user button
-		JButton btnAddUser = new JButton("Add User");
-		btnAddUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new AddUser().AddUserS();
-			}
-		});
-		btnAddUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnAddUser.setBounds(478, 204, 223, 38);
-		btnAddUser.setBackground(new Color(230, 230, 240));
-		btnAddUser.setForeground(new Color(3, 51, 89));
-		frame.getContentPane().add(btnAddUser);
-		//
-		
-		//search book location button
-		JButton btnSearchBookLoc = new JButton("Search Book Location");
-		btnSearchBookLoc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new BookSearch("email","Admin").BookS();
-				frame.dispose();
-			}
-		});
-		btnSearchBookLoc.setForeground(new Color(3, 51, 89));
-		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnSearchBookLoc.setBackground(new Color(230, 230, 240));
-		btnSearchBookLoc.setBounds(713, 204, 223, 38);
-		frame.getContentPane().add(btnSearchBookLoc);
-		//
-		
-		//my books button
-		JButton btnMyBooks = new JButton("My Books");
-		btnMyBooks.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMyBooks.setForeground(new Color(3, 51, 89));
-		btnMyBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnMyBooks.setBackground(new Color(230, 230, 240));
-		btnMyBooks.setBounds(948, 204, 223, 38);
-		frame.getContentPane().add(btnMyBooks);
-		//
-		
-		//Item add button
-		JButton btnItemAdd = new JButton("Item Add");
-		btnItemAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnItemAdd.setBackground(new Color(230, 230, 240));
-		btnItemAdd.setForeground(new Color(3, 51, 89));
-		btnItemAdd.setBounds(1183, 204, 223, 38);
-		frame.getContentPane().add(btnItemAdd);
-		//
-		
-		//selected
-		//Item add button
-		JButton btnFindUser = new JButton("User Search");
-		btnFindUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnFindUser.setBackground(new Color(230, 230, 240));
-		btnFindUser.setForeground(Style.dBlue);
-		btnFindUser.setBackground(Style.lBlue);
-		frame.getContentPane().add(btnFindUser);
-		//
-		
-		//background and banner photo
-		BufferedImage myPicture;
-		try {
-			myPicture = ImageIO.read(new File("banner.jpg"));
-			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-			picLabel.setBorder(null);
-			frame.getContentPane().add(picLabel);
-			picLabel.setBounds(0, 0, 1920, 166);
-
-			myPicture = ImageIO.read(new File("norm.jpg"));
-			JLabel picLabel2 = new JLabel(new ImageIcon(myPicture));
-			picLabel2.setBorder(null);
-			frame.getContentPane().add(picLabel2);
-			picLabel2.setBounds(-13, 0, 1939, 1020);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//
 	}
 }
