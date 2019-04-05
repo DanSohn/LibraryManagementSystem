@@ -102,5 +102,30 @@ public class ResourceDatabase {
 
         return null;
     }
+    
+    /**
+     * Gets the ID of a resource, specified via the title.
+     * @param resourceTitle The title of the resource to search
+     * @param resourceType The type of the resource to search
+     * @return The ID of the resource
+     */
+    public static String getIDFromTitle(String resourceTitle, ResourceType resourceType) {
+    	
+    	ArrayList<String>   fileLines = Utilities.readTextFile("ItemDatabase.txt");
+
+        //	Iterates through database
+        for (String line : fileLines) {
+            String[]        bits    = line.split("\\*");
+            String          title   = bits[resourceType.indexOfField(ResourceField.TITLE)].toUpperCase();
+            ResourceType    type    = ResourceType.valueOf(bits[resourceType.indexOfField(ResourceField.TYPE)]);
+
+            if (resourceTitle.equals(title) && resourceType == type) {
+                return bits[resourceType.indexOfField(ResourceField.ID)];
+            }
+        }
+
+        return null;
+    	
+    }
 
 }
