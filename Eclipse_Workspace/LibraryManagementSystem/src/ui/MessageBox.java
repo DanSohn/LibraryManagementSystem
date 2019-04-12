@@ -50,8 +50,9 @@ public class MessageBox extends JFrame {
 		JLabel lblNewLabel = new JLabel("Message");
 		lblNewLabel.setText(text);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblNewLabel.setBounds(12, 105, 408, 43);
+		lblNewLabel.setBounds(12, 13, 408, 200);
 		lblNewLabel.setForeground(Style.lBlue);
 		contentPane.add(lblNewLabel);
 		

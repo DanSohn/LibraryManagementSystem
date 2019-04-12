@@ -106,17 +106,22 @@ public class StudentWindow extends Style {
 		btnReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReserve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if(CR.Reserve("UserDatabase.txt", "ItemDatabase.txt", email, txtReserve.getText()) < 1 ) {
-						MessageBox.MessageS("Cant do that");
+				if(Utilities.isValidInput(txtReserve.getText())){
+					try {
+						if(CR.Reserve("UserDatabase.txt", "ItemDatabase.txt", email, txtReserve.getText()) < 1 ) {
+							MessageBox.MessageS("Cant do that");
+						}
+						else {
+							MessageBox.MessageS("book reserved successfuly");
+						}
+						
+					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
-					else {
-						MessageBox.MessageS("book reserved successfuly");
-					}
-					
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				}else {
+					MessageBox.MessageS("Fields cannot be blank or contain \"*\"");
 				}
+				
 			}
 		});
 		btnReserve.setBounds(708, 618, 154, 41);

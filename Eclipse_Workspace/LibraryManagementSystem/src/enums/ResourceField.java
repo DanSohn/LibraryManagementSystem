@@ -17,4 +17,9 @@ public enum ResourceField {
 	HOLDER,
 	QUEUE;
 	
+	public static ResourceField[] searchables() {
+		ResourceField[] rfa = {ResourceField.ID, ResourceField.TITLE, ResourceField.AUTHOR};
+		return rfa;
+	}
+	
 }
