@@ -64,16 +64,19 @@ public class RestrictBooks extends Style{
 	 */
 	private void initialize() {
 		
+		//book id label
 		JLabel lblId = new JLabel("Book ID#:");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblId.setBounds(237, 300, 110, 19);
 		frame.getContentPane().add(lblId);
 		
+		//book id text field
 		idIn = new JTextField();
 		idIn.setBounds(356, 294, 169, 31);
 		frame.getContentPane().add(idIn);
 		idIn.setColumns(10);
 		
+		//restrict button
 		JButton btnRestrict = new JButton("Restrict");
 		btnRestrict.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRestrict.addActionListener(new ActionListener() {
@@ -92,6 +95,8 @@ public class RestrictBooks extends Style{
 		frame.getContentPane().add(btnRestrict);
 		
 	}
+	
+	//////// Back end 
 	public static String setID(String userEmail){
 		String result = null;
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
@@ -112,12 +117,11 @@ public class RestrictBooks extends Style{
 		}
 		return result;
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public String restrictBook(String bookID){
 		String bookName = null;
         String authorName = null;
-		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
+		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");
 		String sentMails = null;
 		String returnString = null;
 		System.out.println("Inside restrictBook with ID " + bookID);

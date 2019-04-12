@@ -31,5 +31,3 @@
 212134*DVD*The Office US: Season 2*Ricky Gervais*AVAILABLE*NULL*NULL
 554321*ONLINE*Three-valued bounded model checking with cause-guided abstraction refinement*Nils Timm,Stefan Gruner*https://doi.org/10.1016/j.scico.2019.02.002
 334211*ONLINE*A didactic object-oriented, prototype-based visual programming environment*Baltasar García Perez-Schofield,Francisco Ortin*https://doi.org/10.1016/j.scico.2019.02.004
-*BOOK****AVAILABLE*NULL*NULL
-55555*BOOK*harrypotter*jk*fant*UNAVAILABLE*30089213*NULL

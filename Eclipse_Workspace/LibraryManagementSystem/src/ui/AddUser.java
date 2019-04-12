@@ -68,79 +68,93 @@ public class AddUser extends Style{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		JLabel lblId = new JLabel("ID #");
-		lblId.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblId.setBounds(813, 300, 56, 26);
-		frame.getContentPane().add(lblId);
-		
+		////text fields
+		//id text field
 		TF_id = new JTextField();
 		TF_id.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_id.setColumns(10);
 		TF_id.setBounds(881, 300, 186, 33);
 		frame.getContentPane().add(TF_id);
 		
+		//first name text field
 		TF_firstName = new JTextField();
 		TF_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_firstName.setColumns(10);
 		TF_firstName.setBounds(881, 392, 186, 33);
 		frame.getContentPane().add(TF_firstName);
 		
+		//last name text field
 		TF_lastName = new JTextField();
 		TF_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_lastName.setColumns(10);
 		TF_lastName.setBounds(881, 438, 186, 33);
 		frame.getContentPane().add(TF_lastName);
 		
+		//email text field
 		TF_email = new JTextField();
 		TF_email.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_email.setColumns(10);
 		TF_email.setBounds(881, 484, 186, 33);
 		frame.getContentPane().add(TF_email);
 		
+		//password text field
 		TF_password = new JTextField();
 		TF_password.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_password.setColumns(10);
 		TF_password.setBounds(881, 530, 186, 33);
 		frame.getContentPane().add(TF_password);
 		
+		////labels
+		//id label
+		JLabel lblId = new JLabel("ID #");
+		lblId.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblId.setBounds(813, 300, 56, 26);
+		frame.getContentPane().add(lblId);
+		
+		//user type label
 		JLabel lblUserType = new JLabel("User type");
 		lblUserType.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserType.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblUserType.setBounds(726, 348, 143, 29);
 		frame.getContentPane().add(lblUserType);
 		
+		//first name label
 		JLabel lblFirstName = new JLabel("First name");
 		lblFirstName.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblFirstName.setBounds(736, 395, 133, 26);
 		frame.getContentPane().add(lblFirstName);
 		
+		//last name label
 		JLabel lblLastName = new JLabel("Last name");
 		lblLastName.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblLastName.setBounds(765, 441, 104, 26);
 		frame.getContentPane().add(lblLastName);
 		
+		//email label
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblEmail.setBounds(765, 487, 104, 26);
 		frame.getContentPane().add(lblEmail);
 		
+		//password label
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblPassword.setBounds(765, 532, 104, 29);
 		frame.getContentPane().add(lblPassword);
 		
+		//user type drop down menu
 		JComboBox CB_type = new JComboBox();
 		CB_type.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		CB_type.setModel(new DefaultComboBoxModel(UserType.getNonStaffTypes()));
 		CB_type.setBounds(881, 346, 186, 33);
 		frame.getContentPane().add(CB_type);
 		
+		//add user button
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnAdd.addMouseListener(new MouseAdapter() {

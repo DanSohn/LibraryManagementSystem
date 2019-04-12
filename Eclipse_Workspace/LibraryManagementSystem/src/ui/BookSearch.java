@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import database.ResourceDatabase;
+import database.UserDatabase;
+
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComboBox;
@@ -65,10 +67,18 @@ public class BookSearch extends Style{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//frame set up
+		frame.getContentPane().setBackground(backBlue);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setBounds(0, 0,screen.width,screen.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setVisible(true);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(641, 337, 228, 33);
+		textField.setBounds(641, 337, 228, 38);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -77,42 +87,37 @@ public class BookSearch extends Style{
 		btnSearch.setForeground(dBlue);
 		btnSearch.setBackground(lBlue);
 
-		btnSearch.setBounds(885, 337, 122, 33);
+		btnSearch.setBounds(641, 388, 122, 33);
 		frame.getContentPane().add(btnSearch);
 		
 		JTextPane textPane_0 = new JTextPane();
 		textPane_0.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textPane_0.setBounds(641, 510, 619, 48);
+		textPane_0.setBounds(641, 510, 619, 239);
 		frame.getContentPane().add(textPane_0);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		comboBox.setModel(new DefaultComboBoxModel(ResourceType.values()));
-		comboBox.setBounds(641, 420, 194, 38);
+		comboBox.setBounds(641, 293, 194, 38);
 		frame.getContentPane().add(comboBox);
-		
-		JLabel lblId_1 = new JLabel("ID #");
-		lblId_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblId_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblId_1.setBounds(641, 305, 148, 33);
-		frame.getContentPane().add(lblId_1);
 		
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textPane_0.setText(ResourceDatabase.getParameterOfResource(textField.getText(), (ResourceType) comboBox.getSelectedItem(), ResourceField.LOCATION));
+//				textPane_0.setText(ResourceDatabase.getParameterOfResource(textField.getText(), (ResourceType) comboBox.getSelectedItem(), ResourceField.LOCATION));
+				textPane_0.setText(UserDatabase.getBookInfo(ResourceType.BOOK.indexOfField(ResourceField.TITLE), textField.getText()));
 			}
 		});
 		
-		JLabel lblType = new JLabel("Type");
+		JLabel lblType = new JLabel("Search by:");
 		lblType.setHorizontalAlignment(SwingConstants.LEFT);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblType.setBounds(641, 383, 56, 38);
+		lblType.setBounds(641, 253, 228, 38);
 		frame.getContentPane().add(lblType);
 		
-		JLabel lblLocation = new JLabel("Location:");
+		JLabel lblLocation = new JLabel("Information:");
 		lblLocation.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblLocation.setBounds(641, 472, 97, 38);
+		lblLocation.setBounds(641, 472, 240, 38);
 		frame.getContentPane().add(lblLocation);
 	}
 }

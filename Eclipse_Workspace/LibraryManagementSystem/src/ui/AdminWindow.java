@@ -63,31 +63,37 @@ public class AdminWindow extends Style{
 	 * Initialize the contents of the frame.
 	 */
 	private void initilize() {
-		
-		usetTxt = new JTextField();
-		usetTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		usetTxt.setColumns(10);
-		usetTxt.setBounds(782, 332, 337, 47);
-		frame.getContentPane().add(usetTxt);
-		
-		bookTxt = new JTextField();
-		bookTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		bookTxt.setColumns(10);
-		bookTxt.setBounds(782, 429, 337, 47);
-		frame.getContentPane().add(bookTxt);
-		
+		////Labels
+		//user id labels
 		JLabel lblUserId = new JLabel("User ID:");
 		lblUserId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblUserId.setBounds(785, 298, 94, 21);
 		frame.getContentPane().add(lblUserId);
 		
+		//book id label
 		JLabel lblBookId = new JLabel("Book ID:");
 		lblBookId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblBookId.setBounds(782, 392, 97, 34);
 		frame.getContentPane().add(lblBookId);
 		
+		////text fields
+		//user id text field
+		usetTxt = new JTextField();
+		usetTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		usetTxt.setColumns(10);
+		usetTxt.setBounds(782, 332, 337, 47);
+		frame.getContentPane().add(usetTxt);
+		
+		//book id text field
+		bookTxt = new JTextField();
+		bookTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		bookTxt.setColumns(10);
+		bookTxt.setBounds(782, 429, 337, 47);
+		frame.getContentPane().add(bookTxt);
+		
+		//checkout button
 		JButton btnNewButton = new JButton("Check out");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -101,12 +107,12 @@ public class AdminWindow extends Style{
 				}
 			}
 		});
-		
 		btnNewButton.setBounds(782, 489, 218, 36);
 		btnNewButton.setForeground(dBlue);
 		btnNewButton.setBackground(lBlue);
 		frame.getContentPane().add(btnNewButton);
 		
+		//return button
 		JButton btnReturn = new JButton("Return");
 		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReturn.addActionListener(new ActionListener() {

@@ -68,43 +68,56 @@ public class FacultyWindow extends Style{
 		this.studentID = setID(email);
 		this.name = name;
 		frame = new JFrame();
-		secondary();
-		buttons(name, email, frame, "ReturnCheckout");
+		initialize();
+		buttons(name, email, frame, "MyBook");
 		setup(name, frame);
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void secondary() {
+	private void initialize() {
 		
+		//labels
 		//reserve books
 		JLabel lblNope = new JLabel("Failed");
 		lblNope.setBounds(590, 715, 87, 16);
 		frame.getContentPane().add(lblNope);
 		lblNope.setVisible(false);
 		
+		//Completed label
 		JLabel lblYup = new JLabel("Completed");
 		lblYup.setBounds(590, 715, 97, 16);
 		frame.getContentPane().add(lblYup);
 		lblYup.setVisible(false);
 		
+		//reserve book label
 		JLabel lblReserveBooks = new JLabel("Reserve Book:");
 		lblReserveBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblReserveBooks.setBounds(424, 646, 181, 25);
 		frame.getContentPane().add(lblReserveBooks);
 		
+		//book id label
+		JLabel lblBookId = new JLabel("Book ID #:");
+		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblBookId.setBounds(424, 670, 154, 35);
+		frame.getContentPane().add(lblBookId);
+		
+		//curent books label
+		JLabel lblCurrentBooks = new JLabel("Current books:");
+		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblCurrentBooks.setBounds(424, 303, 220, 41);
+		frame.getContentPane().add(lblCurrentBooks);
+		
+		//reserve book id text field 
 		txtReserve = new JTextField();
 		txtReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		txtReserve.setBounds(424, 702, 154, 35);
 		frame.getContentPane().add(txtReserve);
 		txtReserve.setColumns(10);
 		
-		JLabel lblBookId = new JLabel("Book ID #:");
-		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBookId.setBounds(424, 670, 154, 35);
-		frame.getContentPane().add(lblBookId);
-		
+		//reserve button
 		JButton btnReserve = new JButton("Reserve");
 		btnReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReserve.addActionListener(new ActionListener() {
@@ -126,12 +139,14 @@ public class FacultyWindow extends Style{
 		frame.getContentPane().add(btnReserve);
 		////////reserve
 		
+		//default list setup
 		DefaultListModel	model	= new DefaultListModel();
 		JList				list	= new JList(model);
 		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		list.setBounds(424, 357, 1054, 153);
 		frame.getContentPane().add(list);
 		
+		//renew button
 		JButton btnRenew = new JButton("Renew");
 		btnRenew.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRenew.addActionListener(new ActionListener() {
@@ -151,17 +166,12 @@ public class FacultyWindow extends Style{
 		btnRenew.setBackground(lBlue);
 		frame.getContentPane().add(btnRenew);
 		
+		//string setup
 		String		string	= listBooks();
 		String[]	parts	= string.split("_");
 		for (int i = 0; i < parts.length; i++) {
 			model.addElement(parts[i]);
 		}
-		
-		JLabel lblCurrentBooks = new JLabel("Current books:");
-		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblCurrentBooks.setBounds(424, 303, 220, 41);
-		frame.getContentPane().add(lblCurrentBooks);
-		
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -64,57 +64,8 @@ public class FindUser extends Style{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		JTextPane textField = new JTextPane();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		textField.setBounds(862, 302, 194, 35);
-		frame.getContentPane().add(textField);
-		
-		JButton btnCheck = new JButton("Check");
-		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCheck.setForeground(dBlue);
-		btnCheck.setBackground(lBlue);
-		btnCheck.setBounds(1060, 305, 117, 32);
-		frame.getContentPane().add(btnCheck);
-		
-		JLabel lblNoSuchUser = new JLabel("No such user found");
-		lblNoSuchUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNoSuchUser.setForeground(Color.RED);
-		lblNoSuchUser.setBounds(1189, 307, 314, 28);
-		frame.getContentPane().add(lblNoSuchUser);
-		lblNoSuchUser.setVisible(false);
-		
-		JLabel lblUserFound = new JLabel("User found");
-		lblUserFound.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblUserFound.setBounds(1191, 309, 167, 23);
-		frame.getContentPane().add(lblUserFound);
-		lblUserFound.setVisible(false);
-		
-		JTextPane TP_blacklisted = new JTextPane();
-		TP_blacklisted.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_blacklisted.setBounds(555, 788, 238, 37);
-		frame.getContentPane().add(TP_blacklisted);
-		
-		JTextPane TP_firstName = new JTextPane();
-		TP_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_firstName.setBounds(555, 435, 369, 37);
-		frame.getContentPane().add(TP_firstName);
-		
-		JTextPane TP_fees = new JTextPane();
-		TP_fees.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_fees.setBounds(876, 788, 172, 37);
-		frame.getContentPane().add(TP_fees);
-		
-		JTextPane TP_lastName = new JTextPane();
-		TP_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_lastName.setBounds(978, 435, 369, 37);
-		frame.getContentPane().add(TP_lastName);
-		
-		JTextPane TP_checkedOut = new JTextPane();
-		TP_checkedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		TP_checkedOut.setBounds(555, 530, 792, 199);
-		frame.getContentPane().add(TP_checkedOut);
-		
+		////labels
+		//
 		JLabel lblUserId = new JLabel("User ID");
 		lblUserId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -157,10 +108,47 @@ public class FindUser extends Style{
 		label_1.setBounds(845, 788, 38, 37);
 		frame.getContentPane().add(label_1);
 		
+		JTextPane textField = new JTextPane();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		textField.setBounds(862, 302, 194, 35);
+		frame.getContentPane().add(textField);
+		
+		JTextPane TP_blacklisted = new JTextPane();
+		TP_blacklisted.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_blacklisted.setBounds(555, 788, 238, 37);
+		frame.getContentPane().add(TP_blacklisted);
+		
+		JTextPane TP_firstName = new JTextPane();
+		TP_firstName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_firstName.setBounds(555, 435, 369, 37);
+		frame.getContentPane().add(TP_firstName);
+		
+		JTextPane TP_fees = new JTextPane();
+		TP_fees.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_fees.setBounds(876, 788, 172, 37);
+		frame.getContentPane().add(TP_fees);
+		
+		JTextPane TP_lastName = new JTextPane();
+		TP_lastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_lastName.setBounds(978, 435, 369, 37);
+		frame.getContentPane().add(TP_lastName);
+		
+		JTextPane TP_checkedOut = new JTextPane();
+		TP_checkedOut.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		TP_checkedOut.setBounds(555, 530, 1102, 199);
+		frame.getContentPane().add(TP_checkedOut);
+		
+		JButton btnCheck = new JButton("Check");
+		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnCheck.setForeground(dBlue);
+		btnCheck.setBackground(lBlue);
+		btnCheck.setBounds(1060, 305, 117, 32);
+		frame.getContentPane().add(btnCheck);
+		
 		btnCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (UserDatabase.checkRegdUser(textField.getText())) {
-					lblUserFound.setVisible(true);
+					MessageBox.MessageS("User found");
 					TP_blacklisted.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.IS_BLACKLISTED));
 					TP_firstName.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.FIRST_NAME));
 					TP_checkedOut.setText(UserDatabase.getParameterOfUser(textField.getText(), UserField.SIGNED_OUT_ARRAY));

@@ -75,23 +75,33 @@ public class StudentWindow extends Style {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		////labels
+		// current books label
+		JLabel lblCurrentBooks = new JLabel("Current books:");
+		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblCurrentBooks.setBounds(420, 301, 220, 41);
+		frame.getContentPane().add(lblCurrentBooks);
 		
+		//reserve book label
 		JLabel lblReserveBooks = new JLabel("Reserve Book:");
 		lblReserveBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblReserveBooks.setBounds(420, 589, 181, 25);
 		frame.getContentPane().add(lblReserveBooks);
 		
+		//book id label
+		JLabel lblBookId = new JLabel("Book ID #:");
+		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblBookId.setBounds(424, 621, 154, 35);
+		frame.getContentPane().add(lblBookId);
+		
+		//reserve label
 		txtReserve = new JTextField();
 		txtReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		txtReserve.setBounds(542, 621, 154, 35);
 		frame.getContentPane().add(txtReserve);
 		txtReserve.setColumns(10);
 		
-		JLabel lblBookId = new JLabel("Book ID #:");
-		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblBookId.setBounds(424, 621, 154, 35);
-		frame.getContentPane().add(lblBookId);
-		
+		//reserve button
 		JButton btnReserve = new JButton("Reserve");
 		btnReserve.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnReserve.addActionListener(new ActionListener() {
@@ -114,13 +124,14 @@ public class StudentWindow extends Style {
 		btnReserve.setBackground(lBlue);
 		frame.getContentPane().add(btnReserve);
 		
-		//
+		//Default list setup
 		DefaultListModel	model	= new DefaultListModel();
 		JList				list	= new JList(model);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		list.setBounds(424, 340, 1054, 153);
 		frame.getContentPane().add(list);
 		
+		//button renew, adds 2 weeks to selected book, re writes list
 		JButton btnRenew = new JButton("Renew");
 		btnRenew.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRenew.addActionListener(new ActionListener() {
@@ -135,22 +146,19 @@ public class StudentWindow extends Style {
 				}
 			}
 		});
-
 		btnRenew.setBounds(424, 506, 154, 41);
 		btnRenew.setForeground(dBlue);
 		btnRenew.setBackground(lBlue);
 		frame.getContentPane().add(btnRenew);
 		
+		//writes current books
 		String		string	= listBooks();
 		String[]	parts	= string.split("_");
 		for (int i = 0; i < parts.length; i++) {
 			model.addElement(parts[i]);
 		}
 		
-		JLabel lblCurrentBooks = new JLabel("Current books:");
-		lblCurrentBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblCurrentBooks.setBounds(420, 301, 220, 41);
-		frame.getContentPane().add(lblCurrentBooks);
+
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -346,7 +354,7 @@ public class StudentWindow extends Style {
 	 * 
 	 * @param bookID - ID of the book
 	 */
-	private static String getBookName(String bookID) {
+	public static String getBookName(String bookID) {
 		// man this is fugly
 		// init a new bufferedreader to read from itemdatabase, and
 		// using the bookID found above, search the itemdatabase for

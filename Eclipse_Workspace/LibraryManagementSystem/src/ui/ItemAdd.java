@@ -70,61 +70,71 @@ public class ItemAdd extends Style {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-		JLabel lblId = new JLabel("Type");
-		lblId.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblId.setBounds(658, 310, 84, 23);
-		frame.getContentPane().add(lblId);
-		
+		//text fields
+		//id text field
 		TF_id = new JTextField();
 		TF_id.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_id.setColumns(10);
 		TF_id.setBounds(754, 353, 268, 38);
 		frame.getContentPane().add(TF_id);
 		
+		//title text field
 		TF_title = new JTextField();
 		TF_title.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_title.setColumns(10);
 		TF_title.setBounds(754, 404, 268, 38);
 		frame.getContentPane().add(TF_title);
 		
+		//author or producer text field
 		TF_param1 = new JTextField();
 		TF_param1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_param1.setColumns(10);
 		TF_param1.setBounds(754, 455, 268, 38);
 		frame.getContentPane().add(TF_param1);
 		
+		//location or url text field
 		TF_param2 = new JTextField();
 		TF_param2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		TF_param2.setColumns(10);
 		TF_param2.setBounds(754, 506, 268, 38);
 		frame.getContentPane().add(TF_param2);
 		
+		//type label
+		JLabel lblId = new JLabel("Type");
+		lblId.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblId.setBounds(658, 310, 84, 23);
+		frame.getContentPane().add(lblId);
+		
+		//id label
 		JLabel LB_id = new JLabel("ID");
 		LB_id.setHorizontalAlignment(SwingConstants.TRAILING);
 		LB_id.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		LB_id.setBounds(658, 363, 84, 19);
 		frame.getContentPane().add(LB_id);
 		
+		//title label
 		JLabel LB_title = new JLabel("Title");
 		LB_title.setHorizontalAlignment(SwingConstants.TRAILING);
 		LB_title.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		LB_title.setBounds(658, 414, 84, 19);
 		frame.getContentPane().add(LB_title);
 		
+		//author label, changes to producer for movies
 		JLabel LB_param1 = new JLabel("Author");
 		LB_param1.setHorizontalAlignment(SwingConstants.TRAILING);
 		LB_param1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		LB_param1.setBounds(658, 465, 84, 19);
 		frame.getContentPane().add(LB_param1);
 		
+		//location label, changes to url for e-books
 		JLabel LB_param2 = new JLabel("Location");
 		LB_param2.setHorizontalAlignment(SwingConstants.TRAILING);
 		LB_param2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		LB_param2.setBounds(658, 508, 84, 33);
 		frame.getContentPane().add(LB_param2);
 		
+		//type dropdown menu, changes the input text fields as necessary 
 		JComboBox CB_type = new JComboBox();
 		CB_type.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		CB_type.setForeground(dBlue);
@@ -151,6 +161,7 @@ public class ItemAdd extends Style {
 		CB_type.setBounds(754, 302, 268, 38);
 		frame.getContentPane().add(CB_type);
 		
+		//add button
 		JButton btnAdd = new JButton("Add");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnAdd.setForeground(dBlue);

@@ -88,11 +88,9 @@ public abstract class Style {
 				break;
 				
 			case "Faculty":
-				buttonReturnCheckout(frame, name, email, 250, s.equals("ReturnCheckout") );
-				buttonAddUser(frame, name, email, 500, s.equals("AddUser"));
-				buttonRestrict(frame, name, email, 750, s.equals("Restrict"));
 				buttonMyBook(frame, name, email, 250, s.equals("MyBook") );
 				buttonSearchBook(frame, name, email, 500,s.equals("SearchBook"));
+				buttonRestrict(frame, name, email, 750, s.equals("Restrict"));
 				break;
 				
 			case "Admin":
@@ -100,7 +98,7 @@ public abstract class Style {
 				buttonAddUser(frame, name, email, 500, s.equals("AddUser"));
 				buttonItemAdd(frame, name, email, 750, s.equals("ItemAdd"));
 				buttonFindUser(frame, name, email, 1000, s.equals("FindUser"));
-				buttonMyBook(frame, name, email, 1250, s.equals("MyBook") );
+				buttonMyBook(frame, name, email, 1250, s.equals("MyBook"));
 				buttonSearchBook(frame, name, email, 1500,s.equals("SearchBook"));
 				break;
 				
@@ -110,7 +108,14 @@ public abstract class Style {
 				break;
 		}
 	}
-	//buttons
+	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonMyBook(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnMyBooks = new JButton("My Books");
 		btnMyBooks.addActionListener(new ActionListener() {
@@ -133,6 +138,13 @@ public abstract class Style {
 		}
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonSearchBook(JFrame frame,String name, String email, int x, boolean s) {
 		JButton btnSearchBookLoc = new JButton("Search Book Location");
 		btnSearchBookLoc.addActionListener(new ActionListener() {
@@ -156,6 +168,13 @@ public abstract class Style {
 		frame.getContentPane().add(btnSearchBookLoc);
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonAddUser(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnAddUser = new JButton("Add User");
 		btnAddUser.addActionListener(new ActionListener() {
@@ -179,6 +198,13 @@ public abstract class Style {
 		frame.getContentPane().add(btnAddUser);
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonReturnCheckout(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnAdd = new JButton("Return/Check-out");
 		btnAdd.addActionListener(new ActionListener() {
@@ -203,12 +229,19 @@ public abstract class Style {
 		frame.getContentPane().add(btnAdd);
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonRestrict(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnRestrictBooks = new JButton("Restrict Books");
 		btnRestrictBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRestrictBooks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RestrictBooks.RestrictS(name, "grag");                                      ///adjust email
+				RestrictBooks.RestrictS(name, email);
 				frame.dispose();
 			}
 		});
@@ -228,13 +261,20 @@ public abstract class Style {
 		frame.getContentPane().add(btnRestrictBooks);
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonItemAdd(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnItemAdd = new JButton("Item Add");
 		btnItemAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnItemAdd.setBounds(x, buttonY, 223, 38);
 		btnItemAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ItemAdd.ItemS(name, email);                                      ///adjust email
+				ItemAdd.ItemS(name, email);
 				frame.dispose();
 			}
 		});
@@ -252,13 +292,20 @@ public abstract class Style {
 		frame.getContentPane().add(btnItemAdd);
 	}
 	
+	/**
+	 * @param frame, input frame
+	 * @param name, user type name
+	 * @param email, email entered on login
+	 * @param x, x coordinate variable of button
+	 * @param s, true if its the selected button
+	 */
 	public static void buttonFindUser(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnFindUser = new JButton("User Search");
 		btnFindUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnFindUser.setBounds(x, buttonY, 223, 38);
 		btnFindUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FindUser.FindS(name, "grag");                                      ///adjust email
+				FindUser.FindS(name, email);
 				frame.dispose();
 			}
 		});

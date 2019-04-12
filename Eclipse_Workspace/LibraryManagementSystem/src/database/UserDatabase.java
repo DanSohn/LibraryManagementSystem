@@ -1,7 +1,10 @@
 package database;
 
+import enums.ResourceField;
+import enums.ResourceType;
 import enums.UserField;
 import enums.UserType;
+import ui.StudentWindow;
 import utils.Utilities;
 
 import java.io.File;
@@ -10,6 +13,9 @@ import java.util.Scanner;
 
 public class UserDatabase {
 	
+	public static void main (String[] args) {
+		System.out.print(getBookInfo(ResourceType.BOOK.indexOfField(ResourceField.ID), "540087"));
+	}
 	/**
 	 * Generates a new user database string.
 	 *
@@ -141,19 +147,73 @@ public class UserDatabase {
 	 * @throws Exception If the resource is not in the database.
 	 */
 	public static String getParameterOfUser(String userID, UserField fieldToGet) {
-		
-		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
-		
-		for (String line : fileLines) {
-			String[]	bits	= line.split("\\*");
-			String		ID		= bits[0];
-			
-			if (userID.equals(ID)) {
-				return bits[UserType.STUDENT.indexOfField(fieldToGet)];
-			}
-		}
-		
-		return null;
-	}
+        
+        ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+        
+        for (String line : fileLines) {
+            String[]    bits    = line.split("\\*");
+            String      ID      = bits[0];
+            
+            if (userID.equals(ID)) {
+                if(fieldToGet == UserField.SIGNED_OUT_ARRAY){
+                    String      delimiter = ",";
+                    String      bookName = null;
+                    String[]    tempArr;
+                    String      bookID;
+                    String      day;
+                    String      month;
+                    String      year;
+                    String      returnString    = "";
+                    String 		result = bits[UserType.STUDENT.indexOfField(fieldToGet)];
+                    if(!result.equals("NULL")){
+                        tempArr = result.split(delimiter);
+                        for(int i = 0; i < tempArr.length; i++){
+                            bookID  = tempArr[i].substring(0, 6);
+                            day     = tempArr[i].substring(6, 8);
+                            month   = tempArr[i].substring(8, 10);
+                            year    = tempArr[i].substring(10);
+                            
+                            
+                            bookName = StudentWindow.getBookName(bookID);
+                            returnString += String.format("Book: %s Due date: %s/%s/%s   ID:%s\n", bookName, day, month, year, bookID);
+                        }
+                    }else{
+                        returnString = "No books currently out";
+                    }
+                    return returnString;
+                }else{
+                    return bits[UserType.STUDENT.indexOfField(fieldToGet)];
+                }
+            }
+        }
+        return null;
+    }
+	
+	/**
+	 * Gets the information of the given resource ID.
+	 * @param index The index of the resource field.
+	 * @param resourceID The ID of the resource.
+	 * @return The information 
+	 */
+	public static String getBookInfo(int type, String resourceID){
+        String returnString = "";
+        ArrayList<String> fileLines = Utilities.readTextFile("ItemDatabase.txt");
+        
+        for (String line : fileLines) {
+            String[]    bits    = line.split("\\*");
+            if(bits[type].equals(resourceID)){
+                returnString += "Item ID: " + bits[0] + "\n";
+                returnString += "Item Type: " + bits[1] + "\n";
+                returnString += "Title: " + bits[2] + "\n";
+                returnString += "Author: " + bits[3] + "\n";
+                returnString += "Location: " + bits[4] + "\n";
+                returnString += "Current Status: " + bits[5] + "\n";
+                return returnString;
+            }
+        
+                
+        }
+        return "Book not found";
+    }
 	
 }
