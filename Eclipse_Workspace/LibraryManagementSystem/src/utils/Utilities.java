@@ -288,4 +288,15 @@ public class Utilities {
 		return null;
 	}
 	
+	/**
+	 * Returns whether or not the input string given is valid for the program.
+	 * @param input The input to check
+	 * @return If the input is valid
+	 */
+	public static boolean isValidInput(String input) {
+		
+		return !(input.equals("") || input.contains("*"));
+		
+	}
+	
 }
