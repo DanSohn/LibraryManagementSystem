@@ -146,14 +146,14 @@ public abstract class Style {
 	 * @param s, true if its the selected button
 	 */
 	public static void buttonSearchBook(JFrame frame,String name, String email, int x, boolean s) {
-		JButton btnSearchBookLoc = new JButton("Search Book Location");
+		JButton btnSearchBookLoc = new JButton("Search Books");
 		btnSearchBookLoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BookSearch.BookS(name, email);
 				frame.dispose();
 			}
 		});
-		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnSearchBookLoc.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnSearchBookLoc.setBounds(x, buttonY, 223, 38);
 		
 		if(s) {

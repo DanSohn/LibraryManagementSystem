@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import database.ResourceDatabase;
+import database.UserDatabase;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -25,6 +27,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 import enums.ResourceType;
+import enums.UserType;
+import utils.Utilities;
+
 import java.io.File;
 import java.io.IOException;
 import javax.swing.SwingConstants;
@@ -169,8 +174,15 @@ public class ItemAdd extends Style {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ResourceDatabase.addNewResource(TF_id.getText(), TF_title.getText(),
-						(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText());
+				if(Utilities.isValidInput(TF_id.getText()) && Utilities.isValidInput(TF_title.getText()) && Utilities.isValidInput(TF_param1.getText()) 
+						&& Utilities.isValidInput(TF_param2.getText())) {
+					ResourceDatabase.addNewResource(TF_id.getText(), TF_title.getText(),
+							(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText());
+				}
+				else {
+					MessageBox.MessageS("Fields cannot be blank or contain \"*\"");
+				}				
+
 			}
 		});
 		btnAdd.setBounds(1050, 407, 97, 30);

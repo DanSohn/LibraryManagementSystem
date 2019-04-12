@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class UserDatabase {
 	
 	public static void main (String[] args) {
-		System.out.print(getBookInfo(ResourceType.BOOK.indexOfField(ResourceField.ID), "540087"));
+		System.out.print(searchBookInfo(ResourceType.BOOK.indexOfField(ResourceField.ID), "540087"));
 	}
 	/**
 	 * Generates a new user database string.
@@ -195,24 +195,30 @@ public class UserDatabase {
 	 * @param resourceID The ID of the resource.
 	 * @return The information 
 	 */
-	public static String getBookInfo(int type, String resourceID){
+	public static String searchBookInfo(int type, String resourceID){
         String returnString = "";
         ArrayList<String> fileLines = Utilities.readTextFile("ItemDatabase.txt");
+        boolean itemFound = false;
+        
+        if (resourceID.length()< 2 ) {
+        	return "Please use at least two characters.";
+        }
         
         for (String line : fileLines) {
             String[]    bits    = line.split("\\*");
-            if(bits[type].equals(resourceID)){
+            if(bits[type].toUpperCase().contains(resourceID.toUpperCase())){
+            	itemFound = true;
                 returnString += "Item ID: " + bits[0] + "\n";
                 returnString += "Item Type: " + bits[1] + "\n";
                 returnString += "Title: " + bits[2] + "\n";
                 returnString += "Author: " + bits[3] + "\n";
                 returnString += "Location: " + bits[4] + "\n";
-                returnString += "Current Status: " + bits[5] + "\n";
-                return returnString;
+                returnString += "Current Status: " + bits[5] + "\n\n";
             }
         
                 
         }
+        if (itemFound) return returnString;
         return "Book not found";
     }
 	

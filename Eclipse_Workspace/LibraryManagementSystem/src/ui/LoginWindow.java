@@ -209,7 +209,7 @@ public class LoginWindow{
 			switch (type) {
 				case ADMIN:
 					frame.dispose();
-					AdminWindow.AdminS("Admin", txtEmail.getText());
+					ClerkWindow.ClerkS("Admin", txtEmail.getText());
 					break;
 				case CLERK:
 					frame.dispose();

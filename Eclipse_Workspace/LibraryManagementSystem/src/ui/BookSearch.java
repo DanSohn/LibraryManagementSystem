@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -29,7 +31,9 @@ import enums.ResourceType;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import java.awt.Scrollbar;
 
 public class BookSearch extends Style{
 	
@@ -95,16 +99,21 @@ public class BookSearch extends Style{
 		textPane_0.setBounds(641, 510, 619, 239);
 		frame.getContentPane().add(textPane_0);
 		
+		JScrollPane scrollbar = new JScrollPane(textPane_0);
+		scrollbar.setBounds(641, 510, 600, 239);
+		scrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		frame.getContentPane().add(scrollbar);
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		comboBox.setModel(new DefaultComboBoxModel(ResourceType.values()));
+		comboBox.setModel(new DefaultComboBoxModel(ResourceField.searchables()));
 		comboBox.setBounds(641, 293, 194, 38);
 		frame.getContentPane().add(comboBox);
 		
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				textPane_0.setText(ResourceDatabase.getParameterOfResource(textField.getText(), (ResourceType) comboBox.getSelectedItem(), ResourceField.LOCATION));
-				textPane_0.setText(UserDatabase.getBookInfo(ResourceType.BOOK.indexOfField(ResourceField.TITLE), textField.getText()));
+				textPane_0.setText(UserDatabase.searchBookInfo(ResourceType.BOOK.indexOfField((ResourceField) comboBox.getSelectedItem()), textField.getText()));
 			}
 		});
 		

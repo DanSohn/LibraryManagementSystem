@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 import database.UserDatabase;
 import enums.UserType;
+import utils.Utilities;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -160,8 +162,16 @@ public class AddUser extends Style{
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				UserDatabase.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
-						TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+				if(Utilities.isValidInput(TF_id.getText()) && Utilities.isValidInput(TF_firstName.getText()) && Utilities.isValidInput(TF_firstName.getText()) 
+															&& Utilities.isValidInput(TF_lastName.getText()) && Utilities.isValidInput(TF_email.getText()) 
+															&& Utilities.isValidInput(TF_password.getText())) {
+					UserDatabase.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
+							TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+				}
+				else {
+					MessageBox.MessageS("Fields cannot be blank or contain \"*\"");
+				}
+
 			}
 		});
 		btnAdd.setBounds(1108, 417, 116, 33);
