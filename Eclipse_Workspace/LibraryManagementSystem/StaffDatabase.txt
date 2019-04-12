@@ -1,4 +1,0 @@
-steve.the.librarian@mountroyal.ca*ilikebooks*CLERK
-stacy.the.librarian@mountroyal.ca*readingiscoolguys*ADMIN
-Cemail*pass*CLERK
-Aemail*pass*ADMIN

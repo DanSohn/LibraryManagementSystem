@@ -48,6 +48,10 @@ public class UserDatabase {
 	public static boolean addNewUser(String id, UserType type, String firstName, String lastName, String email,
 			String password) {
 		
+		if(!isInteger(id) || id.length() != 8 || containsInteger(firstName) || containsInteger(lastName) || !email.contains("@") || !email.contains(".")) {
+			return false;
+		}
+
 		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
 		
 		for (String line : fileLines) {
@@ -222,4 +226,47 @@ public class UserDatabase {
         return "Book not found";
     }
 	
+	/**
+	 * Checks if a string is an integer or not
+	 * 
+	 * @param s string 
+	 * @return if its an integer
+	 */
+	public static boolean isInteger(String str) {
+	    return isInteger(str,10);
+	}
+
+	/**
+	 * Checks if string is an integer
+	 *  
+	 * @param s string
+	 * @param radix max digit is 10
+	 * @return if its an integer
+	 */
+	public static boolean isInteger(String str, int max) {
+	    if(str.isEmpty()) return false;
+	    
+	    for(int i = 0; i < str.length(); i++) {
+	        if(i == 0 && str.charAt(i) == '-') {
+	            if(str.length() == 1) return false;
+	            else continue;
+	        }
+	        if(Character.digit(str.charAt(i),max) < 0) {
+	        	return false;
+	        }
+	    }
+	    return true;
+	}
+	
+	public static boolean containsInteger(String str) {
+		boolean found = false;
+		for(char ch : str.toCharArray()){
+	        if(Character.isDigit(ch)){
+	            found = true;
+	            return found;
+	        }
+	    }
+		
+		return found;
+	}
 }

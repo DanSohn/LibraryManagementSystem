@@ -176,8 +176,10 @@ public class ItemAdd extends Style {
 			public void mouseClicked(MouseEvent e) {
 				if(Utilities.isValidInput(TF_id.getText()) && Utilities.isValidInput(TF_title.getText()) && Utilities.isValidInput(TF_param1.getText()) 
 						&& Utilities.isValidInput(TF_param2.getText())) {
-					ResourceDatabase.addNewResource(TF_id.getText(), TF_title.getText(),
-							(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText());
+					if(!(ResourceDatabase.addNewResource(TF_id.getText(), TF_title.getText(),
+							(ResourceType) CB_type.getSelectedItem(), TF_param1.getText(), TF_param2.getText()))) {
+						MessageBox.MessageS("<html>Something went wrong! Check database or try again<br>Remember, ID must be a 6 digit number.</html>");
+					}
 				}
 				else {
 					MessageBox.MessageS("Fields cannot be blank or contain \"*\"");

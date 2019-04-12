@@ -165,8 +165,10 @@ public class AddUser extends Style{
 				if(Utilities.isValidInput(TF_id.getText()) && Utilities.isValidInput(TF_firstName.getText()) && Utilities.isValidInput(TF_firstName.getText()) 
 															&& Utilities.isValidInput(TF_lastName.getText()) && Utilities.isValidInput(TF_email.getText()) 
 															&& Utilities.isValidInput(TF_password.getText())) {
-					UserDatabase.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
-							TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+					if(!(UserDatabase.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
+							TF_lastName.getText(), TF_email.getText(), TF_password.getText()))) {
+						MessageBox.MessageS("<html>Something went wrong!<br>Check database or try again with valid input.<br>Remember: ID is 8 digits of numbers,<br>Name must be characters,<br>Email must be correct format.</html>");
+					}
 				}
 				else {
 					MessageBox.MessageS("Fields cannot be blank or contain \"*\"");

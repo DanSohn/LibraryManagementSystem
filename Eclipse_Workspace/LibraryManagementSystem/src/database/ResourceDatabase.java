@@ -35,7 +35,7 @@ public class ResourceDatabase {
      */
     public static boolean addNewResource(String id, String title, ResourceType type, String... extraFields) {
     	
-    	
+    	if(!isInteger(id) || id.length() != 6) return false;
     	//	Opens the item database for reading and writing
         ArrayList<String> fileLines = Utilities.readTextFile("ItemDatabase.txt");
 
@@ -127,5 +127,49 @@ public class ResourceDatabase {
         return null;
     	
     }
+    
+    /**
+	 * Checks if a string is an integer or not
+	 * 
+	 * @param s string 
+	 * @return if its an integer
+	 */
+	public static boolean isInteger(String str) {
+	    return isInteger(str,10);
+	}
+
+	/**
+	 * Checks if string is an integer
+	 *  
+	 * @param s string
+	 * @param radix max digit is 10
+	 * @return if its an integer
+	 */
+	public static boolean isInteger(String str, int max) {
+	    if(str.isEmpty()) return false;
+	    
+	    for(int i = 0; i < str.length(); i++) {
+	        if(i == 0 && str.charAt(i) == '-') {
+	            if(str.length() == 1) return false;
+	            else continue;
+	        }
+	        if(Character.digit(str.charAt(i),max) < 0) {
+	        	return false;
+	        }
+	    }
+	    return true;
+	}
+	
+	public static boolean containsInteger(String str) {
+		boolean found = false;
+		for(char ch : str.toCharArray()){
+	        if(Character.isDigit(ch)){
+	            found = true;
+	            return found;
+	        }
+	    }
+		
+		return found;
+	}
 
 }
