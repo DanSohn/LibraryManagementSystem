@@ -3,20 +3,13 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 
 import utils.CR;
 import utils.Utilities;
@@ -45,7 +37,8 @@ public class FacultyWindow extends Style{
 
 	/**
 	 * Launch the application.
-	 * @param string 
+	 * @param name - user's name
+	 * @param email - user's email
 	 */
 	public static void FacultyS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,7 +58,7 @@ public class FacultyWindow extends Style{
 	 */
 	public FacultyWindow(String name, String email) {
 		this.email = email;
-		this.studentID = setID(email);
+		this.studentID = getID(email);
 		this.name = name;
 		frame = new JFrame();
 		initialize();
@@ -178,7 +171,7 @@ public class FacultyWindow extends Style{
 //Back-end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static String setID(String userEmail){
+	public static String getID(String userEmail){
 		String result = null;
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
 			String line;

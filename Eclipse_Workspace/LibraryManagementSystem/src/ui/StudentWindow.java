@@ -3,20 +3,13 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 
 import utils.CR;
 import utils.Utilities;
@@ -44,7 +36,8 @@ public class StudentWindow extends Style {
 	
 	/**
 	 * Launch the application.
-	 * @param string 
+	 * @param name - name of student
+	 * @param email - email of student
 	 */
 	public static void StudentS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
@@ -64,7 +57,7 @@ public class StudentWindow extends Style {
 	 */
 	public StudentWindow(String name, String email) {
 		this.email		= email;
-		this.studentID	= setID(email);
+		this.studentID	= getID(email);
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "MyBook");
@@ -168,13 +161,13 @@ public class StudentWindow extends Style {
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Back-end
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
-	public static String setID(String userEmail) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public static String getID(String userEmail) {
 		String result = null;
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
-			String		line;
-			String[]	fields	= new String[10];	// userdatabase contains 10 fields
+			String   line;
+			String[] fields	= new String[10];	// UserDatabase contains 10 fields
 			
 			while ((line = in.readLine()) != null) {
 				fields = line.split("\\*");
