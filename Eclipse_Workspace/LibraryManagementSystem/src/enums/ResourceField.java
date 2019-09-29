@@ -1,5 +1,8 @@
 package enums;
 
+//	Defines the enums to be used in the 
+//	library management software for describing
+//	the available resources
 public enum ResourceField {
 	
 	ID,
@@ -9,10 +12,14 @@ public enum ResourceField {
 	AUTHOR,
 	PRODUCER,
 	LOCATION,
-	URL,
 	
 	STATUS,
 	HOLDER,
 	QUEUE;
+	
+	public static ResourceField[] searchables() {
+		ResourceField[] rfa = {ResourceField.ID, ResourceField.TITLE, ResourceField.AUTHOR};
+		return rfa;
+	}
 	
 }

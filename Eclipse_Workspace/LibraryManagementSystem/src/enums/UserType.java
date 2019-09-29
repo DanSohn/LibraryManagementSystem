@@ -23,7 +23,19 @@ public enum UserType {
 	
 	public final boolean	IS_STAFF;
 	public final int		MAX_SIGNED_OUT_RESOURCES;
-	
+	private final static UserField[] FIELDS	= {
+			UserField.ID,
+			UserField.TYPE,
+			UserField.FIRST_NAME,
+			UserField.LAST_NAME,
+			UserField.EMAIL,
+			UserField.PASSWORD,
+			UserField.SIGNED_OUT_ARRAY,
+			UserField.RESERVE_ARRAY,
+			UserField.FINE_AMOUNT,
+			UserField.IS_BLACKLISTED
+	};
+
 	/*
 	 * 
 	 * CONSTRUCTORS
@@ -40,9 +52,9 @@ public enum UserType {
 	private UserType(boolean isStaff, int maxSignedOutResources) {
 		
 		this.IS_STAFF					= isStaff;
-		this.MAX_SIGNED_OUT_RESOURCES	= maxSignedOutResources;
-		
+		this.MAX_SIGNED_OUT_RESOURCES	= maxSignedOutResources;		
 	}
+	
 	
 	/*
 	 * 
@@ -76,6 +88,26 @@ public enum UserType {
 		
 		return al.toArray(new UserType[al.size()]);
 		
+	}
+
+	/**
+	 * Finds the index of a specified field in a resource string.
+	 *
+	 * @param field The field to search for.
+	 * @return The index of the desired field. -1 if the field is not found.
+	 */
+	public static int indexOfField(UserField field) {
+		
+		int i = 0;
+
+		for (UserField foundField : FIELDS) {
+			if (field == foundField) {
+				return i;
+			}
+			i++;
+		}
+		
+		return -1;
 	}
 	
 }

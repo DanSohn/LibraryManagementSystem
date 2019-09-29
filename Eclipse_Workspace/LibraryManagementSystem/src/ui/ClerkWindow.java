@@ -5,38 +5,43 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-import database.DatabaseUtils;
-import enums.UserType;
+import users.Clerk;
+import utils.CheckoutBook;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class ClerkWindow {
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+
+public class ClerkWindow extends Style{
 	
 	private JFrame			frame;
-	private JTextField		TF_id;
-	private JTextField		TF_firstName;
-	private JTextField		TF_lastName;
-	private JTextField		TF_email;
-	private JTextField		TF_password;
-	private static String	email	= null;
+	private JTextField userIDTxt;
+	private JTextField bookTxt;
+	private JTextField txtPaid;
 	
 	/**
 	 * Launch the application.
+	 * @param name - name of person
+	 * @param email - email of person
 	 */
-	public void ClerkS() {
+	public static void ClerkS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClerkWindow window = new ClerkWindow(email);
+					ClerkWindow window = new ClerkWindow(name, email);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,100 +53,154 @@ public class ClerkWindow {
 	/**
 	 * Create the application.
 	 */
-	public ClerkWindow(String email) {
-		this.email = email;
-		initialize();
+	public ClerkWindow(String name, String email) {
+		frame = new JFrame();
+		initilize();
+		buttons(name, email, frame, "ReturnCheckout");
+		setup(name, frame);
 	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 465, 311);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public void initilize(){	
+		//text fields
+		userIDTxt = new JTextField();
+		userIDTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		userIDTxt.setColumns(10);
+		userIDTxt.setBounds(782, 339, 337, 47);
+		frame.getContentPane().add(userIDTxt);
 		
-		JButton btnLogOut = new JButton("Log Out");
-		btnLogOut.addActionListener(new ActionListener() {
+		bookTxt = new JTextField();
+		bookTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		bookTxt.setColumns(10);
+		bookTxt.setBounds(526, 444, 218, 34);
+		frame.getContentPane().add(bookTxt);
+		
+		txtPaid = new JTextField();
+		txtPaid.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		txtPaid.setColumns(10);
+		txtPaid.setBounds(1153, 444, 196, 34);
+		frame.getContentPane().add(txtPaid);
+		
+		//field labels
+		JLabel lblUserId = new JLabel("User ID:");
+		lblUserId.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUserId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblUserId.setBounds(782, 305, 94, 21);
+		frame.getContentPane().add(lblUserId);
+		
+		JLabel lblBookId = new JLabel("Book ID:");
+		lblBookId.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBookId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblBookId.setBounds(526, 406, 97, 34);
+		frame.getContentPane().add(lblBookId);
+		
+		//labels
+		JLabel label_1 = new JLabel("$");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		label_1.setBounds(1129, 444, 56, 32);
+		frame.getContentPane().add(label_1);
+		
+		JLabel lblAmountPaid = new JLabel("Amount Paid:");
+		lblAmountPaid.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAmountPaid.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblAmountPaid.setBounds(1131, 406, 155, 34);
+		frame.getContentPane().add(lblAmountPaid);
+		
+		JLabel lblOwed = new JLabel("owed");
+		lblOwed.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblOwed.setBounds(1357, 346, 56, 32);
+		frame.getContentPane().add(lblOwed);
+		lblOwed.setVisible(false);
+		
+		//Buttons
+		//checkout button
+		JButton btnNewButton = new JButton("Check out");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				LoginWindow newWin = new LoginWindow();
-				newWin.frame.setVisible(true);
+				try {
+					if(CheckoutBook.Checkout("UserDatabase.txt", "ItemDatabase.txt", userIDTxt.getText(), bookTxt.getText()) > 0) {
+						MessageBox.MessageS("Item Check Out Successful");
+					}
+					else{
+						MessageBox.MessageS("Item Check Out Unsuccessful");
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnLogOut.setBackground(new Color(255, 102, 102));
-		btnLogOut.setBounds(344, 228, 97, 25);
-		frame.getContentPane().add(btnLogOut);
 		
-		JLabel lblLibraryStaff = new JLabel("Clerk");
-		lblLibraryStaff.setFont(new Font("Tahoma", Font.BOLD, 33));
-		lblLibraryStaff.setBounds(26, 0, 223, 73);
-		frame.getContentPane().add(lblLibraryStaff);
+		btnNewButton.setBounds(526, 491, 218, 36);
+		btnNewButton.setForeground(dBlue);
+		btnNewButton.setBackground(lBlue);
+		frame.getContentPane().add(btnNewButton);
 		
-		JLabel lblId = new JLabel("id");
-		lblId.setBounds(26, 87, 56, 16);
-		frame.getContentPane().add(lblId);
-		
-		TF_id = new JTextField();
-		TF_id.setColumns(10);
-		TF_id.setBounds(120, 85, 116, 22);
-		frame.getContentPane().add(TF_id);
-		
-		TF_firstName = new JTextField();
-		TF_firstName.setColumns(10);
-		TF_firstName.setBounds(120, 136, 116, 22);
-		frame.getContentPane().add(TF_firstName);
-		
-		TF_lastName = new JTextField();
-		TF_lastName.setColumns(10);
-		TF_lastName.setBounds(120, 166, 116, 22);
-		frame.getContentPane().add(TF_lastName);
-		
-		TF_email = new JTextField();
-		TF_email.setColumns(10);
-		TF_email.setBounds(120, 196, 116, 22);
-		frame.getContentPane().add(TF_email);
-		
-		TF_password = new JTextField();
-		TF_password.setColumns(10);
-		TF_password.setBounds(120, 230, 116, 22);
-		frame.getContentPane().add(TF_password);
-		
-		JLabel lblUserType = new JLabel("user type");
-		lblUserType.setBounds(26, 112, 84, 16);
-		frame.getContentPane().add(lblUserType);
-		
-		JLabel lblFirstName = new JLabel("first name");
-		lblFirstName.setBounds(26, 138, 84, 16);
-		frame.getContentPane().add(lblFirstName);
-		
-		JLabel lblLastName = new JLabel("last name");
-		lblLastName.setBounds(26, 168, 84, 16);
-		frame.getContentPane().add(lblLastName);
-		
-		JLabel lblEmail = new JLabel("email");
-		lblEmail.setBounds(26, 198, 84, 16);
-		frame.getContentPane().add(lblEmail);
-		
-		JLabel lblPassword = new JLabel("password");
-		lblPassword.setBounds(26, 232, 84, 16);
-		frame.getContentPane().add(lblPassword);
-		
-		JComboBox CB_type = new JComboBox();
-		CB_type.setModel(new DefaultComboBoxModel(UserType.getNonStaffTypes()));
-		CB_type.setBounds(120, 109, 107, 24);
-		frame.getContentPane().add(CB_type);
-		
-		JButton btnAdd = new JButton("add");
-		btnAdd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DatabaseUtils.addNewUser(TF_id.getText(), (UserType) CB_type.getSelectedItem(), TF_firstName.getText(),
-						TF_lastName.getText(), TF_email.getText(), TF_password.getText());
+		//return button
+		JButton btnReturn = new JButton("Return");
+		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(new Clerk().returnResource(bookTxt.getText(), userIDTxt.getText()) > 0) {
+					MessageBox.MessageS("Item Return Successful");
+				}
+				else{
+					MessageBox.MessageS("Item Return Unsuccessful");
+				}
+				
 			}
 		});
-		btnAdd.setBounds(248, 134, 97, 25);
-		frame.getContentPane().add(btnAdd);
+		btnReturn.setBounds(526, 540, 218, 36);
+		btnReturn.setForeground(dBlue);
+		btnReturn.setBackground(lBlue);
+		frame.getContentPane().add(btnReturn);
+		
+		//check fine button
+		JButton CheckFine = new JButton("Check Fine");
+		CheckFine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int fine = new Clerk().getFine(userIDTxt.getText());
+				if (fine < 0) {
+					MessageBox.MessageS("User Not Found");
+				}
+				else
+				{
+					lblOwed.setText( "$" + Integer.toString(fine) );
+					lblOwed.setVisible(true);
+				}
+				
+			}
+		});
+		CheckFine.setForeground(new Color(3, 51, 89));
+		CheckFine.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		CheckFine.setBackground(new Color(230, 230, 240));
+		CheckFine.setBounds(1131, 344, 218, 36);
+		frame.getContentPane().add(CheckFine);
+		
+		//pay fine button
+		JButton btnPayFine = new JButton("Pay Fine");
+		btnPayFine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int change = new Clerk().payFine(userIDTxt.getText(), Integer.parseInt(txtPaid.getText()));
+				if (change < 0) {
+					MessageBox.MessageS("Error");
+				}
+				else
+				{
+					MessageBox.MessageS("Change: $" + Integer.toString(change) );
+					
+					int fine = new Clerk().getFine(userIDTxt.getText());
+					lblOwed.setText( "$" + Integer.toString(fine) );
+				}
+				
+			}
+		});
+		btnPayFine.setForeground(new Color(3, 51, 89));
+		btnPayFine.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnPayFine.setBackground(new Color(230, 230, 240));
+		btnPayFine.setBounds(1131, 491, 218, 36);
+		frame.getContentPane().add(btnPayFine);
 	}
 }

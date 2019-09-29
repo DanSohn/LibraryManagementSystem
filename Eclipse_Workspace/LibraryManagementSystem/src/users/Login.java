@@ -16,30 +16,15 @@ public class Login {
 	 * 
 	 * @param email Email entered by the user
 	 * @param password Password entered by the user
-	 * @param userType Permission level of user: admin, clerk, faculty, student
-	 * @return -1 if login failed, 0 if successful
+	 * @return null if login failed, user type if successful
 	 */
-	public static boolean userLogin(String email, String password, UserType userType) {
+	public static UserType userLogin(String email, String password) {
 		
-		String database;
-		int numFields;
-		int emailIndex;
-		int passIndex;
-		int typeIndex;
-		
-		if (userType.IS_STAFF) {
-			database = "StaffDatabase.txt";
-			numFields = 3;
-			emailIndex = 0;
-			passIndex = 1;
-			typeIndex = 2;
-		} else {
-			database = "UserDatabase.txt";
-			numFields = 10;
-			emailIndex = 4;
-			passIndex = 5;
-			typeIndex = 1;
-		}
+		String database = "UserDatabase.txt";
+		int numFields = 10;
+		int emailIndex = 4;
+		int passIndex = 5;
+		int typeIndex = 1;
 		
 		try (BufferedReader in = new BufferedReader(new FileReader(database))) {
 			String line;
@@ -51,10 +36,7 @@ public class Login {
 				if (fields[emailIndex].equals(email)) {
 					// Checks password is correct
 					if (fields[passIndex].equals(password)) {
-						// Checks permission level the user is trying to access is correct
-						if (fields[typeIndex].equals(userType.name())) {
-							return true;
-						}
+						return UserType.valueOf(fields[typeIndex]);
 					}
 					// break if anything didn't match up
 					break;
@@ -68,6 +50,11 @@ public class Login {
 			e.printStackTrace();
 		}
 		
-		return false;
+		// Return null if login was unsuccessful
+		return null;
 	}
 }
+
+
+
+// UserType.valueOf(string)

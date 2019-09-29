@@ -1,3 +1,11 @@
+
+/**
+ * Clerk class for performing Clerk functionalities
+ * 
+ * @author Jacob Cuke
+ * 
+ */
+
 package users;
 
 import java.util.ArrayList;
@@ -13,10 +21,15 @@ public class Clerk {
 	 * 
 	 * @param resourceID ID of the resource to be returned
 	 * @param userID ID of the user returning it
+	 * @return 1 if successful, -1 if an error occurred
 	 */
-	public void returnResource(String resourceID, String userID) {
+	public int returnResource(String resourceID, String userID) {
 		
 		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
 		
 		// Make sure the user actually has the book checked out
 		// If so, get due date
@@ -42,7 +55,7 @@ public class Clerk {
 		// User does not currently have the item checked out
 		if (!found) {
 			System.out.println("Error: User does not currently have that item checked out");
-			return;
+			return -1;
 		}
 		
 		// Calculate the number of $5 fines to be added
@@ -57,11 +70,16 @@ public class Clerk {
 		removeResourceId(fileLines, userID, resourceID);
 		
 		// Update the item's status
-		updateItemStatus(fileLines, resourceID);
+		int status = updateItemStatus(fileLines, resourceID);
+		// If item database file was not found
+		if (status == -1) {
+			return -1;
+		}
 		
 		// Finally, write and update the User Database
 		Utilities.writeTextFile("UserDatabase.txt", fileLines);
 		
+		return 1;
 	}
 
 	/**
@@ -90,6 +108,87 @@ public class Clerk {
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * Returns the user's fine amount
+	 * @param userID user's ID number
+	 * @return fine amount, -1 if error occured
+	 */
+	public int getFine(String userID) {
+		int fine = -1; // -1 returned if user not found
+		
+		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
+		
+		for (String line : fileLines) {
+			String[] bits = line.split("\\*");
+			// Find the user and return their fine amount
+			if (bits[0].equals(userID)) {
+				fine = Integer.parseInt(bits[8]);
+				break;
+			}
+		}
+		
+		return fine;
+	}
+	
+	/**
+	 * Reduces the user's fine total by the specified amount
+	 * 
+	 * @param userID ID of the user who's fine is to be updated
+	 * @param amount Amount paid in fine dues
+	 * @return user's change, -1 if there was an error
+	 */
+	public int payFine(String userID, int amount) {
+		int change = 0, newFine;
+		boolean found = false;
+		
+		ArrayList<String> fileLines = Utilities.readTextFile("UserDatabase.txt");
+		// File not found
+		if (fileLines == null) {
+			return -1;
+		}
+		
+		for (String line : fileLines) {
+			String[] bits = line.split("\\*");
+			// Find the user
+			if (bits[0].equals(userID)) {
+				found = true;
+				int fine = Integer.parseInt(bits[8]);
+				if (amount > fine) {
+					change = amount - fine;
+					newFine = 0;
+				}
+				else {
+					// Subtract the amount paid off from the user's fine total
+					newFine = Integer.parseInt(bits[8]) - amount;
+				}
+				// If the fine has reached zero, unblacklist the user
+				// Has no effect if they were never blacklisted in the first place
+				if (newFine == 0) {
+					bits[9] = "false";
+				}
+				// Update the file contents with the changed entries
+				bits[8] = Integer.toString(newFine);
+				String newLine = String.join("*", bits);
+				int index = fileLines.indexOf(line);
+				fileLines.set(index, newLine);
+				break;
+			}
+		}
+		
+		// If user doesn't exist return -1
+		if (!found) {
+			return -1;
+		}
+		
+		// Finally, write and update the User Database
+		Utilities.writeTextFile("UserDatabase.txt", fileLines);
+		return change;
 	}
 
 	/**
@@ -135,8 +234,12 @@ public class Clerk {
 	 * @param userLines The contents of the user file to be edited
 	 * @param resourceID ID of the item whose status is to be updated
 	 */
-	private void updateItemStatus(ArrayList<String> userLines, String resourceID) {
+	private int updateItemStatus(ArrayList<String> userLines, String resourceID) {
 		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
+		// File not found
+		if (itemLines == null ) {
+			return -1;
+		}
 		
 		for (String line : itemLines) {
 			String[] bits = line.split("\\*");
@@ -144,14 +247,18 @@ public class Clerk {
 			if (bits[0].equals(resourceID)) {
 				// Update the current holder field to NULL
 				bits[6] = "NULL";
-				// If there is no one in the reserve queue, set item to AVAILABLE
-				if (bits[7].equals("NULL")) {
-					bits[5] = "AVAILABLE";
-				} else {
-					// Issue a pick-up-by date for the first user waiting in the queue
-					String[] users = bits[7].split(",");
-					addPickupDate(userLines, users[0], resourceID);
+				// If the item has been restricted, do not make it available
+				if (!bits[5].equals("RESTRICTED")) {
+					// If there is no one in the reserve queue, set item to AVAILABLE
+					if (bits[7].equals("NULL")) {
+						bits[5] = "AVAILABLE";
+					} else {
+						// Issue a pick-up-by date for the first user waiting in the queue
+						String[] users = bits[7].split(",");
+						addPickupDate(userLines, users[0], resourceID);
+					}
 				}
+				
 				// Update the file contents with the changed entries
 				String newLine = String.join("*", bits);
 				int index = itemLines.indexOf(line);
@@ -161,6 +268,8 @@ public class Clerk {
 		}
 		// Write and update Item Database
 		Utilities.writeTextFile("ItemDatabase.txt", itemLines);
+		
+		return 1;
 	}
 
 	/**
@@ -193,6 +302,15 @@ public class Clerk {
 			}
 		}
 		
+	}
+	
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Clerk clerk = new Clerk();
+		System.out.println(clerk.getFine("31249002"));
 	}
 
 }
