@@ -168,7 +168,7 @@ public class StudentWindow extends Style {
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
 			String   line;
 			String[] fields	= new String[10];	// UserDatabase contains 10 fields
-			
+
 			while ((line = in.readLine()) != null) {
 				fields = line.split("\\*");
 				// Looks for the ID of the user we need to check
@@ -183,7 +183,7 @@ public class StudentWindow extends Style {
 		}
 		return result;
 	}
-	
+
 	// Checks what books the user has out
 	// takes in the book ID and the due date it currently has
 	public static void renewBook(String resourceString) {
@@ -254,64 +254,16 @@ public class StudentWindow extends Style {
 			Utilities.writeTextFile("UserDatabase.txt", myLines);
 		}
 	}
-	
-	public static String getBooks() {
-		String result = "NULL";
-		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
-			String		line;
-			String[]	fields	= new String[10];	// userdatabase contains 10 fields
-			
-			while ((line = in.readLine()) != null) {
-				fields = line.split("\\*");
-				// Looks for the ID of the user we need to check
-				if (fields[4].equals(email)) {
-					result = fields[6];
-				} else {
-					continue;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return result;
-		
-	}
-	
-	// will call getBooks() which returns all the books we have, and then list them
-	// in
-	// the window we have
-	public static String listBooks() {
-		String		result			= getBooks();
-		String		bookName		= null;
-		String		delimiter		= ",";
-		String[]	tempArr;
-		String		bookID;
-		String		day;
-		String		month;
-		String		year;
-		String		returnString	= "";
-		if (!result.equals("NULL")) {
-			// user actually has books out, and the field is not null
-			tempArr		= result.split(delimiter);
-			numBooks	= tempArr.length;
-			for (int i = 0; i < tempArr.length; i++) {
-				bookID	= tempArr[i].substring(0, 6);
-				day		= tempArr[i].substring(6, 8);
-				month	= tempArr[i].substring(8, 10);
-				year	= tempArr[i].substring(10);
-				// from the 14 digit value, first 6 = item ID, then ddmmyyyy
-				
-				bookName = getBookName(bookID);
-				
-				returnString += String.format("Book: %s Due date: %s/%s/%s   ID:%s_", bookName, day, month, year,
-						bookID);
-			}
-		} else {
-			returnString = "No books currently out";
-		}
-		return returnString;
+
+
+
+	/**
+	 * I create a copy of listbooks that i transfered to utilities in order to call it through the window
+	 * while testing
+	 * @return a string format that is either book, due date, ID OR no books currently out
+	 */
+	public static String listBooks(){
+		return Utilities.listBooks(email);
 	}
 	
 	/*
@@ -320,61 +272,8 @@ public class StudentWindow extends Style {
 	 * 
 	 * @param borrowedItem - all the items the user has out
 	 */
-	private static String getDate(String borrowedItem) {
-		String	result	= getBooks();
-		String	day;
-		String	month;
-		String	year;
-		String	bookField;
-		String	date	= null;
-		if (!result.equals("NULL")) {
-			String[] fields = result.split(",");
-			// Looks for the ID of the user we need to check
-			for (int i = 0; i < fields.length; i++) {
-				if (fields[i].startsWith(borrowedItem)) {
-					bookField	= fields[i];
-					day			= bookField.substring(6, 8);
-					month		= bookField.substring(8, 10);
-					year		= bookField.substring(10);
-					// from the 14 digit value, first 6 = item ID, then ddmmyyyy
-					date = day + month + year;
-					// bookName = getBookName(bookID);
-				}
-			}
-		}
-		return date;
+	public static String getDate(String borrowedItem){
+		return Utilities.getDate(email, borrowedItem);
 	}
-	
-	/*
-	 * Given the book ID, it will go through the item database and retrieve the book
-	 * name If for some reason there is no book name attached (which won't happen),
-	 * will return null
-	 * 
-	 * @param bookID - ID of the book
-	 */
-	public static String getBookName(String bookID) {
-		// man this is fugly
-		// init a new bufferedreader to read from itemdatabase, and
-		// using the bookID found above, search the itemdatabase for
-		// matching book title to the id
-		String bookName = null;
-		try (BufferedReader itemIn = new BufferedReader(new FileReader("ItemDatabase.txt"))) {
-			String		itemLine;
-			String[]	itemFields	= new String[8];	// itemdatabase contains 8 fields
-			
-			while ((itemLine = itemIn.readLine()) != null) {
-				itemFields = itemLine.split("\\*");
-				// look for the book ID we need to check
-				if (itemFields[0].equals(bookID)) {
-					bookName = itemFields[2];
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return bookName;
-	}
+
 }

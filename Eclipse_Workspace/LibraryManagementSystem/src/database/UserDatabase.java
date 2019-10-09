@@ -178,7 +178,7 @@ public class UserDatabase {
                             year    = tempArr[i].substring(10);
                             
                             
-                            bookName = StudentWindow.getBookName(bookID);
+                            bookName = Utilities.getBookName(bookID);
                             returnString += String.format("Book: %s Due date: %s/%s/%s   ID:%s\n", bookName, day, month, year, bookID);
                         }
                     }else{
@@ -195,7 +195,7 @@ public class UserDatabase {
 	
 	/**
 	 * Gets the information of the given resource ID.
-	 * @param index The index of the resource field.
+	 * @param type The index of the resource field.
 	 * @param resourceID The ID of the resource.
 	 * @return The information 
 	 */
@@ -229,7 +229,7 @@ public class UserDatabase {
 	/**
 	 * Checks if a string is an integer or not
 	 * 
-	 * @param s string 
+	 * @param str string
 	 * @return if its an integer
 	 */
 	public static boolean isInteger(String str) {
@@ -239,8 +239,8 @@ public class UserDatabase {
 	/**
 	 * Checks if string is an integer
 	 *  
-	 * @param s string
-	 * @param radix max digit is 10
+	 * @param str string
+	 * @param max max digit is 10
 	 * @return if its an integer
 	 */
 	public static boolean isInteger(String str, int max) {

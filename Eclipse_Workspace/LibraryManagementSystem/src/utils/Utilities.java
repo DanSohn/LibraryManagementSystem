@@ -1,10 +1,6 @@
 package utils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -298,5 +294,118 @@ public class Utilities {
 		return !(input.equals("") || input.contains("*"));
 		
 	}
-	
+
+
+	/*
+	 * Given the book ID, it will go through the item database and retrieve the book
+	 * name If for some reason there is no book name attached (which won't happen),
+	 * will return null
+	 *
+	 * @param bookID - ID of the book
+	 */
+	public static String getBookName(String bookID) {
+		// init a new bufferedreader to read from itemdatabase, and
+		// using the bookID found above, search the itemdatabase for
+		// matching book title to the id
+		String bookName = null;
+		try (BufferedReader itemIn = new BufferedReader(new FileReader("ItemDatabase.txt"))) {
+			String itemLine;
+			String[] itemFields = new String[8];    // itemdatabase contains 8 fields
+
+			while ((itemLine = itemIn.readLine()) != null) {
+				itemFields = itemLine.split("\\*");
+				// look for the book ID we need to check
+				if (itemFields[0].equals(bookID)) {
+					bookName = itemFields[2];
+					return bookName;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			return bookName;
+	}
+
+	public static String getBooks(String user_email) {
+		String result = "NULL";
+		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
+			String		line;
+			String[]	fields	= new String[10];	// userdatabase contains 10 fields
+
+			while ((line = in.readLine()) != null) {
+				fields = line.split("\\*");
+				// Looks for the ID of the user we need to check
+				if (fields[4].equals(user_email)) {
+					result = fields[6];
+				} else {
+					continue;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+
+	}
+
+	//will call getBooks() which returns all the books we have, and then list them in
+	// the window we have
+	public static String listBooks(String user_email) {
+		String result = getBooks(user_email);
+		String bookName = null;
+		String delimiter = ",";
+		String[] tempArr;
+		String bookID;
+		String day;
+		String month;
+		String year;
+		String returnString = "";
+		if(!result.equals("NULL")){
+			//user actually has books out, and the field is not null
+			tempArr = result.split(delimiter);
+			int numBooks = tempArr.length;
+			for(int i = 0; i < tempArr.length; i++){
+				bookID 	= tempArr[i].substring(0,6);
+				day 	= tempArr[i].substring(6,8);
+				month 	= tempArr[i].substring(8,10);
+				year 	= tempArr[i].substring(10);
+				//from the 14 digit value, first 6 = item ID, then ddmmyyyy
+
+				bookName = getBookName(bookID);
+
+
+				returnString += String.format("Book: %s Due date: %s/%s/%s   ID:%s_", bookName, day, month, year, bookID);
+			}
+		}else{
+			returnString = "No books currently out";
+		}
+		return returnString;
+	}
+
+	public static String getDate(String user_email, String borrowedItem) {
+		String	result	= Utilities.getBooks(user_email);
+		String	day;
+		String	month;
+		String	year;
+		String	bookField;
+		String	date	= null;
+		if (!result.equals("NULL")) {
+			String[] fields = result.split(",");
+			// Looks for the ID of the user we need to check
+			for (int i = 0; i < fields.length; i++) {
+				if (fields[i].startsWith(borrowedItem)) {
+					bookField	= fields[i];
+					day			= bookField.substring(6, 8);
+					month		= bookField.substring(8, 10);
+					year		= bookField.substring(10);
+					// from the 14 digit value, first 6 = item ID, then ddmmyyyy
+					date = day + month + year;
+					// bookName = getBookName(bookID);
+				}
+			}
+		}
+		return date;
+	}
 }
