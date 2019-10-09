@@ -16,7 +16,7 @@ public class Utilities {
 	 * 
 	 */
 	
-	public static final SimpleDateFormat	DATE_FORMAT	= new SimpleDateFormat("ddMMyyyy");
+	private static final SimpleDateFormat	DATE_FORMAT	= new SimpleDateFormat("ddMMyyyy");
 	public static final String				PARENT_DIR	= new File(new File("").getAbsolutePath()).getParent();
 	
 	/*
@@ -31,7 +31,7 @@ public class Utilities {
 	 * 
 	 * @param stopTime Stop after this long (Milliseconds)
 	 */
-	public static void waitMilliseconds(long stopTime) {
+	private static void waitMilliseconds(long stopTime) {
 		
 		// The time at the beginning of the method
 		long startTime = System.currentTimeMillis();
@@ -113,7 +113,7 @@ public class Utilities {
 	 * 
 	 * @param fileName The path to the file you intend to write to.
 	 */
-	public static void ensureDirsForFileExist(String fileName) {
+	private static void ensureDirsForFileExist(String fileName) {
 		
 		// Containers
 		String		filePath	= "";
@@ -326,7 +326,7 @@ public class Utilities {
 			return bookName;
 	}
 
-	public static String getBooks(String user_email) {
+	private static String getBooks(String user_email) {
 		String result = "NULL";
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
 			String		line;
@@ -337,8 +337,6 @@ public class Utilities {
 				// Looks for the ID of the user we need to check
 				if (fields[4].equals(user_email)) {
 					result = fields[6];
-				} else {
-					continue;
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -365,7 +363,6 @@ public class Utilities {
 		if(!result.equals("NULL")){
 			//user actually has books out, and the field is not null
 			tempArr = result.split(delimiter);
-			int numBooks = tempArr.length;
 			for(int i = 0; i < tempArr.length; i++){
 				bookID 	= tempArr[i].substring(0,6);
 				day 	= tempArr[i].substring(6,8);

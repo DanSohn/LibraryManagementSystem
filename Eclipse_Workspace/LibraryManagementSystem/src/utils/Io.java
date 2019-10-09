@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Io
+class Io
 {
-    public static String[] fileToStringArray(String filename) throws IOException 
+    static String[] fileToStringArray(String filename) throws IOException
     {
     	try {
 	        FileReader fr = new FileReader(filename);
@@ -35,7 +35,7 @@ public class Io
     
     // given a file name and a string array;
     // will write every entry in String[] arr to a new line in1 a text file
-    public static void save(String db_filename, String[] arr) throws IOException {
+    static void save(String db_filename, String[] arr) throws IOException {
     	  BufferedWriter writer = null;
     	  writer = new BufferedWriter(new FileWriter(db_filename));
     	  
@@ -48,7 +48,7 @@ public class Io
     	  writer.close();  
     }
     
-    public static int findLine(String[] arr, int start, String query) {
+    static int findLine(String[] arr, int start, String query) {
     	for (int i = start; start < arr.length; i++) {
     		if (arr[i].indexOf(query) != -1) {
     			return i;

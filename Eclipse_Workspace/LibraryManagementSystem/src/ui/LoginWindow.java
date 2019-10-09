@@ -56,7 +56,7 @@ public class LoginWindow{
 	/**
 	 * Create the application.
 	 */
-	public LoginWindow() {
+	LoginWindow() {
 		initialize();
 	}
 	
@@ -202,7 +202,7 @@ public class LoginWindow{
 			e.printStackTrace();
 		}
 	}
-	public void pass(){
+	private void pass(){
 		UserType type = Login.userLogin(txtEmail.getText(), passwordField.getText());
 		if (type != null) {
 			

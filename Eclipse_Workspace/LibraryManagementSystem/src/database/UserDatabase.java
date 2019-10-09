@@ -232,7 +232,7 @@ public class UserDatabase {
 	 * @param str string
 	 * @return if its an integer
 	 */
-	public static boolean isInteger(String str) {
+	private static boolean isInteger(String str) {
 	    return isInteger(str,10);
 	}
 
@@ -243,7 +243,7 @@ public class UserDatabase {
 	 * @param max max digit is 10
 	 * @return if its an integer
 	 */
-	public static boolean isInteger(String str, int max) {
+	private static boolean isInteger(String str, int max) {
 	    if(str.isEmpty()) return false;
 	    
 	    for(int i = 0; i < str.length(); i++) {
@@ -258,7 +258,7 @@ public class UserDatabase {
 	    return true;
 	}
 	
-	public static boolean containsInteger(String str) {
+	private static boolean containsInteger(String str) {
 		boolean found = false;
 		for(char ch : str.toCharArray()){
 	        if(Character.isDigit(ch)){

@@ -25,7 +25,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class ClerkWindow extends Style{
+class ClerkWindow extends Style{
 	
 	private JFrame			frame;
 	private JTextField userIDTxt;
@@ -37,7 +37,7 @@ public class ClerkWindow extends Style{
 	 * @param name - name of person
 	 * @param email - email of person
 	 */
-	public static void ClerkS(String name, String email) {
+	static void ClerkS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +53,7 @@ public class ClerkWindow extends Style{
 	/**
 	 * Create the application.
 	 */
-	public ClerkWindow(String name, String email) {
+	private ClerkWindow(String name, String email) {
 		frame = new JFrame();
 		initilize();
 		buttons(name, email, frame, "ReturnCheckout");
@@ -63,7 +63,7 @@ public class ClerkWindow extends Style{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initilize(){	
+	private void initilize(){
 		//text fields
 		userIDTxt = new JTextField();
 		userIDTxt.setFont(new Font("Tahoma", Font.PLAIN, 22));

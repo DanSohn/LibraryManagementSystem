@@ -30,7 +30,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class AddUser extends Style{
+class AddUser extends Style{
 	
 	private JFrame			frame;
 	private JTextField		TF_id;
@@ -43,7 +43,7 @@ public class AddUser extends Style{
 	 * Launch the application.
 	 * @param name 
 	 */
-	public static void AddUserS(String name, String email) {
+	static void AddUserS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -59,7 +59,7 @@ public class AddUser extends Style{
 	/**
 	 * Create the application.
 	 */
-	public AddUser(String name, String email) {
+	private AddUser(String name, String email) {
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "AddUser");

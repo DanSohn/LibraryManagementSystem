@@ -131,21 +131,21 @@ public class ResourceDatabase {
     /**
 	 * Checks if a string is an integer or not
 	 * 
-	 * @param s string 
+	 * @param str string
 	 * @return if its an integer
 	 */
-	public static boolean isInteger(String str) {
+	private static boolean isInteger(String str) {
 	    return isInteger(str,10);
 	}
 
 	/**
 	 * Checks if string is an integer
 	 *  
-	 * @param s string
-	 * @param radix max digit is 10
+	 * @param str string
+	 * @param max digit is 10
 	 * @return if its an integer
 	 */
-	public static boolean isInteger(String str, int max) {
+	private static boolean isInteger(String str, int max) {
 	    if(str.isEmpty()) return false;
 	    
 	    for(int i = 0; i < str.length(); i++) {

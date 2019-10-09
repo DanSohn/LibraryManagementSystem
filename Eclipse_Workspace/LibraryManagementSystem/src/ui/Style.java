@@ -22,7 +22,7 @@ public abstract class Style {
 	static Color lBlue = new Color(230, 230, 240);
 	static Color backBlue = new Color(122, 178, 201);
 	static Color jBlue = new Color(210, 210, 210);
-	static int buttonY = 185;	
+	private static int buttonY = 185;
 	
 	
 	public static void setup(String name, JFrame frame){
@@ -116,7 +116,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonMyBook(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonMyBook(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnMyBooks = new JButton("My Books");
 		btnMyBooks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,7 +145,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonSearchBook(JFrame frame,String name, String email, int x, boolean s) {
+	private static void buttonSearchBook(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnSearchBookLoc = new JButton("Search Books");
 		btnSearchBookLoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -175,7 +175,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonAddUser(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonAddUser(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnAddUser = new JButton("Add User");
 		btnAddUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -205,7 +205,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonReturnCheckout(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonReturnCheckout(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnAdd = new JButton("Return/Check-out");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,7 +236,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonRestrict(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonRestrict(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnRestrictBooks = new JButton("Restrict Books");
 		btnRestrictBooks.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnRestrictBooks.addActionListener(new ActionListener() {
@@ -268,7 +268,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonItemAdd(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonItemAdd(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnItemAdd = new JButton("Item Add");
 		btnItemAdd.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnItemAdd.setBounds(x, buttonY, 223, 38);
@@ -299,7 +299,7 @@ public abstract class Style {
 	 * @param x, x coordinate variable of button
 	 * @param s, true if its the selected button
 	 */
-	public static void buttonFindUser(JFrame frame, String name, String email, int x, boolean s) {
+	private static void buttonFindUser(JFrame frame, String name, String email, int x, boolean s) {
 		JButton btnFindUser = new JButton("User Search");
 		btnFindUser.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnFindUser.setBounds(x, buttonY, 223, 38);

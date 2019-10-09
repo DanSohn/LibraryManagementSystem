@@ -27,7 +27,7 @@ import java.io.IOException;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-public class FindUser extends Style{
+class FindUser extends Style{
 	
 	JFrame					frame;
 	private JTextField		textField;
@@ -37,7 +37,7 @@ public class FindUser extends Style{
 	 * @param email 
 	 * @param name 
 	 */
-	public static void FindS(String name, String email) {
+	static void FindS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +53,7 @@ public class FindUser extends Style{
 	/**
 	 * Create the application.
 	 */
-	public FindUser(String name, String email) {
+	private FindUser(String name, String email) {
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "FindUser");

@@ -35,16 +35,16 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import java.awt.Scrollbar;
 
-public class BookSearch extends Style{
+class BookSearch extends Style{
 	
-	JFrame frame;
+	private JFrame frame;
 	private JTextField textField;
 	
 	/**
 	 * Launch the application.
 	 * @param name 
 	 */
-	public static void BookS(String name, String email) {
+	static void BookS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,7 +60,7 @@ public class BookSearch extends Style{
 	/**
 	 * Create the application.
 	 */
-	public BookSearch(String name, String email) {
+	private BookSearch(String name, String email) {
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "SearchBook");

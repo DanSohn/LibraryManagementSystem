@@ -25,17 +25,16 @@ import utils.Utilities;
 
 import javax.swing.JTextField;
 
-public class RestrictBooks extends Style{
+class RestrictBooks extends Style{
 
 	private JFrame frame;
-	private static String studentID = null;
 	private static int numBooks = 0;
 	private JTextField idIn;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void RestrictS(String name, String email) {
+	static void RestrictS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,8 +50,8 @@ public class RestrictBooks extends Style{
 	/**
 	 * Create the application.
 	 */
-	public RestrictBooks(String name, String email) {
-		this.studentID = setID(email);
+	private RestrictBooks(String name, String email) {
+		String studentID = setID(email);
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "Restrict");
@@ -97,7 +96,7 @@ public class RestrictBooks extends Style{
 	}
 	
 	//////// Back end 
-	public static String setID(String userEmail){
+	private static String setID(String userEmail){
 		String result = null;
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
 			String line;
@@ -118,7 +117,7 @@ public class RestrictBooks extends Style{
 		return result;
 	}
 	
-	public String restrictBook(String bookID){
+	private String restrictBook(String bookID){
 		String bookName = null;
         String authorName = null;
 		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");

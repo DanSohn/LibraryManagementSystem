@@ -52,7 +52,7 @@ public class AdminWindow extends Style{
 	/**
 	 * Create the application.
 	 */
-	public AdminWindow(String name, String email) {
+	private AdminWindow(String name, String email) {
 		frame = new JFrame();
 		initilize();
 		buttons(name, email, frame, "ReturnCheckout");

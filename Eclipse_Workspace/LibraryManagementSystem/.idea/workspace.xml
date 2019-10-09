@@ -3,15 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="823463d2-f738-473c-a52a-28c7aa99c3f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserDatabase.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UserDatabase.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/ResourceDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/ResourceDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/UserDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/UserDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/FacultyWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/FacultyWindowTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/StudentWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/StudentWindowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/AddUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/AddUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/AdminWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/BookSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BookSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ClerkWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ClerkWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/FacultyWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/FacultyWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/FindUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/FindUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ItemAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ItemAdd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/MessageBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MessageBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/RestrictBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/RestrictBooks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/StudentWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/StudentWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Style.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Utilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Refactorings.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Refactorings.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../~$factorings.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../~$factorings.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +77,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PatronWindowTest">
+  <component name="RunManager" selected="Application.LoginWindow">
     <configuration name="LoginWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.LoginWindow" />
       <module name="Foo" />
@@ -195,10 +200,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LoginWindow" />
         <item itemvalue="JUnit.StudentWindowTest.testGetDate" />
         <item itemvalue="JUnit.FacultyWindowTest.testGetDate" />
         <item itemvalue="JUnit.StudentWindowTest.testListBooks" />
-        <item itemvalue="Application.LoginWindow" />
         <item itemvalue="JUnit.StudentWindowTest.testGetBookName" />
       </list>
     </recent_temporary>

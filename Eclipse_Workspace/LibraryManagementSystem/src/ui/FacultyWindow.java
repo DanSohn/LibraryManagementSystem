@@ -32,7 +32,6 @@ public class FacultyWindow extends Style{
 	private JTextField txtReserve;
 	private static String email = null;
 	private static String studentID = null;
-	private static String name	= "Faculty";
 	private static int numBooks = 0;
 
 	/**
@@ -40,7 +39,7 @@ public class FacultyWindow extends Style{
 	 * @param name - user's name
 	 * @param email - user's email
 	 */
-	public static void FacultyS(String name, String email) {
+	 static void FacultyS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -56,10 +55,9 @@ public class FacultyWindow extends Style{
 	/**
 	 * Create the application.
 	 */
-	public FacultyWindow(String name, String email) {
-		this.email = email;
-		this.studentID = getID(email);
-		this.name = name;
+	public FacultyWindow(String name, String user_email) {
+		email = user_email;
+		studentID = getID(email);
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "MyBook");
@@ -202,7 +200,7 @@ public class FacultyWindow extends Style{
 	}
 	// Checks what books the user has out
 	//takes in the book ID and the due date it currently has
-	public static void renewBook(String resourceString){
+	private static void renewBook(String resourceString){
 		String resourceID = resourceString.substring(resourceString.length() - 6);
 		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
 		String myDate = null;

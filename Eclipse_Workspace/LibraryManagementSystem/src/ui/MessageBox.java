@@ -13,15 +13,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MessageBox extends JFrame {
+class MessageBox extends JFrame {
 
-	private JPanel contentPane;
-	private static String text = "Message";
-	
 	/**
 	 * Launch the application.
 	 */
-	public static void MessageS(String text) {
+	static void MessageS(String text) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,11 +34,10 @@ public class MessageBox extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MessageBox(String text) {
-		this.text = text;
+	private MessageBox(String text) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(750, 300, 450, 300);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

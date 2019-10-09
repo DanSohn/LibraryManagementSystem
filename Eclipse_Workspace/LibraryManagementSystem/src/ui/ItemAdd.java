@@ -34,7 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.SwingConstants;
 
-public class ItemAdd extends Style {
+class ItemAdd extends Style {
 	
 	private JFrame			frame;
 	private JTextField		TF_id;
@@ -47,7 +47,7 @@ public class ItemAdd extends Style {
 	/**
 	 * Launch the application.
 	 */
-	public static void ItemS(String name, String email) {
+	static void ItemS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,7 +63,7 @@ public class ItemAdd extends Style {
 	/**
 	 * Create the application.
 	 */
-	public ItemAdd(String name, String email) {
+	private ItemAdd(String name, String email) {
 		this.name = name;
 		frame = new JFrame();
 		initialize();

@@ -39,7 +39,7 @@ public class StudentWindow extends Style {
 	 * @param name - name of student
 	 * @param email - email of student
 	 */
-	public static void StudentS(String name, String email) {
+	 static void StudentS(String name, String email) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -55,13 +55,13 @@ public class StudentWindow extends Style {
 	/**
 	 * Create the application.
 	 */
-	public StudentWindow(String name, String email) {
-		this.email		= email;
-		this.studentID	= getID(email);
+	public StudentWindow(String user_name, String user_email) {
+		email		= user_email;
+		studentID	= getID(email);
 		frame = new JFrame();
 		initialize();
-		buttons(name, email, frame, "MyBook");
-		setup(name, frame);
+		buttons(user_name, email, frame, "MyBook");
+		setup(user_name, frame);
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class StudentWindow extends Style {
 
 	// Checks what books the user has out
 	// takes in the book ID and the due date it currently has
-	public static void renewBook(String resourceString) {
+	private static void renewBook(String resourceString) {
 		String				resourceID	= resourceString.substring(resourceString.length() - 6);
 		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");
 		String				myDate		= null;
