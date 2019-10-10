@@ -190,6 +190,10 @@ public class FacultyWindow extends Style{
 		return result;
 	}
 
+	public static String getEmail(){
+		return email;
+	}
+
 	/**
 	 * I create a copy of listbooks that i transfered to utilities in order to call it through the window
 	 * while testing
@@ -198,12 +202,12 @@ public class FacultyWindow extends Style{
 	public static String listBooks(){
 		return Utilities.listBooks(email);
 	}
+
 	// Checks what books the user has out
 	//takes in the book ID and the due date it currently has
 	private static void renewBook(String resourceString){
 		String resourceID = resourceString.substring(resourceString.length() - 6);
 		ArrayList<String> itemLines = Utilities.readTextFile("ItemDatabase.txt");
-		String myDate = null;
 		boolean renew = false;
 		for (String line : itemLines) {
 			String[] bits = line.split("\\*");
@@ -224,7 +228,6 @@ public class FacultyWindow extends Style{
 		// read Write and update user Database
 		ArrayList<String> myLines = Utilities.readTextFile("UserDatabase.txt");
 		DateFormat sourceFormat = new SimpleDateFormat("ddMMyyyy");;
-		Date date = null;
 		Date currentDate;
 		if(renew){
 			for(String line : myLines){
@@ -232,16 +235,10 @@ public class FacultyWindow extends Style{
 				//found the user 
 				if(bits[0].equals(studentID)){
 					
-					myDate = getDate(resourceID);
-					try{
-						date = sourceFormat.parse(myDate);
-					}catch(Exception e){
-						System.out.println(e);
-					}
-					Calendar c = Calendar.getInstance();
-					c.setTime(date);
-					c.add(Calendar.DATE, 14);
-				    currentDate = c.getTime();
+					String myDate = getDate(resourceID);
+					//call twoWeeksDate on myDate and returns date two weeks later in a date object
+					currentDate = Utilities.twoWeekDate(myDate);
+
 					System.out.println(sourceFormat.format(currentDate));
 					//finished incrementing the date by 2 weeks
 					String[] temp = bits[6].split(",");
@@ -277,5 +274,6 @@ public class FacultyWindow extends Style{
 	public static String getDate(String borrowedItem){
 		return Utilities.getDate(email, borrowedItem);
 	}
+
 }
 		

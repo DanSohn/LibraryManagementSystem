@@ -184,12 +184,14 @@ public class StudentWindow extends Style {
 		return result;
 	}
 
+	public static String getEmail(){
+		return email;
+	}
 	// Checks what books the user has out
 	// takes in the book ID and the due date it currently has
-	private static void renewBook(String resourceString) {
+	 public static void renewBook(String resourceString) {
 		String				resourceID	= resourceString.substring(resourceString.length() - 6);
 		ArrayList<String>	itemLines	= Utilities.readTextFile("ItemDatabase.txt");
-		String				myDate		= null;
 		boolean				renew		= false;
 		for (String line : itemLines) {
 			String[] bits = line.split("\\*");
@@ -209,27 +211,19 @@ public class StudentWindow extends Style {
 		// user
 		// definitely has the book) has no reserve queue and as such can be renewed
 		// read Write and update user Database
-		ArrayList<String>	myLines			= Utilities.readTextFile("UserDatabase.txt");
-		DateFormat			sourceFormat	= new SimpleDateFormat("ddMMyyyy");
-		;
-		Date	date	= null;
-		Date	currentDate;
+		ArrayList<String> myLines			= Utilities.readTextFile("UserDatabase.txt");
+		DateFormat sourceFormat	= new SimpleDateFormat("ddMMyyyy");
+		Date currentDate;
 		if (renew) {
 			for (String line : myLines) {
 				String[] bits = line.split("\\*");
 				// found the user
 				if (bits[0].equals(studentID)) {
-					
-					myDate = getDate(resourceID);
-					try {
-						date = sourceFormat.parse(myDate);
-					} catch (Exception e) {
-						System.out.println(e);
-					}
-					Calendar c = Calendar.getInstance();
-					c.setTime(date);
-					c.add(Calendar.DATE, 14);
-					currentDate = c.getTime();
+					//grabs the data portion of the string
+					String myDate = getDate(resourceID);
+					// call twoWeeksDate on myDate and return the date two weeks later, in a Date object
+					currentDate = Utilities.twoWeekDate(myDate);
+
 					System.out.println(sourceFormat.format(currentDate));
 					// finished incrementing the date by 2 weeks
 					String[] temp = bits[6].split(",");
@@ -275,5 +269,6 @@ public class StudentWindow extends Style {
 	public static String getDate(String borrowedItem){
 		return Utilities.getDate(email, borrowedItem);
 	}
+
 
 }

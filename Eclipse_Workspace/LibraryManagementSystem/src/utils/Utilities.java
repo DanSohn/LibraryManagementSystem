@@ -1,9 +1,11 @@
 package utils;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -404,5 +406,30 @@ public class Utilities {
 			}
 		}
 		return date;
+	}
+
+	/**
+	 * Move a portion of renewBook into this method that will calculate the two weeks and return the new date
+	 * @param iniDate - the initial return date
+	 * @return returnDate - two weeks later
+	 */
+	public static Date twoWeekDate(String iniDate){
+		DateFormat sourceFormat	= new SimpleDateFormat("ddMMyyyy");
+		Date date	= null;
+		Date currentDate;
+
+		// attempts to convert the date string into a date object of the form ddMMyyyy
+		try {
+			date = sourceFormat.parse(iniDate);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		//uses a calander object to set the date and then add two weeks, ending up with the currentdate = iniDate + 2 weeks
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, 14);
+		currentDate = c.getTime();
+
+		return currentDate;
 	}
 }

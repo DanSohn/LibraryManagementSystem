@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.After;
 import java.io.*;
+import java.util.ArrayList;
+
 import ui.*;
+import utils.Utilities;
 
 
 public class StudentWindowTest {
@@ -67,6 +70,43 @@ public class StudentWindowTest {
         assertEquals("17032019", student2.getDate("303277"));
         assertEquals("01042019", student2.getDate("409276"));
         assertEquals("26042019", student2.getDate("100443"));
+    }
+
+    @Test
+    public void testRenewBook(){
+        StudentWindow student = new StudentWindow("Jacob", "jacob.cuke@ucalgary.ca");
+        String id = student.getID(student.getEmail());
+        String[] bookID = {"30327717032019", "10044326042019"};
+
+        // test wise, if renew succeeds, then the bookID and the id's received from the database should differ
+        // test purposes I chose ones that would be different, since to test something that I can never revert to the
+        // base case easily would be too difficult to test in a junit test. Example: a book would come in 10042019. If
+        // i renew it, then it'll be two weeks. Every time i do the test, it'll incremenet two weeks. I would never be
+        // able to get a consistent EXPECTED assert...
+        student.renewBook(bookID[0]);
+        student.renewBook(bookID[1]);
+
+
+        ArrayList<String> itemLines	= Utilities.readTextFile("ItemDatabase.txt");
+
+        for (String line : itemLines) {
+            String[] bits = line.split("\\*");
+
+            // Person found, looking for his books now
+            if(bits[0].equals(id)){
+                String[] booksOut = bits[6].split(",");
+                //books found, looking for a match now
+                for (int i = 0; i < booksOut.length; i++) {
+                    if (booksOut[i].startsWith(bookID[0])) {
+                        assertEquals("Book shouldn't be renewed", bookID[0], booksOut[i]);
+                    }
+                    if (booksOut[i].startsWith(bookID[1])) {
+                        assertEquals("Book shouldn't be renewed", bookID[1], booksOut[i]);
+                    }
+
+                }
+            }
+        }
     }
 
 }
