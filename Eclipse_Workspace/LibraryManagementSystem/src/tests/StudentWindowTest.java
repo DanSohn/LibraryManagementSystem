@@ -52,7 +52,7 @@ public class StudentWindowTest {
     public void testListBooks(){
         StudentWindow student = new StudentWindow("Jacob", "jacob.cuke@ucalgary.ca");
         String expected =   "Book: A Dance with Dragons Due date: 17/03/2019   ID:303277_" +
-                            "Book: Harry Potter and the Goblet of Fire Due date: 01/04/2019   ID:409276_" +
+                            "Book: Harry Potter and the Goblet of Fire Due date: 22/07/2019   ID:409276_" +
                             "Book: Software Engineering for Dummies Due date: 26/04/2019   ID:100443_";
         assertEquals(expected, student.listBooks());
 
@@ -68,7 +68,7 @@ public class StudentWindowTest {
 
         StudentWindow student2 = new StudentWindow("Jacob", "jacob.cuke@ucalgary.ca");
         assertEquals("17032019", student2.getDate("303277"));
-        assertEquals("01042019", student2.getDate("409276"));
+        assertEquals("22072019", student2.getDate("409276"));
         assertEquals("26042019", student2.getDate("100443"));
     }
 

@@ -396,11 +396,8 @@ public class Utilities {
 			for (int i = 0; i < fields.length; i++) {
 				if (fields[i].startsWith(borrowedItem)) {
 					bookField	= fields[i];
-					day			= bookField.substring(6, 8);
-					month		= bookField.substring(8, 10);
-					year		= bookField.substring(10);
 					// from the 14 digit value, first 6 = item ID, then ddmmyyyy
-					date = day + month + year;
+					date = bookField.substring(6);
 					// bookName = getBookName(bookID);
 				}
 			}

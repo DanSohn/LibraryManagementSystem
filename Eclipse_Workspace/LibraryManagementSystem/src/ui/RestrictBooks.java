@@ -51,7 +51,7 @@ class RestrictBooks extends Style{
 	 * Create the application.
 	 */
 	private RestrictBooks(String name, String email) {
-		String studentID = setID(email);
+		String studentID = getID(email);
 		frame = new JFrame();
 		initialize();
 		buttons(name, email, frame, "Restrict");
@@ -96,7 +96,7 @@ class RestrictBooks extends Style{
 	}
 	
 	//////// Back end 
-	private static String setID(String userEmail){
+	private static String getID(String userEmail){
 		String result = null;
 		try (BufferedReader in = new BufferedReader(new FileReader("UserDatabase.txt"))) {
 			String line;

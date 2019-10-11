@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="823463d2-f738-473c-a52a-28c7aa99c3f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/tests/UtilitiesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserDatabase.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UserDatabase.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/PatronWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/AllTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/StudentWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/StudentWindowTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/FacultyWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/FacultyWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/StudentWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/StudentWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/RestrictBooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/RestrictBooks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Utilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Refactorings.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Refactorings.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,11 +51,11 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="tests" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="tests" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -69,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LoginWindow">
+  <component name="RunManager" selected="JUnit.AllTests">
     <configuration name="LoginWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.LoginWindow" />
       <module name="Foo" />
@@ -83,18 +84,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FacultyWindowTest" type="JUnit" factoryName="JUnit">
-      <module name="Foo" />
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.FacultyWindowTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FacultyWindowTest.testGetDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AllTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foo" />
       <extension name="coverage">
         <pattern>
@@ -103,9 +93,19 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.AllTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FacultyWindowTest" type="JUnit" factoryName="JUnit">
+      <module name="Foo" />
+      <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.FacultyWindowTest" />
-      <option name="METHOD_NAME" value="testGetDate" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,22 +148,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentWindowTest.testListBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Foo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.StudentWindowTest" />
-      <option name="METHOD_NAME" value="testListBooks" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StudentWindowTest.testRenewBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foo" />
       <extension name="coverage">
@@ -180,23 +164,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UtilitiesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.UtilitiesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.LoginWindow" />
       <item itemvalue="JUnit.StudentWindowTest" />
       <item itemvalue="JUnit.FacultyWindowTest" />
       <item itemvalue="JUnit.PatronWindowTest" />
-      <item itemvalue="JUnit.StudentWindowTest.testListBooks" />
-      <item itemvalue="JUnit.FacultyWindowTest.testGetDate" />
       <item itemvalue="JUnit.StudentWindowTest.testGetDate" />
       <item itemvalue="JUnit.StudentWindowTest.testRenewBook" />
+      <item itemvalue="JUnit.UtilitiesTest" />
+      <item itemvalue="JUnit.AllTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AllTests" />
+        <item itemvalue="JUnit.UtilitiesTest" />
         <item itemvalue="Application.LoginWindow" />
         <item itemvalue="JUnit.StudentWindowTest.testRenewBook" />
         <item itemvalue="JUnit.StudentWindowTest.testGetDate" />
-        <item itemvalue="JUnit.FacultyWindowTest.testGetDate" />
-        <item itemvalue="JUnit.StudentWindowTest.testListBooks" />
       </list>
     </recent_temporary>
   </component>

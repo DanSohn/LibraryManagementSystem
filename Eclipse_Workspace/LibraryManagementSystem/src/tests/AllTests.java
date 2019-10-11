@@ -8,6 +8,6 @@ import ui.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Suite.class)
-@SuiteClasses({FacultyWindowTest.class, StudentWindowTest.class})
-public class PatronWindowTest {
+@SuiteClasses({FacultyWindowTest.class, StudentWindowTest.class, UtilitiesTest.class})
+public class AllTests {
 }
